@@ -9,12 +9,14 @@ services:
       args:
         NEXT_PUBLIC_CLIENTVAR: "clientvar"
     restart: always
+    env_file:
+      - .env
     working_dir: /app
     ports:
       - "3000:3000"
     image: t3-app
     environment:
-      - DATABASE_URL=postgres://opc:opc@postgres:5432/opc
+      - DATABASE_URL=${DATABASE_URL}
     depends_on:
       - postgres
     networks:
@@ -31,9 +33,9 @@ services:
     container_name: postgres-container
     image: postgres:latest
     environment:
-      POSTGRES_USER: opc
-      POSTGRES_PASSWORD: opc
-      POSTGRES_DB: opc
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
     networks:
       - t3app
     volumes:
