@@ -61,17 +61,6 @@ model User {
   Account       Account[]
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  author    User     @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
-  authorId  String // Change the type to match the ID type in the User model
-  photos    Photo[] // Add a new field for photos
-  tags      Tag[]    @relation("TagToPost")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
 
 model VerificationToken {
   identifier String
@@ -81,10 +70,23 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// Define the data model for photos
+// Update the Post model to have a one-to-many relationship with Photo
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  author    User     @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
+  authorId  String
+  photos    Photo[]  // Add a new field for multiple photos
+  postTags  PostTag[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Update the Photo model to store photos as binary data
 model Photo {
   id        Int      @id @default(autoincrement())
-  url       String // You can use a string field to store the URL or file path of the photo
+  data      Bytes    // Use Bytes type for binary data
   post      Post     @relation(fields: [postId], references: [id])
   postId    Int
   createdAt DateTime @default(now())
@@ -95,7 +97,18 @@ model Photo {
 model Tag {
   id        Int      @id @default(autoincrement())
   name      String
-  posts     Post[]   @relation("TagToPost")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     PostTag[] // This field connects to the PostTag model
+}
+
+// Define the data model for many to many relationship between Post and Tag
+model PostTag {
+  id        Int      @id @default(autoincrement())
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  tag       Tag      @relation(fields: [tagId], references: [id])
+  tagId     Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
