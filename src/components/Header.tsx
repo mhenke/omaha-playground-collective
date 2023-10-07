@@ -14,7 +14,7 @@ export const Header = () => {
             <label
               tabIndex={0}
               className="avatar btn btn-circle btn-ghost"
-              onClick={() => void signOut()}
+              onClick={() => signOut()}
             >
               <div className="w-10 rounded-full">
                 <img
@@ -26,7 +26,7 @@ export const Header = () => {
           ) : (
             <button
               className="btn btn-ghost rounded-btn"
-              onClick={() => void signIn()}
+              onClick={() => signIn()}
             >
               Sign in
             </button>

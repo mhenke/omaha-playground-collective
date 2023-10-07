@@ -43,7 +43,7 @@ const Content: React.FC = () => {
 
   const createPost = api.post.create.useMutation({
     onSuccess: () => {
-      void refetchPosts();
+      refetchPosts();
     },
   });
 
