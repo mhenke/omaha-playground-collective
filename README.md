@@ -1,4 +1,4 @@
-# My Awesome Project app
+# Omaha Playground Collective app
 
 ## Project Summary
 
@@ -6,7 +6,7 @@ What are you doing and why? How do you install and run the app?
 
 ### What and Why
 
-My awesome app is the best app ever. It helps you do everything so you can be more awesome. In particular, my awesome app has been carefully engineered to leverage leveraging so you can leverage more.
+The Omaha Playground Collective is your ultimate source for all things playgrounds, parks + fun in Omaha, Nebraska. Our mission is to provide a comprehensive guide to help you discover the best recreational spaces and activities for your family.
 
 ### Installation
 
@@ -56,3 +56,5 @@ How do the pieces of your application fit together? What does your UI look like?
 Get started coding
 
 # License
+
+This project is licensed under the terms of the [Creative Commons Zero v1.0 Universal](LICENSE.md).
