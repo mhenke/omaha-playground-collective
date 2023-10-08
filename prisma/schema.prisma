@@ -97,6 +97,7 @@ model Photo {
 model Tag {
   id            Int         @id @default(autoincrement())
   name          String
+  description   String?
   playgrounds   Playground[] @relation("PlaygroundTags")
   playgroundsOnTags   PlaygroundsOnTags[]
   createdAt     DateTime    @default(now())
@@ -134,4 +135,16 @@ model Playground {
   shade               Boolean?
   accessibleEquip     Boolean?
   adaCompliance       Boolean?
+  ageRange            AgeRange?  @relation(fields: [ageRangeId], references: [id])
+  ageRangeId          Int?
+}
+
+// Define the data model for age ranges
+model AgeRange {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  playgrounds Playground[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
