@@ -1,6 +1,8 @@
 # My Awesome Project app
 
-## Project Summary - What are you doing and why? How do you install and run the app?
+## Project Summary
+
+What are you doing and why? How do you install and run the app?
 
 ### What and Why
 
@@ -25,10 +27,32 @@ docker-compose up
 
 See in-app menus for help with using specific features.
 
-## User Stories - What does your app/product do and who are your users?
+## User Stories
 
-## Diagrams - How do the pieces of your application fit together? What does your UI look like?
+What does your app/product do and who are your users?
 
-## Prototype - Get started coding
+### Example 1
+
+As a parent, I want to browse the blog posts to discover suitable playgrounds for my family.
+
+### Example 2
+
+As a parent, I want to utilize the search feature to quickly locate appropriate playgrounds for my family.
+
+### Example 3
+
+As an administrator, I want to create new blog entries, enabling me to share playground information including a summary, photos, address, tags, and other relevant info.
+
+### Example 4
+
+As an administrator, I want to manage relevant tags and age range information. This involves creating, reading, updating, and deleting.
+
+## Diagrams
+
+How do the pieces of your application fit together? What does your UI look like?
+
+## Prototype
+
+Get started coding
 
 # License
