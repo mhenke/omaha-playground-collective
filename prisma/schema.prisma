@@ -61,7 +61,6 @@ model User {
   Account       Account[]
 }
 
-
 model VerificationToken {
   identifier String
   token      String   @unique
@@ -72,43 +71,67 @@ model VerificationToken {
 
 // Update the Post model to have a one-to-many relationship with Photo
 model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  author    User     @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
-  authorId  String
-  photos    Photo[]  // Add a new field for multiple photos
-  postTags  PostTag[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            Int         @id @default(autoincrement())
+  title         String
+  content       String
+  author        User        @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
+  authorId      String
+  playground    Playground?  @relation("PlaygroundPosts", fields: [playgroundId], references: [id])
+  playgroundId  Int?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 // Update the Photo model to store photos as binary data
 model Photo {
-  id        Int      @id @default(autoincrement())
-  data      Bytes    // Use Bytes type for binary data
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              Int         @id @default(autoincrement())
+  data            Bytes       // Use Bytes type for binary data
+  playground      Playground  @relation("PlaygroundPhotos", fields: [playgroundId], references: [id])
+  playgroundId    Int
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
 }
+
 
 // Define the data model for tags
 model Tag {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  posts     PostTag[] // This field connects to the PostTag model
+  id            Int         @id @default(autoincrement())
+  name          String
+  playgrounds   Playground[] @relation("PlaygroundTags")
+  playgroundsOnTags   PlaygroundsOnTags[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
-// Define the data model for many to many relationship between Post and Tag
-model PostTag {
-  id        Int      @id @default(autoincrement())
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    Int
-  tag       Tag      @relation(fields: [tagId], references: [id])
-  tagId     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+// Define the data model for the many-to-many relationship between Playground and Tag
+model PlaygroundsOnTags {
+  id            Int         @id @default(autoincrement())
+  playground    Playground  @relation(fields: [playgroundId], references: [id])
+  playgroundId  Int
+  tag           Tag         @relation(fields: [tagId], references: [id])
+  tagId         Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model Playground {
+  id                  Int        @id @default(autoincrement())
+  post                Post[]     @relation("PlaygroundPosts")
+  postId              Int?
+  rating              Float?
+  address             String?
+  city                String?
+  state               String?
+  zip                 String?
+  latitude            Float?
+  longitude           Float?
+  photos              Photo[]    @relation("PlaygroundPhotos") // Use @relation to represent the one-to-many relationship with photos
+  tags                Tag[]      @relation("PlaygroundTags")
+  playgroundsOnTags   PlaygroundsOnTags[]
+  restrooms           Boolean?
+  picnicAreas         Boolean?
+  benches             Boolean?
+  shade               Boolean?
+  accessibleEquip     Boolean?
+  adaCompliance       Boolean?
 }
