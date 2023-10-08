@@ -1,28 +1,34 @@
-# Create T3 App
+# My Awesome Project app
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## Project Summary - What are you doing and why? How do you install and run the app?
 
-## What's next? How do I make an app with this?
+### What and Why
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+My awesome app is the best app ever. It helps you do everything so you can be more awesome. In particular, my awesome app has been carefully engineered to leverage leveraging so you can leverage more.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+### Installation
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+```bash
+docker-build .
+docker-compose run django bash
+python manage.py migrate
+python manage.py createsuperuser
+```
 
-## Learn More
+### Getting Started
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+To run my awesome app simply,
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+```bash
+docker-compose up
+```
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+See in-app menus for help with using specific features.
 
-## How do I deploy this?
+## User Stories - What does your app/product do and who are your users?
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Diagrams - How do the pieces of your application fit together? What does your UI look like?
+
+## Prototype - Get started coding
+
+# License
