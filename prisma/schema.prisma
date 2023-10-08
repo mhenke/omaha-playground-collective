@@ -11,19 +11,19 @@ datasource db {
   // Further reading:
   // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
   // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
 
 model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-    @@index([name])
+  @@index([name])
 }
 
-// Necessary for Next auth
+// Necessary for Next Auth
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -69,14 +69,15 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// Update the Post model to have a one-to-many relationship with Photo
+// Update the Post model to have a one-to-one relationship with Playground
 model Post {
   id            Int         @id @default(autoincrement())
   title         String
   content       String
   author        User        @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
   authorId      String
-  playground    Playground?  @relation("PlaygroundPosts", fields: [playgroundId], references: [id])
+  // Update the Post model to have a one-to-one relationship with Playground
+  playground    Playground? @relation("PlaygroundPosts")
   playgroundId  Int?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
@@ -91,7 +92,6 @@ model Photo {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 }
-
 
 // Define the data model for tags
 model Tag {
@@ -116,7 +116,7 @@ model PlaygroundsOnTags {
 
 model Playground {
   id                  Int        @id @default(autoincrement())
-  post                Post[]     @relation("PlaygroundPosts")
+  post                Post?      @relation("PlaygroundPosts", fields: [postId], references: [id])
   postId              Int?
   rating              Float?
   address             String?
@@ -125,7 +125,7 @@ model Playground {
   zip                 String?
   latitude            Float?
   longitude           Float?
-  photos              Photo[]    @relation("PlaygroundPhotos") // Use @relation to represent the one-to-many relationship with photos
+  photos              Photo[]    @relation("PlaygroundPhotos")
   tags                Tag[]      @relation("PlaygroundTags")
   playgroundsOnTags   PlaygroundsOnTags[]
   restrooms           Boolean?
