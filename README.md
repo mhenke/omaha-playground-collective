@@ -6,7 +6,7 @@ What are you doing and why? How do you install and run the app?
 
 ### What and Why
 
-The Omaha Playground Collective is your ultimate source for all things playgrounds, parks + fun in Omaha, Nebraska. Our mission is to provide a comprehensive guide to help you discover the best recreational spaces and activities for your family.
+The Omaha Playground Collective is your ultimate source for all things playgrounds, parks + fun in Omaha, Nebraska. Our mission is to provide a comprehensive guide to help you discover the best recreational spaces for your family.
 
 ### Installation
 
@@ -31,19 +31,19 @@ See in-app menus for help with using specific features.
 
 What does your app/product do and who are your users?
 
-### Example 1
+### User Story 1
 
 As a parent, I want to browse the blog posts to discover suitable playgrounds for my family.
 
-### Example 2
+### User Story 2
 
 As a parent, I want to utilize the search feature to quickly locate appropriate playgrounds for my family.
 
-### Example 3
+### User Story 3
 
 As an administrator, I want to create new blog entries, enabling me to share playground information including a summary, photos, address, tags, and other relevant info.
 
-### Example 4
+### User Story 4
 
 As an administrator, I want to manage relevant tags and age range information. This involves creating, reading, updating, and deleting.
 
