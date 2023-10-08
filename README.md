@@ -11,10 +11,7 @@ The Omaha Playground Collective is your ultimate source for all things playgroun
 ### Installation
 
 ```bash
-docker-build .
-docker-compose run django bash
-python manage.py migrate
-python manage.py createsuperuser
+docker compose build
 ```
 
 ### Getting Started
@@ -22,7 +19,7 @@ python manage.py createsuperuser
 To run my awesome app simply,
 
 ```bash
-docker-compose up
+docker compose up -d
 ```
 
 See in-app menus for help with using specific features.
