@@ -1,14 +1,18 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import { Menu } from "react-feather";
 
 export const Header = () => {
   const { data: sessionData } = useSession();
 
   return (
-    <div className="navbar bg-primary text-primary-content">
-      <div className="flex-1 pl-5 text-3xl font-bold">
+    <div className="navbar flex items-center justify-around bg-primary text-primary-content">
+      <div>
+        <Menu />
+      </div>
+      <div className="pl-5 text-3xl font-bold">
         {sessionData?.user?.name ? `Posts for ${sessionData.user.name}` : ""}
       </div>
-      <div className="flex-none gap-2">
+      <div className="gap-2">
         <div className="dropdown dropdown-end">
           {sessionData?.user ? (
             <label
