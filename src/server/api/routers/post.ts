@@ -23,8 +23,9 @@ export const postRouter = createTRPCRouter({
 
       return ctx.db.post.create({
         data: {
-          name: input.name,
-          createdBy: { connect: { id: ctx.session.user.id } },
+          title: input.name,
+          author: { connect: { id: ctx.session.user.id } },
+          content: "hello world",
         },
       });
     }),
