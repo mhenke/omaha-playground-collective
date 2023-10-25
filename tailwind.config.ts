@@ -1,12 +1,17 @@
 import { type Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./src/**/*.tsx"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
+    },
+  },
+  daisyui: {
+    themes: ["light", "dark", "emerald", "forest", "garden"],
   },
   plugins: [require("daisyui")],
-  daisyui: {
-    themes: ["garden", "forest", "pastel", "lofi"],
-  },
 } satisfies Config;
