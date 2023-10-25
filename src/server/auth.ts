@@ -36,6 +36,8 @@ declare module "next-auth" {
  *
  * @see https://next-auth.js.org/configuration/options
  */
+import type { Provider } from "next-auth/providers";
+
 export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, user }) => ({
@@ -52,6 +54,7 @@ export const authOptions: NextAuthOptions = {
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
+
     InstagramProvider({
       clientId: env.INSTAGRAM_CLIENT_ID,
       clientSecret: env.INSTAGRAM_CLIENT_SECRET,
@@ -65,7 +68,7 @@ export const authOptions: NextAuthOptions = {
      *
      * @see https://next-auth.js.org/providers/github
      */
-  ],
+  ] as Provider[],
 };
 
 /**
