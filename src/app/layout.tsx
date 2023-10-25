@@ -3,12 +3,12 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 
-import { TRPCReactProvider } from "~/trpc/react";
-import Header from "./_components/Header";
 import { Search } from "react-feather";
+import { TRPCReactProvider } from "~/trpc/react";
 import Footer from "./_components/Footer";
-import Tag from "./_components/Tag";
+import Header from "./_components/Header";
 import Sidebar from "./_components/Sidebar";
+import Tag from "./_components/Tag";
 
 const inter = Inter({
   subsets: ["latin"],
