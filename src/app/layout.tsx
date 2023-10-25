@@ -27,7 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="forest">
+    <html
+      lang="en"
+      data-theme="emerald"
+      className="relative flex h-full w-full flex-col space-y-4"
+    >
       <body className={`font-sans ${inter.variable}`}>
         <Header />
         <div className="grid w-full grid-cols-12">
@@ -52,7 +56,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-            <div className="border-accent-200 flex w-full items-center justify-between border-b-2 px-10 py-3">
+            <div className="flex w-full items-center justify-between px-10 py-3">
               <div className="text-accent-900">Articles</div>
               <select className="select select-bordered w-full max-w-xs">
                 <option disabled selected>
@@ -62,6 +66,7 @@ export default function RootLayout({
                 <option>Greedo</option>
               </select>
             </div>
+            <div className="divider flex w-full items-center justify-between px-10"></div>
             <div className="relative flex h-full w-full flex-col space-y-4">
               <TRPCReactProvider headers={headers()}>
                 {children}

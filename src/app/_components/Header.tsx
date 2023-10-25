@@ -1,3 +1,5 @@
+import { Edit } from "react-feather";
+
 const Header = () => {
   return (
     <header className="relative flex h-24 w-full select-none items-center justify-between border-b border-gray-300 px-10 text-gray-900">
@@ -36,8 +38,8 @@ const Header = () => {
             </ul>
           </div>
         </div>
-        <div className="navbar-center text-primary">
-          <a className="btn btn-ghost text-xl normal-case">Blog</a>
+        <div className="navbar-center  text-neutral-400">
+          <a className="btn-ghost btn-lg rounded text-6xl normal-case">Blog</a>
         </div>
         <div className="navbar-end flex-none gap-2 text-primary">
           <div className="dropdown dropdown-end">
@@ -64,7 +66,9 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <button className="btn btn-primary btn-outline">Write</button>
+          <button className="btn btn-primary btn-outline px-2 py-1 text-sm ">
+            <Edit /> Write
+          </button>
         </div>
       </div>
     </header>
