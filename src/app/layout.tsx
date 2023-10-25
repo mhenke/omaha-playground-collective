@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
         <Header />
         <div className="grid w-full grid-cols-12">
-           <section className="col-span-8 flex flex-col border-r border-gray-300">
+          <section className="col-span-8 flex flex-col border-r border-gray-300">
             <div className="flex w-full items-center justify-between px-3 py-3">
               <div className="relative w-full max-w-md">
                 <label className="text-accent-700 absolute left-4 top-3.5 text-base">
@@ -44,7 +44,9 @@ export default function RootLayout({
                 />
               </div>
               <div className="flex items-center space-x-2">
-                <div className="text-accent-700 whitespace-nowrap">My topics:</div>
+                <div className="text-accent-700 whitespace-nowrap">
+                  My topics:
+                </div>
                 <div className="flex w-full items-center space-x-2">
                   <Tag />
                 </div>
@@ -61,12 +63,14 @@ export default function RootLayout({
               </select>
             </div>
             <div className="relative flex h-full w-full flex-col space-y-4">
-              <TRPCReactProvider headers={headers()}>{children}</TRPCReactProvider>
+              <TRPCReactProvider headers={headers()}>
+                {children}
+              </TRPCReactProvider>
             </div>
           </section>
           <Sidebar />
         </div>
-       <Footer />
+        <Footer />
       </body>
     </html>
   );

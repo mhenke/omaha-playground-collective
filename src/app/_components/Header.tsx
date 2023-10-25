@@ -4,7 +4,7 @@ const Header = () => {
       <div className="navbar bg-base-100">
         <div className="navbar-start text-primary">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
+            <label tabIndex={0} className="btn btn-circle btn-ghost">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -22,7 +22,7 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
             >
               <li>
                 <a>Homepage</a>
@@ -41,14 +41,14 @@ const Header = () => {
         </div>
         <div className="navbar-end flex-none gap-2 text-primary">
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
               <div className="w-10 rounded-full">
                 <img src="/photo-1534528741775-53994a69daeb.jpg" />
               </div>
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
             >
               <li>
                 <a className="justify-between">
@@ -64,7 +64,7 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <button className="btn btn-outline btn-primary">Write</button>
+          <button className="btn btn-primary btn-outline">Write</button>
         </div>
       </div>
     </header>
