@@ -1,7 +1,7 @@
 import { Bookmark } from "react-feather";
 import Tag from "./Tag";
 
-const BlogItem = ({ isLastItem }) => {
+const BlogItem = ({ isLastItem }: { isLastItem: boolean }) => {
   return (
     <div className="flex h-max w-full flex-col px-10 py-1 last:border-none">
       <a href="/user" className="group flex w-full items-center space-x-4">
