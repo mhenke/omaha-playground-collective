@@ -44,6 +44,14 @@ As an administrator, I want to share playground information with other parents.
 
 As an administrator, I want to manage playground information to ensure it's up to date and accurate.
 
+### User Story 5
+
+As a user, I want to save playgrounds I find interesting.
+
+### User Story 6
+
+As a user, I want recommendations for playgrounds based on my preferences.
+
 ## Acceptance Criteria
 
 What are the requirements for your app/product?
