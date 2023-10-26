@@ -1,24 +1,11 @@
 const Tag = () => {
   return (
-    <div className="join ">
-      <input
-        className="btn btn-primary btn-outline join-item"
-        type="radio"
-        name="options"
-        aria-label="Tag 1"
-      />
-      <input
-        className="btn btn-primary btn-outline join-item"
-        type="radio"
-        name="options"
-        aria-label="Tag 2"
-      />
-      <input
-        className="btn btn-primary btn-outline join-item"
-        type="radio"
-        name="options"
-        aria-label="Tag 3"
-      />
+    <div className="flex space-x-2">
+      {Array.from({ length: 3 }).map((_, index) => (
+        <button className="btn btn-sm space-x-1 rounded-full px-4" key={index}>
+          Tag {index + 1}
+        </button>
+      ))}
     </div>
   );
 };

@@ -3,16 +3,18 @@ import Tag from "./Tag";
 
 const BlogItem = ({ isLastItem }: { isLastItem: boolean }) => {
   return (
-    <div className="flex h-max w-full flex-col px-10 py-1 last:border-none">
+    <div
+      className={`flex flex-col ${
+        isLastItem ? "" : "border-b border-gray-300"
+      } px-10 py-1`}
+    >
       <a href="/user" className="group flex w-full items-center space-x-4">
-        <div>
-          <div className="relative h-10 w-10 rounded-full bg-gray-400">
-            <img
-              src="photo-1534528741775-53994a69daeb.jpg"
-              alt="User"
-              className="rounded-full"
-            />
-          </div>
+        <div className="relative h-10 w-10 rounded-full bg-gray-400">
+          <img
+            src="photo-1534528741775-53994a69daeb.jpg"
+            alt="User"
+            className="rounded-full"
+          />
         </div>
         <div>
           <div>
@@ -65,9 +67,6 @@ const BlogItem = ({ isLastItem }: { isLastItem: boolean }) => {
           </i>
         </div>
       </div>
-      {!isLastItem && (
-        <div className="divider flex w-full items-center justify-between"></div>
-      )}
     </div>
   );
 };

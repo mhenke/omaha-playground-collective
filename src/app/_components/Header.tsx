@@ -38,14 +38,14 @@ const Header = () => {
             </ul>
           </div>
         </div>
-        <div className="navbar-center  text-neutral-400">
+        <div className="navbar-center text-neutral-400">
           <a className="btn-ghost btn-lg rounded text-6xl normal-case">Blog</a>
         </div>
         <div className="navbar-end flex-none gap-2 text-primary">
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
               <div className="w-10 rounded-full">
-                <img src="/photo-1534528741775-53994a69daeb.jpg" />
+                <img src="/photo-1534528741775-53994a69daeb.jpg" alt="User" />
               </div>
             </label>
             <ul
@@ -54,8 +54,7 @@ const Header = () => {
             >
               <li>
                 <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
+                  Profile <span className="badge">New</span>
                 </a>
               </li>
               <li>
