@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Bookmark } from "react-feather";
 import Tag from "./Tag";
 
@@ -10,10 +11,12 @@ const BlogItem = ({ isLastItem }: { isLastItem: boolean }) => {
     >
       <a href="/user" className="group flex w-full items-center space-x-4">
         <div className="relative h-10 w-10 rounded-full bg-gray-400">
-          <img
-            src="photo-1534528741775-53994a69daeb.jpg"
+          <Image
+            src="/photo-1534528741775-53994a69daeb.jpg"
             alt="User"
             className="rounded-full"
+            width={48}
+            height={48}
           />
         </div>
         <div>
@@ -48,10 +51,12 @@ const BlogItem = ({ isLastItem }: { isLastItem: boolean }) => {
           </div>
           <div className="col-span-4 w-full max-w-sm">
             <div className="relative aspect-video transform rounded-xl bg-gray-400 shadow-xl transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:shadow-2xl">
-              <img
-                src="https://placehold.co/600x400"
+              <Image
+                src="/photo-1534528741775-53994a69daeb.jpg"
                 alt="Dummy Post"
                 className="rounded-xl"
+                width={48}
+                height={48}
               />
             </div>
           </div>

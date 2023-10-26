@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const Sidebar = () => {
   return (
     <aside className="col-span-4 flex flex-col border-r border-gray-300">
@@ -33,10 +35,12 @@ const Sidebar = () => {
                 <div className="grid w-full grid-cols-12 gap-2" key={index}>
                   <div className="col-span-2">
                     <div className="h-12 w-12 rounded-full bg-gray-400">
-                      <img
-                        src="photo-1534528741775-53994a69daeb.jpg"
+                      <Image
+                        src="/photo-1534528741775-53994a69daeb.jpg"
                         alt="User"
                         className="rounded-full"
+                        width={48}
+                        height={48}
                       />
                     </div>
                   </div>
@@ -63,10 +67,12 @@ const Sidebar = () => {
           {Array.from({ length: 4 }).map((_, i) => (
             <div className="grid grid-cols-12" key={i}>
               <div className="col-span-4 flex max-w-sm flex-col justify-center pr-2 ">
-                <img
-                  src="https://placehold.co/600x400"
+                <Image
+                  src="/photo-1534528741775-53994a69daeb.jpg"
                   alt="Dummy Post"
                   className="h-full w-full rounded-xl object-cover"
+                  width={48}
+                  height={48}
                 />
               </div>
 
@@ -80,10 +86,12 @@ const Sidebar = () => {
                 </div>
                 <div className="flex items-center space-x-2 text-xs">
                   <div className="h-8 w-8 rounded-full bg-gray-400">
-                    <img
-                      src="photo-1534528741775-53994a69daeb.jpg"
+                    <Image
+                      src="/photo-1534528741775-53994a69daeb.jpg"
                       alt="User"
                       className="rounded-full"
+                      width={48}
+                      height={48}
                     />
                   </div>
                   <div>John Doe</div>
