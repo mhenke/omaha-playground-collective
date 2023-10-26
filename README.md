@@ -26,7 +26,7 @@ See in-app menus for help with using specific features.
 
 ## User Stories
 
-What does your app/product do and who are your users?
+What features do you want to have? What do the users want to do? What would someone who likes your project want to use it for?
 
 ### User Story 1
 
@@ -43,6 +43,10 @@ As an administrator, I want to share playground information with other parents.
 ### User Story 4
 
 As an administrator, I want to manage playground information to ensure it's up to date and accurate.
+
+## Acceptance Criteria
+
+What are the requirements for your app/product?
 
 ## Diagrams
 
