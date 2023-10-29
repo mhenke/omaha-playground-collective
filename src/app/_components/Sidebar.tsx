@@ -28,7 +28,7 @@ const Sidebar = () => {
         </div>
 
         <div className="flex flex-col space-y-6">
-          <div className="font-bold">People you might be interested</div>
+          <div className="font-bold">Playgrounds you might be interested</div>
           <div className="flex flex-col space-y-4">
             <div className="flex w-full flex-col space-y-4">
               {Array.from({ length: 3 }).map((_, index) => (
