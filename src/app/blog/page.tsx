@@ -58,7 +58,8 @@ export default function LeadBlog() {
           </div>
           <p className="mb-4 text-base text-gray-700 md:text-lg">
             Call it magical realism, call it realistic fantasy—call it whatever
-            you want, but Arimah's playfully subversive style is wholly her own.
+            you want, but Arimah&apos;s playfully subversive style is wholly her
+            own.
           </p>
           <div className="flex items-center">
             <a href="/" aria-label="Author" className="mr-3">
@@ -140,10 +141,10 @@ export default function LeadBlog() {
               </a>
             </div>
             <p className="mb-4 text-base text-gray-700 md:text-lg">
-              "A kitten, a nice little, sleek playful kitten, that I can play
-              with, and teach, and feed--and feed--and feed!" I was not
-              unprepared for this request, for I had noticed how his pets went
-              on increasing in size.
+              &quot;A kitten, a nice little, sleek playful kitten, that I can
+              play with, and teach, and feed--and feed--and feed!&quot; I was
+              not unprepared for this request, for I had noticed how his pets
+              went on increasing in size.
             </p>
             <div className="flex items-center">
               <a href="/" aria-label="Author" className="mr-3">

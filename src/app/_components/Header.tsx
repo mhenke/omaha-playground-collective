@@ -40,9 +40,9 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-center text-neutral-400">
-          <a className="btn-ghost btn-lg rounded text-6xl normal-case">Blog</a>
-        </div>
-        <div className="navbar-end flex-none gap-2 text-primary">
+          <a className="btn-ghost btn-lg rounded text-6xl normal-case">
+            Mike22
+          </a>
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
               <div className="w-10 rounded-full">
