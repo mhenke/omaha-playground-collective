@@ -28,7 +28,7 @@ You'll need to add the .env file with your DATABASE_URL, GITHUB_ID, GITHUB_SECRE
 
 ### Environment Variables
 
-You'll need to add the following environment variables to your .env file.
+You'll need to add the following environment variables to your .env file. There is an example .env file in the root directory of the project called .env.example. You can copy this file and rename it to .env. You'll need to add your own values to the variables in the .env file.
 
 #### DATABASE_URL
 
@@ -169,9 +169,9 @@ As an administrator, I accidentally delete or update playground information to p
 ## Mockup
 
 ### Home page
-  
+
 ![Home Page](/doc/homePage.png)
-  
+
 ### Blog Page
 
 ![Blog Page](/doc/blogPage.png)
