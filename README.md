@@ -20,7 +20,7 @@ The Omaha Playground Collective is your ultimate source for all things playgroun
 
 ## Installation
 
-You'll need a supabase and GitHub account to run this app locally. You'll also need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/). Node version 18.18.2 is recommended.
+You'll need a Supabase and GitHub account to run this app locally. You'll also need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/). Node version 18.18.2 is recommended.
 
 You'll need to clone the GitHub repo to your local machine.
 
@@ -32,7 +32,7 @@ You'll need to add the following environment variables to your .env file.
 
 #### DATABASE_URL
 
-To use the supabase database in the app, you'll need to add the [connection string](https://flaviocopes.com/postgresql-supabase-setup/) to your .env file. Here is an example of what that looks like:
+To use the Supabase database in the app, you'll need to add the [connection string](https://flaviocopes.com/postgresql-supabase-setup/) to your .env file. Here is an example of what that looks like:
 
 ```bash
 # .env file
