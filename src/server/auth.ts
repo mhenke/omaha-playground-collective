@@ -5,8 +5,8 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
-import InstagramProvider from "next-auth/providers/instagram";
-import SlackProvider from "next-auth/providers/slack";
+// import InstagramProvider from "next-auth/providers/instagram";
+// import SlackProvider from "next-auth/providers/slack";
 
 import { env } from "~/env.mjs";
 import { db } from "~/server/db";
@@ -51,15 +51,15 @@ export const authOptions: NextAuthOptions = {
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
 
-    InstagramProvider({
-      clientId: env.INSTAGRAM_CLIENT_ID,
-      clientSecret: env.INSTAGRAM_CLIENT_SECRET,
-    }),
+    //  InstagramProvider({
+    //    clientId: env.INSTAGRAM_CLIENT_ID,
+    //    clientSecret: env.INSTAGRAM_CLIENT_SECRET,
+    //  }),
 
-    SlackProvider({
-      clientId: env.SLACK_CLIENT_ID,
-      clientSecret: env.SLACK_CLIENT_SECRET,
-    }),
+    //  SlackProvider({
+    //    clientId: env.SLACK_CLIENT_ID,
+    //    clientSecret: env.SLACK_CLIENT_SECRET,
+    //  }),
     /**
      * ...add more providers here.
      *
