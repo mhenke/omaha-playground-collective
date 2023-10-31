@@ -24,7 +24,7 @@ You'll need a Supabase and GitHub account to run this app locally. You'll also n
 
 You'll need to clone the GitHub repo to your local machine.
 
-You'll need to update the .env file with your DATABASE_URL, GITHUB_ID, GITHUB_SECRET, NEXTAUTH_URL, and NEXTAUTH_SECRET.
+You'll need to add the .env file with your DATABASE_URL, GITHUB_ID, GITHUB_SECRET, NEXTAUTH_URL, and NEXTAUTH_SECRET.
 
 ### Environment Variables
 
@@ -168,12 +168,12 @@ As an administrator, I accidentally delete or update playground information to p
 
 ## Mockup
 
-- [Home Page](/doc/homePage.png)
-- [Blog Page](/doc/blogPage.png)
-- [Search Page](/doc/searchPage.png)
+- ![Home Page](/doc/homePage.png)
+- ![Blog Page](/doc/blogPage.png)
+- ![Search Page](/doc/searchPage.png)
 
 ## Architecture Diagram
 
-- [Context Diagram](/doc/structurizr-SystemContext.png)
-- [Container Diagram](/doc/structurizr-Containers.png)
-- [Component Diagram](/doc/structurizr-Components.png)
+- ![Context Diagram](/doc/structurizr-SystemContext.png)
+- ![Container Diagram](/doc/structurizr-Containers.png)
+- ![Component Diagram](/doc/structurizr-Components.png)
