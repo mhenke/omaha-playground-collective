@@ -1,255 +1,150 @@
 export default function LeadBlog() {
   return (
     <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
-      <div className="row-gap-8 grid w-full gap-10 lg:grid-cols-5">
-        <div className="lg:col-span-3">
-          {" "}
-          <div className="h-full border border-t-0">
-            <div className="h-full overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
-              <img
-                src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                className="h-64 w-full object-cover"
-                alt=""
-              />
-              <div className="h-full p-5">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-                  <a
-                    href="/"
-                    className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
-                    aria-label="Category"
-                    title="traveling"
+      <div className="row-gap-10 grid gap-5 lg:grid-cols-2">
+        <div className="flex flex-col justify-center">
+          <div className="mb-6 max-w-xl">
+            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+              The quick, brown fox
+              <br className="hidden md:block" />
+              jumps over{" "}
+              <span className="relative px-1">
+                <div className="bg-teal-accent-400 absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
+                <span className="text-deep-purple-accent-400 relative inline-block">
+                  a lazy dog
+                </span>
+              </span>
+            </h2>
+            <p className="text-base text-gray-700 md:text-lg">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae. explicabo.
+            </p>
+          </div>
+          <p className="mb-4 text-sm font-bold uppercase tracking-widest">
+            Features
+          </p>
+          <div className="grid space-y-3 sm:grid-cols-2 sm:gap-2 sm:space-y-0">
+            <ul className="space-y-3">
+              <li className="flex">
+                <span className="mr-1">
+                  <svg
+                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    stroke="currentColor"
+                    viewBox="0 0 52 52"
                   >
-                    traveling
-                  </a>
-                  <span className="text-gray-600">— 28 Dec 2020</span>
-                </p>
-                <a
-                  href="/"
-                  aria-label="Category"
-                  title="Film It!"
-                  className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
-                >
-                  Film It!
-                </a>
-                <p className="mb-2 text-gray-700">
-                  Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                  consequuntur magni voluptatem doloremque.
-                </p>
-                <a
-                  href="/"
-                  aria-label=""
-                  className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
-                >
-                  Learn more
-                </a>
-              </div>
-            </div>
+                    <polygon
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                      points="29 13 14 29 25 29 23 39 38 23 27 23"
+                    />
+                  </svg>
+                </span>
+                A slice of heaven
+              </li>
+              <li className="flex">
+                <span className="mr-1">
+                  <svg
+                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    stroke="currentColor"
+                    viewBox="0 0 52 52"
+                  >
+                    <polygon
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                      points="29 13 14 29 25 29 23 39 38 23 27 23"
+                    />
+                  </svg>
+                </span>
+                Disrupt inspire
+              </li>
+              <li className="flex">
+                <span className="mr-1">
+                  <svg
+                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    stroke="currentColor"
+                    viewBox="0 0 52 52"
+                  >
+                    <polygon
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                      points="29 13 14 29 25 29 23 39 38 23 27 23"
+                    />
+                  </svg>
+                </span>
+                Preliminary thinking
+              </li>
+            </ul>
+            <ul className="space-y-3">
+              <li className="flex">
+                <span className="mr-1">
+                  <svg
+                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    stroke="currentColor"
+                    viewBox="0 0 52 52"
+                  >
+                    <polygon
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                      points="29 13 14 29 25 29 23 39 38 23 27 23"
+                    />
+                  </svg>
+                </span>
+                Flipboard curmudgeon
+              </li>
+              <li className="flex">
+                <span className="mr-1">
+                  <svg
+                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    stroke="currentColor"
+                    viewBox="0 0 52 52"
+                  >
+                    <polygon
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                      points="29 13 14 29 25 29 23 39 38 23 27 23"
+                    />
+                  </svg>
+                </span>
+                Storage shed
+              </li>
+              <li className="flex">
+                <span className="mr-1">
+                  <svg
+                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    stroke="currentColor"
+                    viewBox="0 0 52 52"
+                  >
+                    <polygon
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      fill="none"
+                      points="29 13 14 29 25 29 23 39 38 23 27 23"
+                    />
+                  </svg>
+                </span>
+                Satoshi Nakamoto
+              </li>
+            </ul>
           </div>
         </div>
-        <div className="flex flex-col space-y-8 lg:col-span-2">
-          <div>
-            <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
-              <img
-                src="https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                className="h-64 w-full object-cover"
-                alt=""
-              />
-              <div className="border border-t-0 p-5">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-                  <a
-                    href="/"
-                    className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
-                    aria-label="Category"
-                    title="traveling"
-                  >
-                    traveling
-                  </a>
-                  <span className="text-gray-600">— 28 Dec 2020</span>
-                </p>
-                <a
-                  href="/"
-                  aria-label="Category"
-                  title="Simple is better"
-                  className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
-                >
-                  Simple is better
-                </a>
-                <p className="mb-2 text-gray-700">
-                  Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                  consequuntur magni voluptatem doloremque.
-                </p>
-                <a
-                  href="/"
-                  aria-label=""
-                  className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
-                >
-                  Learn more
-                </a>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
-              <img
-                src="https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-                className="h-64 w-full object-cover"
-                alt=""
-              />
-              <div className="border border-t-0 p-5">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-                  <a
-                    href="/"
-                    className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
-                    aria-label="Category"
-                    title="traveling"
-                  >
-                    traveling
-                  </a>
-                  <span className="text-gray-600">— 28 Dec 2020</span>
-                </p>
-                <a
-                  href="/"
-                  aria-label="Category"
-                  title="Simple is better"
-                  className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
-                >
-                  Simple is better
-                </a>
-                <p className="mb-2 text-gray-700">
-                  Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                  consequuntur magni voluptatem doloremque.
-                </p>
-                <a
-                  href="/"
-                  aria-label=""
-                  className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
-                >
-                  Learn more
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
-        <div className="grid gap-8 sm:mx-auto sm:max-w-sm lg:max-w-full lg:grid-cols-3">
-          <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
-            <img
-              src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              className="h-64 w-full object-cover"
-              alt=""
-            />
-            <div className="border border-t-0 p-5">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-                <a
-                  href="/"
-                  className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
-                  aria-label="Category"
-                  title="traveling"
-                >
-                  traveling
-                </a>
-                <span className="text-gray-600">— 28 Dec 2020</span>
-              </p>
-              <a
-                href="/"
-                aria-label="Category"
-                title="Visit the East"
-                className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
-              >
-                Visit the East
-              </a>
-              <p className="mb-2 text-gray-700">
-                Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                consequuntur magni voluptatem doloremque.
-              </p>
-              <a
-                href="/"
-                aria-label=""
-                className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
-              >
-                Learn more
-              </a>
-            </div>
-          </div>
-          <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
-            <img
-              src="https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              className="h-64 w-full object-cover"
-              alt=""
-            />
-            <div className="border border-t-0 p-5">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-                <a
-                  href="/"
-                  className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
-                  aria-label="Category"
-                  title="traveling"
-                >
-                  traveling
-                </a>
-                <span className="text-gray-600">— 28 Dec 2020</span>
-              </p>
-              <a
-                href="/"
-                aria-label="Category"
-                title="Simple is better"
-                className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
-              >
-                Simple is better
-              </a>
-              <p className="mb-2 text-gray-700">
-                Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                consequuntur magni voluptatem doloremque.
-              </p>
-              <a
-                href="/"
-                aria-label=""
-                className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
-              >
-                Learn more
-              </a>
-            </div>
-          </div>
-          <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
-            <img
-              src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              className="h-64 w-full object-cover"
-              alt=""
-            />
-            <div className="border border-t-0 p-5">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-                <a
-                  href="/"
-                  className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
-                  aria-label="Category"
-                  title="traveling"
-                >
-                  traveling
-                </a>
-                <span className="text-gray-600">— 28 Dec 2020</span>
-              </p>
-              <a
-                href="/"
-                aria-label="Category"
-                title="Film It!"
-                className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
-              >
-                Film It!
-              </a>
-              <p className="mb-2 text-gray-700">
-                Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                consequuntur magni voluptatem doloremque.
-              </p>
-              <a
-                href="/"
-                aria-label=""
-                className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
-              >
-                Learn more
-              </a>
-            </div>
-          </div>
+        <div>
+          <img
+            className="h-56 w-full rounded object-cover shadow-lg sm:h-96"
+            src="https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
+            alt=""
+          />
         </div>
       </div>
     </div>
