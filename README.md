@@ -170,7 +170,7 @@ As an administrator, I accidentally delete or update playground information to p
 
 - ![Home Page](/doc/homePage.png)
 - ![Blog Page](/doc/blogPage.png)
-- ![Search Page](/doc/searchPage.png)
+- ![Search Result Page](/doc/searchResultPage.png)
 
 ## Architecture Diagram
 
