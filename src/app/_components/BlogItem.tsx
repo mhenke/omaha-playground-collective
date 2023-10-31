@@ -1,75 +1,123 @@
-import Image from "next/image";
-import { Bookmark } from "react-feather";
-import Tag from "./Tag";
-
 const BlogItem = ({ isLastItem }: { isLastItem: boolean }) => {
   return (
-    <div
-      className={`flex flex-col ${
-        isLastItem ? "" : "border-b border-gray-300"
-      } px-10 py-1`}
-    >
-      <a href="/user" className="group flex w-full items-center space-x-4">
-        <div className="relative h-10 w-10 rounded-full bg-gray-400">
-          <Image
-            src="/photo-1534528741775-53994a69daeb.jpg"
-            alt="User"
-            className="rounded-full"
-            width={48}
-            height={48}
+    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
+      <div className="grid gap-8 sm:mx-auto sm:max-w-sm lg:max-w-full lg:grid-cols-3">
+        <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
+          <img
+            src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+            className="h-64 w-full object-cover"
+            alt=""
           />
-        </div>
-        <div>
-          <div>
-            <span className="group-hover:underline">John Doe</span> &#x2022;{" "}
-            {new Date().toLocaleDateString(undefined, {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </div>
-          <div>The founder & teacher @ clubofcoders.com</div>
-        </div>
-      </a>
-      <a href="/post">
-        <div className="group grid grid-cols-12 pt-4">
-          <div className="col-span-8 flex flex-col justify-center space-x-4 space-y-4">
-            <div className="text-xl font-extrabold decoration-indigo-600 group-hover:underline">
-              Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-              aliquet nec, vulputate eget, arcu.
-            </div>
-            <div className="text-sm text-gray-600">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-              commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-              penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-              Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-              sem. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-              justo. Nullam dictum felis eu pede mollis pretium. Integer
-              tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
-              vulputate eleifend tellus.
-            </div>
-          </div>
-          <div className="col-span-4 w-full max-w-sm">
-            <div className="relative aspect-video transform rounded-xl bg-gray-400 shadow-xl transition-all duration-300 ease-in-out group-hover:scale-105 group-hover:shadow-2xl">
-              <Image
-                src="/photo-1534528741775-53994a69daeb.jpg"
-                alt="Dummy Post"
-                className="rounded-xl"
-                width={48}
-                height={48}
-              />
-            </div>
+          <div className="border border-t-0 p-5">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
+              <a
+                href="/"
+                className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
+                aria-label="Category"
+                title="traveling"
+              >
+                traveling
+              </a>
+              <span className="text-gray-600">— 28 Dec 2020</span>
+            </p>
+            <a
+              href="/"
+              aria-label="Category"
+              title="Visit the East"
+              className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
+            >
+              Visit the East
+            </a>
+            <p className="mb-2 text-gray-700">
+              Sed ut perspiciatis unde omnis iste natus error sit sed quia
+              consequuntur magni voluptatem doloremque.
+            </p>
+            <a
+              href="/"
+              aria-label=""
+              className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
+            >
+              Learn more
+            </a>
           </div>
         </div>
-      </a>
-      <div className="flex w-full items-center justify-between space-x-4 pt-4">
-        <div className="flex flex-row flex-wrap space-x-2">
-          <Tag />
+        <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
+          <img
+            src="https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+            className="h-64 w-full object-cover"
+            alt=""
+          />
+          <div className="border border-t-0 p-5">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
+              <a
+                href="/"
+                className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
+                aria-label="Category"
+                title="traveling"
+              >
+                traveling
+              </a>
+              <span className="text-gray-600">— 28 Dec 2020</span>
+            </p>
+            <a
+              href="/"
+              aria-label="Category"
+              title="Simple is better"
+              className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
+            >
+              Simple is better
+            </a>
+            <p className="mb-2 text-gray-700">
+              Sed ut perspiciatis unde omnis iste natus error sit sed quia
+              consequuntur magni voluptatem doloremque.
+            </p>
+            <a
+              href="/"
+              aria-label=""
+              className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
+            >
+              Learn more
+            </a>
+          </div>
         </div>
-        <div>
-          <i className="text-2xl text-indigo-700">
-            <Bookmark />
-          </i>
+        <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
+          <img
+            src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+            className="h-64 w-full object-cover"
+            alt=""
+          />
+          <div className="border border-t-0 p-5">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
+              <a
+                href="/"
+                className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
+                aria-label="Category"
+                title="traveling"
+              >
+                traveling
+              </a>
+              <span className="text-gray-600">— 28 Dec 2020</span>
+            </p>
+            <a
+              href="/"
+              aria-label="Category"
+              title="Film It!"
+              className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
+            >
+              Film It!
+            </a>
+            <p className="mb-2 text-gray-700">
+              Sed ut perspiciatis unde omnis iste natus error sit sed quia
+              consequuntur magni voluptatem doloremque.
+            </p>
+            <a
+              href="/"
+              aria-label=""
+              className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
+            >
+              Learn more
+            </a>
+          </div>
         </div>
       </div>
     </div>

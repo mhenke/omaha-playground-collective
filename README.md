@@ -1,8 +1,7 @@
 # Omaha Playground Collective app
 
 - [Omaha Playground Collective app](#omaha-playground-collective-app)
-- [Project Summary](#project-summary)
-  - [Executive Summary](#executive-summary)
+  - [Project Summary](#project-summary)
   - [Installation](#installation)
   - [Getting Started](#getting-started)
   - [License](#license)
@@ -15,27 +14,67 @@
   - [Mockup](#mockup)
   - [Architecture Diagram](#architecture-diagram)
 
-# Project Summary
-
-## Executive Summary
+## Project Summary
 
 The Omaha Playground Collective is your ultimate source for all things playgrounds, parks + fun in Omaha, Nebraska. Our mission is to provide a comprehensive guide to help you discover the best recreational spaces for your family.
 
 ## Installation
 
+You'll need a supabase and github account to run this app locally. You'll also need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/). Node version 18.18.2 is recommended.
+
+You'll need to clone the github repo to your local machine.
+
+You'll need to update the .env file with your DATABASE_URL, GITHUB_ID, GITHUB_SECRET, and NEXTAUTH_SECRET.
+
+### Environment Variables
+
+You'll need to add the following environment variables to your .env file.
+
+#### DATABASE_URL
+
+To use the supabase database in the app, you'll need to add the [connection string](https://flaviocopes.com/postgresql-supabase-setup/) to your .env file. Here is an example of what that looks like:
+
 ```bash
-docker compose build
+# .env file
+DATABASE_URL=postgres://postgres:<password>@local<your_supabase_url>.host:5432/postgres
+```
+
+#### Github Provider
+
+- To use nextauth in the app, you'll need add the Next Auth Github Provider to your .env file. Here is an example of what that looks like:
+
+```bash
+# .env file
+GITHUB_ID=<your_github_id>
+GITHUB_SECRET=<your_github_secret>
+```
+
+#### NEXTAUTH_SECRET
+
+- To use the app, you'll need to update the NEXTAUTH_SECRET in your .env file. You can [generate a new secret](https://next-auth.js.org/configuration/options#secret) on the command line with `openssl rand -base64 32` Here is an example of what that looks like:
+
+```bash
+# .env file
+NEXTAUTH_SECRET=<your_nextauth_secret>
 ```
 
 ## Getting Started
 
-To run my awesome app simply,
+After [installation](#installation) you can run the following commands to get the app up and running locally.
+
+```bash
+docker compose build
+```
 
 ```bash
 docker compose up -d
 ```
 
-See in-app menus for help with using specific features.
+To stop the app, run the following command:
+
+```bash
+docker compose down
+```
 
 ## License
 
@@ -67,12 +106,12 @@ As an administrator, I want to manage playground information to ensure it's up t
 
 ### Acceptance Criteria 1
 
-Given that I am a parent looking for playground information, when I access the playground information feature, then I should be able to view a list of playgrounds in my area with details such as location, facilities, and user ratings.
+Given that I am a parent looking for playgrounds, when I access the playground information, then I should be able to view a list of playgrounds in my area with details such as location, facilities, and rating.
 
 1. The system should display a user-friendly interface for accessing playground information.
-1. The playground information should be categorized by location, age or XXXX.
-1. Each playground entry should include essential details, including its name, address, XXXXX.
-1. Users should be able to easily browse and filter the list of playgrounds.
+2. Users should be able to easily browse and filter the list of playgrounds.
+3. The playground information should be categorized by location, age range, rating, and playground surfaces.
+4. Each playground entry should include details, including its name, address, age range, shade, and other relevant information.
 
 ### Acceptance Criteria 2
 
@@ -86,31 +125,47 @@ Given that I am a parent searching for a playground, when I perform a search usi
 
 ### Acceptance Criteria 3
 
-Given that I am an administrator wanting to share playground information, when I initiate the sharing process via a blog, then I should be able to create a blog post containing the relevant playground information and share it with other parents.
+Given that I am an administrator wanting to share playground information, when I create an entry, then I should be able to publish it to the app.
 
 1. The system should provide a blog creation interface within the administrator's dashboard.
 1. Administrators should be able to input relevant information about the playground, including its name, location, facilities, and any additional useful details.
 1. Administrators should be able to format and structure the blog post, including adding text, images, and links.
 1. Once the blog post is created, administrators should be able to publish it.
-1. The published blog post should be accessible to other parents using the platform.
-1. Other parents should be able to view the blog post and access the playground information.
+1. The published blog post should be accessible to other parents using the application
 
 ### Acceptance Criteria 4
 
-Given that I am an administrator responsible for managing playground information, when I update playground details, then the changes should be reflected in the platform, and the information should remain accurate.
+Given that I am an administrator responsible for managing playground information, when I update playground details, then the changes should be reflected in the app, and the information should remain accurate.
 
-1. The platform should provide an interface for administrators to edit and update playground information.
-1. After making changes, the updated information should be displayed on the platform.
-1. Users accessing the platform should see the most recent and accurate playground details.
+1. The platform should provide an interface for administrators to edit, update, and delete playground information.
+1. After making changes, the updated information should be displayed or removed from the application.
+1. Users accessing the platform should see the most recent, active, and accurate playground details.
 1. Any changes made by administrators should be tracked and documented for reference.
 
 ## Mis-user Stories
 
 In addition to the user stories identify the ways in which users might be able to mis-use your app. Mis-user stories are just like user stories except the user, goal, and rationale are malicious.
 
+### Mis-user Story 1
+
+As a hacker, I want to exploits vulnerabilities in the search feature to gain unauthorized access to the backend system.
+
+### Mis-user Story 2
+
+As an administrator I accidentally delete or update playground information to provide incorrect details.
+
 ## Mitigation Criteria
 
-For each mis-user story identify at least one mitigation criteria. The mitigation criteria define the set of requirements that tell you when you are done protecting against the mis-user story
+### Mitigation Criteria 1
+
+- Regularly conduct security assessments, including penetration testing and vulnerability using tools such as OWASP ZAP and SonarQube.
+- Implement strong access controls and authentication mechanisms to prevent unauthorized access to data.
+- Maintain audit logs to capture details of access attempts, user activities, and system changes.
+
+### Mitigation Criteria 2
+
+- Implenent an content log that records all changes made by administrators, making it possible to track and reverse unauthorized modifications.
+- Maintain a robust data recovery and backup system to ensure that data can be restored in the event of accidental deletion or modification.
 
 # Diagrams
 

@@ -15,15 +15,15 @@ datasource db {
 }
 
 model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-    @@index([name])
+  @@index([name])
 }
 
-// Necessary for Next auth
+// Necessary for Next Auth
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -61,16 +61,18 @@ model User {
   Account       Account[]
 }
 
+// Update the Post model to have a one-to-one relationship with Playground
 model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String
-  author    User     @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
-  authorId  String // Change the type to match the ID type in the User model
-  photos    Photo[] // Add a new field for photos
-  tags      Tag[]    @relation("TagToPost")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int         @id @default(autoincrement())
+  title        String
+  content      String
+  author       User        @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
+  authorId     String
+  // Update the Post model to have a one-to-one relationship with Playground
+  playground   Playground? @relation("PlaygroundPosts")
+  playgroundId Int?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
 }
 
 model VerificationToken {
@@ -81,21 +83,80 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// Define the data model for photos
+// Update the Photo model to store photos as binary data
 model Photo {
-  id        Int      @id @default(autoincrement())
-  url       String // You can use a string field to store the URL or file path of the photo
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           Int        @id @default(autoincrement())
+  data         Bytes // Use Bytes type for binary data
+  playground   Playground @relation("PlaygroundPhotos", fields: [playgroundId], references: [id])
+  playgroundId Int
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 // Define the data model for tags
 model Tag {
-  id        Int      @id @default(autoincrement())
-  name      String
-  posts     Post[]   @relation("TagToPost")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                Int                 @id @default(autoincrement())
+  name              String
+  description       String?
+  playgrounds       Playground[]        @relation("PlaygroundTags")
+  playgroundsOnTags PlaygroundsOnTags[]
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+}
+
+// Define the data model for the many-to-many relationship between Playground and Tag
+model PlaygroundsOnTags {
+  id           Int        @id @default(autoincrement())
+  playground   Playground @relation(fields: [playgroundId], references: [id])
+  playgroundId Int
+  tag          Tag        @relation(fields: [tagId], references: [id])
+  tagId        Int
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Playground {
+  id                Int                 @id @default(autoincrement())
+  post              Post?               @relation("PlaygroundPosts", fields: [postId], references: [id])
+  postId            Int?                @unique
+  rating            Float?
+  address           String?
+  city              String?
+  state             String?
+  zip               String?
+  latitude          Float?
+  longitude         Float?
+  photos            Photo[]             @relation("PlaygroundPhotos")
+  tags              Tag[]               @relation("PlaygroundTags")
+  playgroundsOnTags PlaygroundsOnTags[]
+  restrooms         Boolean?
+  picnicAreas       Boolean?
+  benches           Boolean?
+  shade             Boolean?
+  accessibleEquip   Boolean?
+  adaCompliance     Boolean?
+  ageRange          AgeRange?           @relation(fields: [ageRangeId], references: [id])
+  ageRangeId        Int?
+  Surface           Surface?            @relation(fields: [surfaceId], references: [id])
+  surfaceId         Int?
+}
+
+// Define the data model for playground surfaces
+model Surface {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String
+  playgrounds Playground[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+// Define the data model for age ranges
+model AgeRange {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String
+  playgrounds Playground[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }

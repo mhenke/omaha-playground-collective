@@ -63,45 +63,30 @@ const Sidebar = () => {
         </div>
 
         <div className="flex flex-col space-y-6">
-          <div className="font-bold">My Playground list</div>
+          <div className="font-bold">My playground list</div>
           {Array.from({ length: 4 }).map((_, i) => (
-            <div className="grid grid-cols-12" key={i}>
-              <div className="col-span-4 flex max-w-sm flex-col justify-center pr-2 ">
-                <Image
-                  src="/photo-1534528741775-53994a69daeb.jpg"
-                  alt="Dummy Post"
-                  className="h-full w-full rounded-xl object-cover"
-                  width={48}
-                  height={48}
-                />
-              </div>
-
-              <div className="col-span-8 mt-4 flex flex-col space-y-4">
-                <div className="text-base font-bold text-gray-900 decoration-indigo-600 group-hover:underline">
-                  Nulla consequat massa...
-                </div>
-                <div className="text-sm">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Aenean
-                </div>
-                <div className="flex items-center space-x-2 text-xs">
-                  <div className="h-8 w-8 rounded-full bg-gray-400">
-                    <Image
-                      src="/photo-1534528741775-53994a69daeb.jpg"
-                      alt="User"
-                      className="rounded-full"
-                      width={48}
-                      height={48}
-                    />
+            <div key="{i}" className="mx-auto">
+              <div className="grid gap-8 sm:mx-auto sm:max-w-sm lg:max-w-full">
+                <div className="flex flex-col">
+                  <div className="mb-2">
+                    <a
+                      href="/"
+                      aria-label="Article"
+                      className="hover:text-deep-purple-accent-400 inline-block text-sm font-bold leading-5 text-black transition-colors duration-200"
+                    >
+                      Why I love Laravel
+                    </a>
                   </div>
-                  <div>John Doe</div>
-                  <div>&#x2022;</div>
-                  <div>
-                    {new Date().toLocaleDateString(undefined, {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
+                  <p className="mb-5 text-xs  text-gray-700">
+                    Sed ut perspiciatis unde omnis iste natus error sit sed quia
+                    consequuntur magni voluptatem doloremque.
+                  </p>
+                  <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
+                    <img
+                      src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+                      className="h-64 w-full object-cover"
+                      alt=""
+                    />
                   </div>
                 </div>
               </div>
