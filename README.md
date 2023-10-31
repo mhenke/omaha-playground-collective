@@ -20,9 +20,9 @@ The Omaha Playground Collective is your ultimate source for all things playgroun
 
 ## Installation
 
-You'll need a supabase and github account to run this app locally. You'll also need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/). Node version 18.18.2 is recommended.
+You'll need a supabase and GitHub account to run this app locally. You'll also need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/). Node version 18.18.2 is recommended.
 
-You'll need to clone the github repo to your local machine.
+You'll need to clone the GitHub repo to your local machine.
 
 You'll need to update the .env file with your DATABASE_URL, GITHUB_ID, GITHUB_SECRET, and NEXTAUTH_SECRET.
 
@@ -41,7 +41,7 @@ DATABASE_URL=postgres://postgres:<password>@local<your_supabase_url>.host:5432/p
 
 #### Github Provider
 
-- To use nextauth in the app, you'll need add the Next Auth Github Provider to your .env file. Here is an example of what that looks like:
+- To use Nextauth in the app, you'll need to add the Next Auth Github Provider to your .env file. Here is an example of what that looks like:
 
 ```bash
 # .env file
@@ -98,7 +98,7 @@ As an administrator, I want to share playground information with other parents t
 
 ### User Story 4
 
-As an administrator, I want to manage playground information to ensure it's up to date and accurate.
+As an administrator, I want to manage playground information to ensure it's up-to-date and accurate.
 
 ## Acceptance Criteria
 
@@ -144,11 +144,11 @@ Given that I am an administrator responsible for managing playground information
 
 ### Mis-user Story 1
 
-As a hacker, I want to exploits vulnerabilities in the search feature to gain unauthorized access to the backend system.
+As a hacker, I want to exploit vulnerabilities in the search feature to gain unauthorized access to the backend system.
 
 ### Mis-user Story 2
 
-As an administrator I accidentally delete or update playground information to provide incorrect details.
+As an administrator, I accidentally delete or update playground information to provide incorrect details.
 
 ## Mitigation Criteria
 
@@ -160,7 +160,7 @@ As an administrator I accidentally delete or update playground information to pr
 
 ### Mitigation Criteria 2
 
-- Implenent an content log that records all changes made by administrators, making it possible to track and reverse unauthorized modifications.
+- Implement a content log that records all changes made by administrators, making it possible to track and reverse unauthorized modifications.
 - Maintain a robust data recovery and backup system to ensure that data can be restored in the event of accidental deletion or modification.
 
 # Diagrams
