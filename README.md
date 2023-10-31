@@ -24,7 +24,7 @@ You'll need a supabase and GitHub account to run this app locally. You'll also n
 
 You'll need to clone the GitHub repo to your local machine.
 
-You'll need to update the .env file with your DATABASE_URL, GITHUB_ID, GITHUB_SECRET, and NEXTAUTH_SECRET.
+You'll need to update the .env file with your DATABASE_URL, GITHUB_ID, GITHUB_SECRET, NEXTAUTH_URL, and NEXTAUTH_SECRET.
 
 ### Environment Variables
 
@@ -39,6 +39,16 @@ To use the supabase database in the app, you'll need to add the [connection stri
 DATABASE_URL=postgres://postgres:<password>@local<your_supabase_url>.host:5432/postgres
 ```
 
+#### Next Auth
+
+- To use the app, you'll need to add the NEXTAUTH_SECRET and NEXTAUTH_URL in your .env file. You can [generate a new secret](https://next-auth.js.org/configuration/options#secret) on the command line with `openssl rand -base64 32` Here is an example of what that looks like:
+
+```bash
+# .env file
+NEXTAUTH_SECRET=<your_nextauth_secret>
+NEXTAUTH_URL="http://localhost:3000"
+```
+
 #### Github Provider
 
 - To use Nextauth in the app, you'll need to add the Next Auth Github Provider to your .env file. Here is an example of what that looks like:
@@ -47,15 +57,6 @@ DATABASE_URL=postgres://postgres:<password>@local<your_supabase_url>.host:5432/p
 # .env file
 GITHUB_ID=<your_github_id>
 GITHUB_SECRET=<your_github_secret>
-```
-
-#### NEXTAUTH_SECRET
-
-- To use the app, you'll need to update the NEXTAUTH_SECRET in your .env file. You can [generate a new secret](https://next-auth.js.org/configuration/options#secret) on the command line with `openssl rand -base64 32` Here is an example of what that looks like:
-
-```bash
-# .env file
-NEXTAUTH_SECRET=<your_nextauth_secret>
 ```
 
 ## Getting Started
