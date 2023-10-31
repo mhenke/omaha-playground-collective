@@ -167,7 +167,9 @@ As an administrator I accidentally delete or update playground information to pr
 
 ## Mockup
 
-This should be an interface design that shows off the different views that a user will see when they interact with your app. You should tie the mockup views to specific user stories where possible.
+[Home Page](/doc/homePage.png)
+[Blog Page](/doc/blogPage.png)
+[Search Page](/doc/searchPage.png)
 
 ## Architecture Diagram
 
