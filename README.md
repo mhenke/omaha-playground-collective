@@ -168,12 +168,28 @@ As an administrator, I accidentally delete or update playground information to p
 
 ## Mockup
 
-- ![Home Page](/doc/homePage.png)
-- ![Blog Page](/doc/blogPage.png)
-- ![Search Result Page](/doc/searchResultPage.png)
+### Home page
+  
+![Home Page](/doc/homePage.png)
+  
+### Blog Page
+
+![Blog Page](/doc/blogPage.png)
+
+### Search Result Page
+
+![Search Result Page](/doc/searchResultPage.png)
 
 ## Architecture Diagram
 
-- ![Context Diagram](/doc/structurizr-SystemContext.png)
-- ![Container Diagram](/doc/structurizr-Containers.png)
-- ![Component Diagram](/doc/structurizr-Components.png)
+### Context Diagram
+
+![Context Diagram](/doc/structurizr-SystemContext.png)
+
+### Container Diagram
+
+![Container Diagram](/doc/structurizr-Containers.png)
+
+### Component Diagram
+
+![Component Diagram](/doc/structurizr-Components.png)
