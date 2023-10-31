@@ -82,8 +82,6 @@ This project is licensed under the terms of the [Creative Commons Zero v1.0 Univ
 
 # The Stories
 
-What features do you want to have? What do the users want to do? What would someone who likes your project want to use it for?
-
 ## User Stories
 
 ### User Story 1
@@ -144,8 +142,6 @@ Given that I am an administrator responsible for managing playground information
 
 ## Mis-user Stories
 
-In addition to the user stories identify the ways in which users might be able to mis-use your app. Mis-user stories are just like user stories except the user, goal, and rationale are malicious.
-
 ### Mis-user Story 1
 
 As a hacker, I want to exploits vulnerabilities in the search feature to gain unauthorized access to the backend system.
@@ -175,4 +171,6 @@ This should be an interface design that shows off the different views that a use
 
 ## Architecture Diagram
 
-In addition to the mockup, I want you to create three architecture diagrams using the C4 architecting modeling paradigm discussed in class. See http://static.codingthearchitecture.com/c4.pdf for a quick reference.
+[Context Diagram](/doc/structurizr-SystemContext.png)
+[Container Diagram](/doc/structurizr-Containers.png)
+[Component Diagram](/doc/structurizr-Components.png)
