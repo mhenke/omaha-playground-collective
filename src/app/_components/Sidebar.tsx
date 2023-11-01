@@ -1,61 +1,44 @@
-import Image from "next/image";
+import { Bookmark, Share } from "react-feather";
 
 const Sidebar = () => {
   return (
     <aside className="col-span-4 flex flex-col border-r border-gray-300">
       <section className="space-y-8 p-10">
-        <div className="grid grid-cols-12 rounded-xl bg-gradient-to-br from-gray-200 via-gray-200/50 to-gray-300 p-8">
-          <div className="col-span-9 space-y-4">
-            <div>
-              <div className="text-lg font-bold text-gray-900">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequuntur.
-              </div>
-              <div className="text-sm font-medium text-gray-600">
-                Lorem ipsum dolor sit Lorem, ipsum.
-              </div>
+        <div className="flex flex-col lg:flex-row">
+          <div className="mx-auto mb-2 max-w-xl pr-16">
+            <h5 className="mb-6 text-lg font-extrabold leading-none">
+              The quick, brown fox jumps over a lazy dog
+            </h5>
+            <p className="mb-6 text-sm text-gray-900">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque rem aperiam, eaque ipsa quae. Sed ut unde
+              omnis iste natus.
+            </p>
+            <div className="flex items-center">
+              <button className="btn btn-secondary">Get Started</button>
+              <button className="btn btn-link">Learn more</button>
             </div>
-            <div className="w-fit rounded-3xl bg-gray-300 px-4 py-2 text-sm text-gray-700">
-              Get unlimited access
-            </div>
-          </div>
-          <div className="col-span-3 grid place-items-center">
-            <i
-              className="feather feather-book"
-              style={{ fontSize: "115px", color: "white" }}
-            />
           </div>
         </div>
 
         <div className="flex flex-col space-y-6">
           <div className="font-bold">Playgrounds you might be interested</div>
           <div className="flex flex-col space-y-4">
-            <div className="flex w-full flex-col space-y-4">
+            <div className="max-w-lg space-y-3 sm:mx-auto lg:max-w-xl">
               {Array.from({ length: 3 }).map((_, index) => (
-                <div className="grid w-full grid-cols-12 gap-2" key={index}>
-                  <div className="col-span-2">
-                    <div className="h-12 w-12 rounded-full bg-gray-400">
-                      <Image
-                        src="/photo-1534528741775-53994a69daeb.jpg"
-                        alt="User"
-                        className="rounded-full"
-                        width={48}
-                        height={48}
-                      />
-                    </div>
+                <div
+                  key={index}
+                  className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200"
+                >
+                  <div className="mr-2">
+                    <Bookmark className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-6 sm:w-6" />
                   </div>
-                  <div className="col-span-7 flex flex-col">
-                    <div className="text-sm font-bold">John Doe</div>
-                    <div className="text-xs font-normal">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Illo, ut.
-                    </div>
-                  </div>
-                  <div className="col-span-3">
-                    <button className="flex items-center space-x-2 rounded-lg px-4 py-2 ring-1 ring-gray-400">
-                      Follow
-                    </button>
-                  </div>
+                  <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                    Change the world by being yourself.&nbsp;
+                    <a className="link-accent link">Learn More</a>
+                  </span>
+
+                  <Share className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-6 sm:w-6" />
                 </div>
               ))}
             </div>
@@ -64,34 +47,133 @@ const Sidebar = () => {
 
         <div className="flex flex-col space-y-6">
           <div className="font-bold">My playground list</div>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key="{i}" className="mx-auto">
-              <div className="grid gap-8 sm:mx-auto sm:max-w-sm lg:max-w-full">
-                <div className="flex flex-col">
-                  <div className="mb-2">
-                    <a
-                      href="/"
-                      aria-label="Article"
-                      className="hover:text-deep-purple-accent-400 inline-block text-sm font-bold leading-5 text-black transition-colors duration-200"
-                    >
-                      Why I love Laravel
-                    </a>
-                  </div>
-                  <p className="mb-5 text-xs  text-gray-700">
-                    Sed ut perspiciatis unde omnis iste natus error sit sed quia
-                    consequuntur magni voluptatem doloremque.
-                  </p>
-                  <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
-                    <img
-                      src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
-                      className="h-64 w-full object-cover"
-                      alt=""
-                    />
-                  </div>
-                </div>
+
+          <div className="max-w-lg space-y-3 sm:mx-auto lg:max-w-xl">
+            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+              <div className="mr-2">
+                <svg
+                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  stroke="currentColor"
+                  viewBox="0 0 52 52"
+                >
+                  <polygon
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                    points="29 13 14 29 25 29 23 39 38 23 27 23"
+                  />
+                </svg>
               </div>
+              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                Change the world by being yourself 2.&nbsp;
+                <a className="link-accent link">Learn More</a>
+              </span>
+              <button className="btn btn-secondary btn-outline btn-xs">
+                UnBookmark
+              </button>
             </div>
-          ))}
+            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+              <div className="mr-2">
+                <svg
+                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  stroke="currentColor"
+                  viewBox="0 0 52 52"
+                >
+                  <polygon
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                    points="29 13 14 29 25 29 23 39 38 23 27 23"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                Die with memories, not dreams.
+              </span>
+            </div>
+            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+              <div className="mr-2">
+                <svg
+                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  stroke="currentColor"
+                  viewBox="0 0 52 52"
+                >
+                  <polygon
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                    points="29 13 14 29 25 29 23 39 38 23 27 23"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                What we think, we become.
+              </span>
+            </div>
+            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+              <div className="mr-2">
+                <svg
+                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  stroke="currentColor"
+                  viewBox="0 0 52 52"
+                >
+                  <polygon
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                    points="29 13 14 29 25 29 23 39 38 23 27 23"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                Be so good they can’t ignore you.
+              </span>
+            </div>
+            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+              <div className="mr-2">
+                <svg
+                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  stroke="currentColor"
+                  viewBox="0 0 52 52"
+                >
+                  <polygon
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                    points="29 13 14 29 25 29 23 39 38 23 27 23"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                Simplicity is the ultimate sophistication.
+              </span>
+            </div>
+            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+              <div className="mr-2">
+                <svg
+                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  stroke="currentColor"
+                  viewBox="0 0 52 52"
+                >
+                  <polygon
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                    points="29 13 14 29 25 29 23 39 38 23 27 23"
+                  />
+                </svg>
+              </div>
+              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                Yesterday you said tomorrow. Just do it today.
+              </span>
+            </div>
+          </div>
         </div>
       </section>
     </aside>
