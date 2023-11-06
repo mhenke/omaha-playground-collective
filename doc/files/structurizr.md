@@ -13,9 +13,14 @@ workspace {
                 searchComponent = component "Search Playground Information Component"
                 displayComponent = component "Display Playground Information Component"
                 manageComponent = component "Manage Playground Information Component"
-                tagComponent = component "Tag Playground Information Component"
-
             }
+
+            apiApplication = container "API" "TRCP" {
+                trpcComponent = component "TRCP"
+                authComponent = component "auth"
+
+             }
+
              database = container "Database" "Stores playground information, credentials, access logs, etc." "Supabase Database Schema" "Database"
         }
 
@@ -24,16 +29,24 @@ workspace {
         admin -> singlePageApplication "Uses"
 
         webApplication -> singlePageApplication "Delivers to the parent/user information web browser"
-        webApplication -> database "Reads from and writes to"
+        apiApplication -> database "Reads from and writes to"
 
         singlePageApplication -> securityComponent "Makes API calls to" "JSON/HTTPS"
         singlePageApplication -> searchComponent
-        singlePageApplication -> tagComponent
         singlePageApplication -> displayComponent
-        singlePageApplication -> manageComponent
+
+        webApplication -> apiApplication "Uses"
 
         securityComponent -> loggingComponent
         manageComponent -> loggingComponent
+        searchComponent -> loggingComponent
+        displayComponent -> loggingComponent
+        securityComponent -> manageComponent
+
+        securityComponent -> apiApplication
+        manageComponent -> apiApplication "
+        displayComponent -> apiApplication "
+        searchComponent -> apiApplication
     }
 
     views {
@@ -58,11 +71,8 @@ workspace {
         component webApplication "Components" {
             include *
 
-            animation {
-                securityComponent
-            }
              autoLayout
-            description "The component diagram for the API Application."
+            description "The component diagram for the Web Application."
         }
 
         styles {

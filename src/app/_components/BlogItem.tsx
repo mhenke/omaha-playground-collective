@@ -1,6 +1,6 @@
 const BlogItem = ({ isLastItem }: { isLastItem: boolean }) => {
   return (
-    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
+    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
       <div className="grid gap-8 sm:mx-auto sm:max-w-sm lg:max-w-full lg:grid-cols-3">
         <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
           <img

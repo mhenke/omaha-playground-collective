@@ -1,7 +1,7 @@
 export default function LeadBlog() {
   return (
-    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
-      <div className="grid gap-10 lg:grid-cols-2">
+    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
+      <div className="grid gap-5 lg:grid-cols-2">
         <div className="flex flex-col justify-center md:pr-8 lg:max-w-lg xl:pr-0">
           <div className="bg-teal-accent-400 mb-4 flex h-16 w-16 items-center justify-center rounded-full">
             <svg className="h-7 w-7 text-teal-900" viewBox="0 0 24 24">

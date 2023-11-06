@@ -1,7 +1,7 @@
 const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
   return (
-    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
-      <div className="row-gap-10 grid gap-5 lg:grid-cols-2">
+    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
+      <div className="row-gap-5 grid gap-5 lg:grid-cols-2">
         <div className="flex flex-col justify-center">
           <div className="mb-6 max-w-xl">
             <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">

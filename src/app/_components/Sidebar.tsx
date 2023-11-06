@@ -3,7 +3,7 @@ import { Bookmark, Share } from "react-feather";
 const Sidebar = () => {
   return (
     <aside className="col-span-4 flex flex-col border-r border-gray-300">
-      <section className="space-y-8 p-10">
+      <section className="space-y-8 p-5">
         <div className="flex flex-col lg:flex-row">
           <div className="mx-auto mb-2 max-w-xl pr-16">
             <h5 className="mb-6 text-lg font-extrabold leading-none">
