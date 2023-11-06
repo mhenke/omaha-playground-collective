@@ -31,22 +31,22 @@ workspace {
         webApplication -> singlePageApplication "Delivers to the parent/user information web browser"
         apiApplication -> database "Reads from and writes to"
 
-        singlePageApplication -> securityComponent "Makes API calls to" "JSON/HTTPS"
-        singlePageApplication -> searchComponent
-        singlePageApplication -> displayComponent
+        singlePageApplication -> securityComponent "Uses"
+        singlePageApplication -> searchComponent "Uses"
+        singlePageApplication -> displayComponent "Uses"
 
         webApplication -> apiApplication "Uses"
 
-        securityComponent -> loggingComponent
-        manageComponent -> loggingComponent
-        searchComponent -> loggingComponent
-        displayComponent -> loggingComponent
-        securityComponent -> manageComponent
+        securityComponent -> loggingComponent "Uses"
+        manageComponent -> loggingComponent "Uses"
+        searchComponent -> loggingComponent "Uses"
+        displayComponent -> loggingComponent "Uses"
+        securityComponent -> manageComponent "Uses"
 
-        securityComponent -> apiApplication
-        manageComponent -> apiApplication "
-        displayComponent -> apiApplication "
-        searchComponent -> apiApplication
+        securityComponent -> apiApplication "Calls"
+        manageComponent -> apiApplication "Calls"
+        displayComponent -> apiApplication "Calls"
+        searchComponent -> apiApplication "Calls"
     }
 
     views {
