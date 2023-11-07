@@ -91,7 +91,7 @@ As a parent, I want to access playground information to discover suitable option
 
 ### User Story 2
 
-As a parent, I want to search for playgrounds to quickly find appropriate options for my family.
+As a parent, I want to find playgrounds for my family quickly based on criteria like appropriate options or playground surface type.
 
 ### User Story 3
 
@@ -114,11 +114,11 @@ Given that I am a parent looking for playgrounds, when I access the playground i
 
 ### Acceptance Criteria 2
 
-Given that I am a parent searching for a playground, when I perform a search using the search feature, then I should receive relevant results based on my search query.
+Given that I am a parent finding for a playground, when I perform a filter using the predefined critera, then I should receive relevant results based on my filter options.
 
-1. The search functionality should be easily accessible from the main interface.
-1. Users should be able to enter search queries, such as location or facility names.
-1. The search results should include playgrounds that match the search criteria.
+1. The filter functionality should be easily accessible from the main interface.
+1. Users should be able to enter filter by such as location, age range, surface area, and ada compliance.
+1. The filter results should include playgrounds that match the filter criteria.
 1. The results should be displayed in an organized and easily readable format.
 1. Users should be able to click on a result to access more detailed information about the playground.
 
