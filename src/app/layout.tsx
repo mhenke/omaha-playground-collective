@@ -3,7 +3,6 @@ import "~/styles/globals.css";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 
-import { Search } from "react-feather";
 import { TRPCReactProvider } from "~/trpc/react";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
@@ -36,20 +35,10 @@ export default function RootLayout({
         <Header />
         <div className="grid w-full grid-cols-12">
           <section className="col-span-8 flex flex-col border-r border-gray-300">
-            <div className="flex w-full items-center justify-between px-3 py-3">
-              <div className="relative w-full max-w-md">
-                <label className="text-accent-700 absolute left-4 top-3.5 text-base">
-                  <Search />
-                </label>
-                <input
-                  type="text"
-                  placeholder="Search"
-                  className="input input-bordered w-full rounded-3xl border px-10 py-2 md:w-auto"
-                />
-              </div>
-              <div className="flex items-center space-x-2">
+            <div className="flex w-full items-center justify-end px-3 py-3">
+              <div className="flex items-center justify-end space-x-2">
                 <div className="text-accent-700 whitespace-nowrap">
-                  My topics:
+                  Article filters:
                 </div>
                 <div className="flex w-full items-center space-x-2">
                   <Tag />
