@@ -117,6 +117,7 @@ model PlaygroundsOnTags {
 
 model Playground {
   id                Int                 @id @default(autoincrement())
+  name              String
   post              Post?               @relation("PlaygroundPosts", fields: [postId], references: [id])
   postId            Int?                @unique
   rating            Float?

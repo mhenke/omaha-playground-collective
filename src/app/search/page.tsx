@@ -1,11 +1,33 @@
+import { api } from "~/trpc/server";
 import BlogItem from "../_components/BlogItem";
 
-export default function Search() {
-  return (
-    <div className="flex min-h-screen flex-col py-2">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <BlogItem key={`blog-item-${i}`} isLastItem={i === 9} />
-      ))}
-    </div>
-  );
+export default async function Search() {
+  try {
+    // Fetch posts from the server
+    const posts = await api.post.getAll.query(undefined, {});
+
+    console.log("hola posts", posts);
+
+    // how do i get the last item in the array?
+    // const lastItem = posts[posts.length - 1];
+
+    return (
+      <div className="flex min-h-screen flex-col py-2">
+        <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
+          <div className="grid gap-8 sm:mx-auto sm:max-w-sm lg:max-w-full lg:grid-cols-3">
+            {posts.map((post, index) => (
+              <BlogItem
+                key={post.id}
+                isLastItem={index === posts.length - 1}
+                post={post}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  } catch (error) {
+    console.error("An error occurred:", error);
+    return <div>An error occurred</div>;
+  }
 }
