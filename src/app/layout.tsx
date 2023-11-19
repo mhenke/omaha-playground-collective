@@ -4,10 +4,12 @@ import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { Feature } from "./_components/Feature";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import Sidebar from "./_components/Sidebar";
-import Tag from "./_components/Tag";
+
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -35,26 +37,7 @@ export default function RootLayout({
         <Header />
         <div className="grid w-full grid-cols-12">
           <section className="col-span-12 border-r border-gray-300 lg:col-span-8 lg:flex lg:flex-col">
-            <div className="flex w-full items-center justify-end px-3 py-3">
-              <div className="flex items-center justify-end space-x-2">
-                <div className="text-accent-700 whitespace-nowrap">
-                  Article filters:
-                </div>
-                <div className="flex w-full items-center space-x-2">
-                  <Tag />
-                </div>
-              </div>
-            </div>
-            <div className="flex w-full items-center justify-between px-10 py-3">
-              <div className="text-accent-900">Articles</div>
-              <select className="select select-bordered w-full max-w-xs">
-                <option disabled selected>
-                  Who shot first?
-                </option>
-                <option>Han Solo</option>
-                <option>Greedo</option>
-              </select>
-            </div>
+            <Feature />
             <div className="divider flex w-full items-center justify-between px-10"></div>
             <div className="relative flex h-full w-full flex-col space-y-4">
               <TRPCReactProvider headers={headers()}>
@@ -65,6 +48,7 @@ export default function RootLayout({
           <Sidebar />
         </div>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
