@@ -43,3 +43,5 @@ yarn-error.log*
 .vscode/settings.json
 
 certificates
+# Sentry Config File
+.sentryclirc
