@@ -120,7 +120,7 @@ model Playground {
   name              String
   post              Post?               @relation("PlaygroundPosts", fields: [postId], references: [id])
   postId            Int?                @unique
-  rating            Float?
+  rating            Float?              
   address           String?
   city              String?
   state             String?

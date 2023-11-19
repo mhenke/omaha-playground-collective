@@ -34,7 +34,7 @@ export default function RootLayout({
       <body className={`font-sans ${inter.variable}`}>
         <Header />
         <div className="grid w-full grid-cols-12">
-          <section className="col-span-8 flex flex-col border-r border-gray-300">
+          <section className="col-span-12 border-r border-gray-300 lg:col-span-8 lg:flex lg:flex-col">
             <div className="flex w-full items-center justify-end px-3 py-3">
               <div className="flex items-center justify-end space-x-2">
                 <div className="text-accent-700 whitespace-nowrap">
