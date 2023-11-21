@@ -21,20 +21,22 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post, photos }) => {
             className="carousel-item relative w-full"
           >
             <img src={photo.url} className="w-full" alt={`Photo ${photo.id}`} />
-            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-              <a
-                href={`#slide${index === 0 ? totalPhotos : index}`}
-                className="btn btn-circle"
-              >
-                ❮
-              </a>
-              <a
-                href={`#slide${index === totalPhotos - 1 ? 1 : index + 2}`}
-                className="btn btn-circle"
-              >
-                ❯
-              </a>
-            </div>
+            {photos.length > 1 && (
+              <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                <a
+                  href={`#slide${index === 0 ? totalPhotos : index}`}
+                  className="btn btn-circle"
+                >
+                  ❮
+                </a>
+                <a
+                  href={`#slide${index === totalPhotos - 1 ? 1 : index + 2}`}
+                  className="btn btn-circle"
+                >
+                  ❯
+                </a>
+              </div>
+            )}
           </div>
         ))}
       </div>

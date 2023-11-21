@@ -17,7 +17,7 @@ export default async function Home() {
                 key={post.id}
                 isLastItem={index === posts.length - 1}
                 post={post}
-                photos={post?.playground?.photos ?? []}
+                photos={post?.photos ?? []}
               />
             ))}
           </div>
