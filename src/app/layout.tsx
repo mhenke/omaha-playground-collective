@@ -1,5 +1,6 @@
 import "~/styles/globals.css";
 
+import { AxiomWebVitals } from "next-axiom";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
         </div>
         <Footer />
         <Analytics />
+        <AxiomWebVitals />
       </body>
     </html>
   );
