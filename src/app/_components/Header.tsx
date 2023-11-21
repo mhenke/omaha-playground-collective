@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Edit } from "react-feather";
 import { getServerAuthSession } from "~/server/auth";
 
-export default async function Header({ title }) {
+export default async function Header({ title }: { readonly title: string }) {
   const session = await getServerAuthSession();
   return (
     <header className="navbar bg-base-100">
