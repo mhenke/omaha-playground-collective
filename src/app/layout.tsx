@@ -34,7 +34,7 @@ export default function RootLayout({
       className="relative flex h-full w-full flex-col space-y-4"
     >
       <body className={`font-sans ${inter.variable}`}>
-        <Header />
+        <Header title={metadata.title} />
         <div className="grid w-full grid-cols-12">
           <section className="col-span-12 border-r border-gray-300 lg:col-span-8 lg:flex lg:flex-col">
             <Feature />

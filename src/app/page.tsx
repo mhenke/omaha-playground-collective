@@ -8,9 +8,6 @@ export default async function Home() {
 
     console.log("hola posts", posts);
 
-    // how do i get the last item in the array?
-    // const lastItem = posts[posts.length - 1];
-
     return (
       <div className="flex min-h-screen flex-col py-2">
         <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
@@ -20,6 +17,7 @@ export default async function Home() {
                 key={post.id}
                 isLastItem={index === posts.length - 1}
                 post={post}
+                photos={post?.playground?.photos || []}
               />
             ))}
           </div>

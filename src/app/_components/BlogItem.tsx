@@ -1,20 +1,43 @@
 // BlogItem component
-import { Post } from "@prisma/client";
+import { Photo, Post } from "@prisma/client";
 import React from "react";
 
 interface BlogItemProps {
   isLastItem: boolean;
   post: Post;
+  photos: Photo[];
 }
 
-const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
+const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post, photos }) => {
+  const totalPhotos = photos.length;
+
   return (
     <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
-      <img
-        src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
-        className="h-64 w-full object-cover"
-        alt=""
-      />
+      <div className="carousel w-full">
+        {photos.map((photo, index) => (
+          <div
+            key={photo.id}
+            id={`slide${index + 1}`}
+            className="carousel-item relative w-full"
+          >
+            <img src={photo.url} className="w-full" alt={`Photo ${photo.id}`} />
+            <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+              <a
+                href={`#slide${index === 0 ? totalPhotos : index}`}
+                className="btn btn-circle"
+              >
+                ❮
+              </a>
+              <a
+                href={`#slide${index === totalPhotos - 1 ? 1 : index + 2}`}
+                className="btn btn-circle"
+              >
+                ❯
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
       <div className="border border-t-0 p-5">
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
           <a

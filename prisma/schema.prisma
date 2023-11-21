@@ -83,10 +83,10 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// Update the Photo model to store photos as binary data
+// Update the Photo model to store photos as url
 model Photo {
   id           Int        @id @default(autoincrement())
-  data         Bytes // Use Bytes type for binary data
+  url          String
   playground   Playground @relation("PlaygroundPhotos", fields: [playgroundId], references: [id])
   playgroundId Int
   createdAt    DateTime   @default(now())
