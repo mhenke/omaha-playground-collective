@@ -19,6 +19,12 @@ export default async function Home() {
                 post={post}
                 photos={post?.playground?.photos ?? []}
               />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  } catch (error) {
     console.error("An error occurred:", error);
     return <div>An error occurred</div>;
   }
