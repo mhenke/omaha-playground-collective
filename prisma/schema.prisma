@@ -1,29 +1,12 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-  // Further reading:
-  // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-  // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
   url      = env("DATABASE_URL")
 }
 
-model Example {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([name])
-}
-
-// Necessary for Next Auth
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -61,18 +44,17 @@ model User {
   Account       Account[]
 }
 
-// Update the Post model to have a one-to-one relationship with Playground
 model Post {
   id           Int         @id @default(autoincrement())
   title        String
   content      String
   author       User        @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
   authorId     String
-  // Update the Post model to have a one-to-one relationship with Playground
+  photos       Photo[]     @relation("PostPhotos")
   playground   Playground? @relation("PlaygroundPosts")
   playgroundId Int?
   createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  updatedAt    DateTime    @default(now()) @updatedAt
 }
 
 model VerificationToken {
@@ -83,81 +65,55 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// Update the Photo model to store photos as url
 model Photo {
-  id           Int        @id @default(autoincrement())
-  url          String
-  playground   Playground @relation("PlaygroundPhotos", fields: [playgroundId], references: [id])
-  playgroundId Int
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-}
-
-// Define the data model for tags
-model Tag {
-  id                Int                 @id @default(autoincrement())
-  name              String
-  description       String?
-  playgrounds       Playground[]        @relation("PlaygroundTags")
-  playgroundsOnTags PlaygroundsOnTags[]
-  createdAt         DateTime            @default(now())
-  updatedAt         DateTime            @updatedAt
-}
-
-// Define the data model for the many-to-many relationship between Playground and Tag
-model PlaygroundsOnTags {
-  id           Int        @id @default(autoincrement())
-  playground   Playground @relation(fields: [playgroundId], references: [id])
-  playgroundId Int
-  tag          Tag        @relation(fields: [tagId], references: [id])
-  tagId        Int
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  id        Int      @id @default(autoincrement())
+  url       String
+  post      Post     @relation("PostPhotos", fields: [postId], references: [id])
+  postId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Playground {
-  id                Int                 @id @default(autoincrement())
-  name              String
-  post              Post?               @relation("PlaygroundPosts", fields: [postId], references: [id])
-  postId            Int?                @unique
-  rating            Float?              
-  address           String?
-  city              String?
-  state             String?
-  zip               String?
-  latitude          Float?
-  longitude         Float?
-  photos            Photo[]             @relation("PlaygroundPhotos")
-  tags              Tag[]               @relation("PlaygroundTags")
-  playgroundsOnTags PlaygroundsOnTags[]
-  restrooms         Boolean?
-  picnicAreas       Boolean?
-  benches           Boolean?
-  shade             Boolean?
-  accessibleEquip   Boolean?
-  adaCompliance     Boolean?
-  ageRange          AgeRange?           @relation(fields: [ageRangeId], references: [id])
-  ageRangeId        Int?
-  Surface           Surface?            @relation(fields: [surfaceId], references: [id])
-  surfaceId         Int?
+  id              Int       @id @default(autoincrement())
+  name            String
+  post            Post?     @relation("PlaygroundPosts", fields: [postId], references: [id])
+  postId          Int?      @unique
+  rating          Float?
+  address         String?
+  city            String?
+  state           String?
+  zip             String?
+  latitude        Float?
+  longitude       Float?
+  restrooms       Boolean?
+  picnicAreas     Boolean?
+  benches         Boolean?
+  shade           Boolean?
+  accessibleEquip Boolean?
+  adaCompliance   Boolean?
+  ageRange        AgeRange? @relation(fields: [ageRangeId], references: [id])
+  ageRangeId      Int?
+  Surface         Surface?  @relation(fields: [surfaceId], references: [id])
+  surfaceId       Int?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @default(now()) @updatedAt
 }
 
-// Define the data model for playground surfaces
 model Surface {
   id          Int          @id @default(autoincrement())
   name        String
   description String
   playgrounds Playground[]
   createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  updatedAt   DateTime     @default(now()) @updatedAt
 }
 
-// Define the data model for age ranges
 model AgeRange {
   id          Int          @id @default(autoincrement())
   name        String
   description String
   playgrounds Playground[]
   createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  updatedAt   DateTime     @default(now()) @updatedAt
 }

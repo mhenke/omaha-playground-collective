@@ -1,0 +1,3 @@
+id,name,postId,rating,address,city,state,zip,latitude,longitude,restrooms,picnicAreas,benches,shade,accessibleEquip,adaCompliance,ageRangeId,surfaceId
+1,Lewis & Clark Landing at The River Front,,,345 Riverfront Dr,Omaha,NE,68102,41.19971,-95.82071,true,,,true,,,,
+4,Blondo Ridges Park,1,,Big Elk Pkwy,Elkhorn,NE,68022,41.2836,-96.2016,,,,,,,,
