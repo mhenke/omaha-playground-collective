@@ -17,14 +17,8 @@ export default async function Home() {
                 key={post.id}
                 isLastItem={index === posts.length - 1}
                 post={post}
-                photos={post?.playground?.photos || []}
+                photos={post?.playground?.photos ?? []}
               />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  } catch (error) {
     console.error("An error occurred:", error);
     return <div>An error occurred</div>;
   }
