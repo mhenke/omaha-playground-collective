@@ -1,27 +1,34 @@
 // BlogItem component
-import { Photo, Post } from "@prisma/client";
+import { AgeRange, Photo, Playground, Post, Surface } from "@prisma/client";
 import React from "react";
 
 interface BlogItemProps {
   isLastItem: boolean;
-  post: Post;
-  photos: Photo[];
+  // i need ageRange in Playground
+  post: Post & {
+    playground:
+      | (Playground & { ageRange: AgeRange | null; Surface: Surface | null })
+      | null;
+    photos: Photo[] | [];
+  };
 }
 
-const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post, photos }) => {
-  const totalPhotos = photos.length;
+const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
+  const totalPhotos = post.photos.length;
+
+  console.log("hola post", post);
 
   return (
     <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
       <div className="carousel w-full">
-        {photos.map((photo, index) => (
+        {post.photos.map((photo, index) => (
           <div
             key={photo.id}
             id={`slide${post.id}${index + 1}`}
             className="carousel-item relative w-full"
           >
             <img src={photo.url} className="w-full" alt={`Photo ${photo.id}`} />
-            {photos.length > 1 && (
+            {post.photos.length > 1 && (
               <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                 <a
                   href={`#slide${post.id}${index === 0 ? totalPhotos : index}`}
@@ -50,8 +57,24 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post, photos }) => {
             aria-label="Category"
             title="traveling"
           >
-            traveling
+            {post.playground?.ageRange?.name && (
+              <button className="btn btn-neutral btn-xs mr-px">
+                {post.playground.ageRange.name}
+              </button>
+            )}
+            {post.playground?.accessibleEquip && (
+              <button className="btn btn-secondary btn-xs mr-px">
+                Assessible
+              </button>
+            )}
+            {post.playground?.Surface?.name && (
+              <button className="btn btn-accent btn-xs mr-px">
+                {post.playground.Surface.name}
+              </button>
+            )}
           </a>
+        </p>
+        <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
           <span className="text-gray-600">
             — {post.createdAt.toDateString()}
           </span>

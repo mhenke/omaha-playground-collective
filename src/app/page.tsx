@@ -6,7 +6,7 @@ export default async function Home() {
     // Fetch posts from the server
     const posts = await api.post.getAll.query(undefined, {});
 
-    console.log("hola posts", posts);
+    console.log("hola posts from page", posts);
 
     return (
       <div className="flex min-h-screen flex-col py-2">
@@ -17,7 +17,6 @@ export default async function Home() {
                 key={post.id}
                 isLastItem={index === posts.length - 1}
                 post={post}
-                photos={post?.photos ?? []}
               />
             ))}
           </div>

@@ -34,7 +34,7 @@ export const postRouter = createTRPCRouter({
     return ctx.db.post.findMany({
       orderBy: { createdAt: "desc" },
       include: {
-        playground: true,
+        playground: { include: { ageRange: true, Surface: true } },
         photos: true,
       },
     });
