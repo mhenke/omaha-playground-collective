@@ -1,8 +1,13 @@
-import { api } from "~/trpc/server";
+"use client";
 
-export const Feature = async () => {
-  const ageRange = await api.ageRange.getAll.query(undefined, {});
-  const surface = await api.surface.getAll.query(undefined, {});
+import { api } from "~/trpc/react";
+import { useFilterStore } from "../_store/filterStore";
+
+export const Feature = () => {
+  const ageRange = api.ageRange.getAll.useQuery();
+  const surface = api.surface.getAll.useQuery();
+
+  useFilterStore.setState({ selectedAgeRange: 1, selectedSurface: 1 });
 
   return (
     <div className="grid gap-8 sm:mx-auto sm:max-w-sm md:max-w-full md:grid-cols-2 lg:max-w-full lg:grid-cols-3">
@@ -13,7 +18,7 @@ export const Feature = async () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu dropdown-content rounded-box z-[1] w-52 bg-base-100 p-2 shadow"
+            className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
           >
             {surface.map((surface) => (
               <li key={surface.id}>
@@ -32,6 +37,10 @@ export const Feature = async () => {
               name="options"
               aria-label={age.name}
               key={age.id}
+              checked={age.id === useFilterStore.getState().selectedAgeRange}
+              onClick={() =>
+                useFilterStore.setState({ selectedAgeRange: age.id })
+              }
             />
           </div>
         ))}
