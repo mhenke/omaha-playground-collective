@@ -4,10 +4,17 @@ import { api } from "~/trpc/react";
 import { useFilterStore } from "../_store/filterStore";
 
 export const Feature = () => {
-  const ageRange = api.ageRange.getAll.useQuery();
-  const surface = api.surface.getAll.useQuery();
+  const ageRange = api.ageRange.getAll.useQuery(undefined, {});
+  const surface = api.surface.getAll.useQuery(undefined, {});
 
-  useFilterStore.setState({ selectedAgeRange: 1, selectedSurface: 1 });
+  const selectedAgeRange = (id: number) => {
+    console.log("hola id", id);
+    useFilterStore.setState({ selectedAgeRange: id });
+  };
+
+  const selectedSurface = (id) => {
+    useFilterStore.setState({ selectedSurface: id });
+  };
 
   return (
     <div className="grid gap-8 sm:mx-auto sm:max-w-sm md:max-w-full md:grid-cols-2 lg:max-w-full lg:grid-cols-3">
@@ -20,7 +27,7 @@ export const Feature = () => {
             tabIndex={0}
             className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
           >
-            {surface.map((surface) => (
+            {surface?.data?.map((surface) => (
               <li key={surface.id}>
                 <a>{surface.name}</a>
               </li>
@@ -29,7 +36,7 @@ export const Feature = () => {
         </div>
       </div>
       <div className="join ">
-        {ageRange.map((age) => (
+        {ageRange?.data?.map((age) => (
           <div className="tooltip" data-tip={age.description} key={age.id}>
             <input
               className="btn join-item"
@@ -37,10 +44,7 @@ export const Feature = () => {
               name="options"
               aria-label={age.name}
               key={age.id}
-              checked={age.id === useFilterStore.getState().selectedAgeRange}
-              onClick={() =>
-                useFilterStore.setState({ selectedAgeRange: age.id })
-              }
+              onSelect={() => selectedAgeRange(age.id)}
             />
           </div>
         ))}

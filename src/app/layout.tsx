@@ -34,24 +34,24 @@ export default function RootLayout({
       data-theme="emerald"
       className="relative flex h-full w-full flex-col space-y-4"
     >
-      <body className={`font-sans ${inter.variable}`}>
-        <Header title={metadata.title} />
-        <div className="grid w-full grid-cols-12">
-          <section className="col-span-12 border-r border-gray-300 lg:col-span-8 lg:flex lg:flex-col">
-            <Feature />
-            <div className="divider flex w-full items-center justify-between px-10"></div>
-            <div className="relative flex h-full w-full flex-col space-y-4">
-              <TRPCReactProvider headers={headers()}>
+      <TRPCReactProvider headers={headers()}>
+        <body className={`font-sans ${inter.variable}`}>
+          <Header title={metadata.title} />
+          <div className="grid w-full grid-cols-12">
+            <section className="col-span-12 border-r border-gray-300 lg:col-span-8 lg:flex lg:flex-col">
+              <Feature />
+              <div className="divider flex w-full items-center justify-between px-10"></div>
+              <div className="relative flex h-full w-full flex-col space-y-4">
                 {children}
-              </TRPCReactProvider>
-            </div>
-          </section>
-          <Sidebar />
-        </div>
-        <Footer />
-        <Analytics />
-        <AxiomWebVitals />
-      </body>
+              </div>
+            </section>
+            <Sidebar />
+          </div>
+          <Footer />
+          <Analytics />
+          <AxiomWebVitals />
+        </body>
+      </TRPCReactProvider>
     </html>
   );
 }

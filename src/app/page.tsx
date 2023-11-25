@@ -1,10 +1,28 @@
 import { api } from "~/trpc/server";
 import BlogItem from "./_components/BlogItem";
+import { useFilterStore } from "./_store/filterStore";
 
 export default async function Home() {
   try {
-    // Fetch posts from the server
-    const posts = await api.post.getAll.query(undefined, {});
+    type FilterOptions = {
+      ageRangeId?: number;
+      surfaceId?: number;
+    };
+
+    const filterOptions: FilterOptions = {};
+
+    const selectedAgeRange = useFilterStore.getState().selectedAgeRange;
+    const selectedSurface = useFilterStore.getState().selectedSurface;
+
+    if (typeof selectedAgeRange === "number") {
+      filterOptions.ageRangeId = selectedAgeRange;
+    }
+
+    if (typeof selectedSurface === "number") {
+      filterOptions.surfaceId = selectedSurface;
+    }
+
+    const posts = await api.post.getAll.query(filterOptions, {});
 
     console.log("hola posts from page", posts);
 

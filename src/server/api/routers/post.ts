@@ -30,13 +30,27 @@ export const postRouter = createTRPCRouter({
       });
     }),
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.db.post.findMany({
-      orderBy: { createdAt: "desc" },
-      include: {
-        playground: { include: { ageRange: true, Surface: true } },
-        photos: true,
-      },
-    });
-  }),
+  getAll: publicProcedure
+    .input(
+      z.object({
+        // ageRangeId can be null or number
+        ageRangeId: z.number().optional(),
+        surfaceId: z.number().optional(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      return ctx.db.post.findMany({
+        where: {
+          playground: {
+            ageRangeId: input.ageRangeId,
+            surfaceId: input.surfaceId,
+          },
+        },
+        orderBy: { createdAt: "desc" },
+        include: {
+          playground: { include: { ageRange: true, Surface: true } },
+          photos: true,
+        },
+      });
+    }),
 });
