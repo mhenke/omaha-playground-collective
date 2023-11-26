@@ -7,7 +7,7 @@ import type {
   Surface,
 } from "@prisma/client";
 import Image from "next/image";
-import type React from "react";
+import React from "react";
 interface BlogItemProps {
   isLastItem: boolean;
   // i need ageRange in Playground
