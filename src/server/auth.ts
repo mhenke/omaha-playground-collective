@@ -54,6 +54,9 @@ export const authOptions: NextAuthOptions = {
     InstagramProvider({
       clientId: env.INSTAGRAM_CLIENT_ID,
       clientSecret: env.INSTAGRAM_CLIENT_SECRET,
+      client: {
+        token_endpoint_auth_method: "client_secret_post",
+      },
     }),
 
     //  SlackProvider({
