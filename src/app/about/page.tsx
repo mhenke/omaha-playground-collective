@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function LeadBlog() {
   return (
     <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
@@ -80,22 +82,28 @@ export default function LeadBlog() {
         </div>
         <div className="-mx-4 flex items-center justify-center lg:pl-8">
           <div className="flex flex-col items-end px-3">
-            <img
+            <Image
               className="mb-6 h-28 w-28 rounded object-cover shadow-lg sm:h-48 sm:w-48 xl:h-56 xl:w-56"
               src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
               alt=""
+              wide="1260"
+              height="750"
             />
-            <img
+            <Image
               className="h-20 w-20 rounded object-cover shadow-lg sm:h-32 sm:w-32 xl:h-40 xl:w-40"
               src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
               alt=""
+              wide="1260"
+              height="750"
             />
           </div>
           <div className="px-3">
-            <img
+            <Image
               className="h-40 w-40 rounded object-cover shadow-lg sm:h-64 sm:w-64 xl:h-80 xl:w-80"
               src="https://images.pexels.com/photos/3182739/pexels-photo-3182739.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
               alt=""
+              width="500"
+              height="750"
             />
           </div>
         </div>

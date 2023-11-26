@@ -1,7 +1,7 @@
 // BlogItem component
 import { AgeRange, Photo, Playground, Post, Surface } from "@prisma/client";
+import Image from "next/image";
 import React from "react";
-
 interface BlogItemProps {
   isLastItem: boolean;
   // i need ageRange in Playground
@@ -27,7 +27,13 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
             id={`slide${post.id}${index + 1}`}
             className="carousel-item relative w-full"
           >
-            <img src={photo.url} className="w-full" alt={`Photo ${photo.id}`} />
+            <Image
+              src={photo.url}
+              className="w-full"
+              alt={`Photo ${photo.id}`}
+              width="1440"
+              height="1800"
+            />
             {post.photos.length > 1 && (
               <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                 <a

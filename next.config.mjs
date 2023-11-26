@@ -7,7 +7,12 @@ import { withAxiom } from "next-axiom";
 await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
-const config = { output: "standalone" };
+const config = {
+  output: "standalone",
+  images: {
+    domains: ["znmzqhaphohpkdunuiqu.supabase.co", "pexels.com"], // Add your image domain here
+  },
+};
 
 export default withSentryConfig(
   withAxiom(config),
