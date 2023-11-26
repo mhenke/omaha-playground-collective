@@ -27,13 +27,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const trpcHeaders = headers();
+
   return (
     <html
       lang="en"
       data-theme="emerald"
       className="relative flex h-full w-full flex-col space-y-4"
     >
-      <TRPCReactProvider headers={headers()}>
+      <TRPCReactProvider headers={trpcHeaders}>
         <body className={`${montserrat.className}`}>
           <Header title={metadata.title} />
           <div className="grid w-full grid-cols-12">
