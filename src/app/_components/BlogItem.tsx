@@ -1,7 +1,13 @@
 // BlogItem component
-import { AgeRange, Photo, Playground, Post, Surface } from "@prisma/client";
+import type {
+  AgeRange,
+  Photo,
+  Playground,
+  Post,
+  Surface,
+} from "@prisma/client";
 import Image from "next/image";
-import React from "react";
+import type React from "react";
 interface BlogItemProps {
   isLastItem: boolean;
   // i need ageRange in Playground
