@@ -35,7 +35,7 @@ export default function RootLayout({
       data-theme="emerald"
       className="relative flex h-full w-full flex-col space-y-4"
     >
-      <TRPCReactProvider headers={trpcHeaders}>
+      <TRPCReactProvider>
         <body className={`${montserrat.className}`}>
           <Header title={metadata.title} />
           <div className="grid w-full grid-cols-12">
