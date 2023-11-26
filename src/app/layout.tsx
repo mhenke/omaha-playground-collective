@@ -1,7 +1,7 @@
 import "~/styles/globals.css";
 
 import { AxiomWebVitals } from "next-axiom";
-import { Inter } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { headers } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
@@ -11,8 +11,7 @@ import Header from "./_components/Header";
 import Sidebar from "./_components/Sidebar";
 
 import { Analytics } from "@vercel/analytics/react";
-
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -35,7 +34,7 @@ export default function RootLayout({
       className="relative flex h-full w-full flex-col space-y-4"
     >
       <TRPCReactProvider headers={headers()}>
-        <body className={`font-sans ${inter.variable}`}>
+        <body className={`${montserrat.className}`}>
           <Header title={metadata.title} />
           <div className="grid w-full grid-cols-12">
             <section className="col-span-12 border-r border-gray-300 lg:col-span-8 lg:flex lg:flex-col">
