@@ -4,17 +4,6 @@ const PostForm = () => {
   return (
     <div>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
-      <button
-        className="btn btn-outline btn-primary"
-        onClick={() => {
-          const modal: any = document.getElementById("my_modal_5");
-          if (modal) {
-            modal.showModal();
-          }
-        }}
-      >
-        Create Post
-      </button>
 
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">

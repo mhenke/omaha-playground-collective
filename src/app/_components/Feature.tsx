@@ -12,10 +12,6 @@ export const Feature = () => {
     useFilterStore.setState({ selectedAgeRange: id });
   };
 
-  const selectedSurface = (id: number) => {
-    useFilterStore.setState({ selectedSurface: id });
-  };
-
   return (
     <div className="grid gap-8 sm:mx-auto sm:max-w-sm md:max-w-full md:grid-cols-2 lg:max-w-full lg:grid-cols-3">
       <div className="">
