@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Edit } from "react-feather";
 import { getServerAuthSession } from "~/server/auth";
+import Modal from "./Modal";
 
 export default async function Header({ title }: { readonly title: string }) {
   const session = await getServerAuthSession();
@@ -27,7 +28,7 @@ export default async function Header({ title }: { readonly title: string }) {
           </label>
           <ul
             tabIndex={0}
-            className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
+            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
           >
             <li>
               <a>Homepage</a>
@@ -45,7 +46,7 @@ export default async function Header({ title }: { readonly title: string }) {
         <a className="btn btn-ghost text-xl">{title}</a>
       </div>
       <div className="navbar-end">
-        <button className="btn btn-primary btn-outline">Create Post</button>
+        <Modal />
 
         {session ? (
           <div className="dropdown dropdown-end">
@@ -61,7 +62,7 @@ export default async function Header({ title }: { readonly title: string }) {
             </label>
             <ul
               tabIndex={0}
-              className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
+              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
             >
               <li>
                 <a className="justify-between">
@@ -85,7 +86,7 @@ export default async function Header({ title }: { readonly title: string }) {
           </Link>
         )}
         {session ? (
-          <button className="btn btn-primary btn-outline px-2 py-1 text-sm ">
+          <button className="btn btn-outline btn-primary px-2 py-1 text-sm ">
             <Edit /> Write
           </button>
         ) : (
