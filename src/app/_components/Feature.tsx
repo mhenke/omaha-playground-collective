@@ -12,7 +12,7 @@ export const Feature = () => {
     useFilterStore.setState({ selectedAgeRange: id });
   };
 
-  const selectedSurface = (id) => {
+  const selectedSurface = (id: number) => {
     useFilterStore.setState({ selectedSurface: id });
   };
 
