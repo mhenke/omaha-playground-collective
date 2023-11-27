@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="forest"
+      data-theme="emerald"
       className="relative flex h-full w-full flex-col space-y-4"
     >
       <TRPCReactProvider headers={trpcHeaders}>

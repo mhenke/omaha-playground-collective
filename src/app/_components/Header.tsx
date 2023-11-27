@@ -7,7 +7,7 @@ import Modal from "./Modal";
 export default async function Header({ title }: { readonly title: string }) {
   const session = await getServerAuthSession();
   return (
-    <header className="navbar bg-base-100">
+    <header className="navbar ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-circle btn-ghost">
@@ -28,7 +28,7 @@ export default async function Header({ title }: { readonly title: string }) {
           </label>
           <ul
             tabIndex={0}
-            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box  p-2 shadow"
           >
             <li>
               <a>Homepage</a>
@@ -62,7 +62,7 @@ export default async function Header({ title }: { readonly title: string }) {
             </label>
             <ul
               tabIndex={0}
-              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box  p-2 shadow"
             >
               <li>
                 <a className="justify-between">

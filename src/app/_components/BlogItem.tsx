@@ -25,7 +25,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
   console.log("hola post", post);
 
   return (
-    <div className="overflow-hidden rounded  shadow-sm transition-shadow duration-300">
+    <div className="overflow-hidden rounded  shadow-sm transition-shadow duration-200">
       <div className="carousel w-full">
         {post.photos.map((photo, index) => (
           <div
@@ -65,7 +65,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
           <a
             href="/"
-            className="text-blue-gray-900 hover:text-deep-purple-accent-700 transition-colors duration-200"
+            className="transition-colors duration-200 hover:text-accent"
             aria-label="Category"
             title="traveling"
           >
@@ -87,25 +87,20 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
           </a>
         </p>
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-          <span className="text-gray-600">
-            — {post.createdAt.toDateString()}
-          </span>
+          <span>— {post.createdAt.toDateString()}</span>
         </p>
         <a
           href="/"
           aria-label="Category"
           title="Visit the East"
-          className="hover:text-deep-purple-accent-700 mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
+          className="link-hover link mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
         >
           {post.title}
         </a>
-        <p className="mb-2 text-gray-700">
-          {post.content.substring(0, 100)}...
-        </p>
+        <p className="mb-2 ">{post.content.substring(0, 100)}...</p>
         <a
           href="/"
-          aria-label=""
-          className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
+          className="link-primary link inline-flex items-center font-semibold transition-colors duration-200"
         >
           Learn more
         </a>

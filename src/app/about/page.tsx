@@ -5,8 +5,8 @@ export default function LeadBlog() {
     <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
       <div className="grid gap-5 lg:grid-cols-2">
         <div className="flex flex-col justify-center md:pr-8 lg:max-w-lg xl:pr-0">
-          <div className="bg-teal-accent-400 mb-4 flex h-16 w-16 items-center justify-center rounded-full">
-            <svg className="h-7 w-7 text-teal-900" viewBox="0 0 24 24">
+          <div className="bg-teal-accent mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+            <svg className="h-7 w-7" viewBox="0 0 24 24">
               <polyline
                 fill="none"
                 stroke="currentColor"
@@ -49,15 +49,13 @@ export default function LeadBlog() {
             </svg>
           </div>
           <div className="mb-6 max-w-xl">
-            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
               Let us handle
               <br className="hidden md:block" />
               your next{" "}
-              <span className="text-deep-purple-accent-400 inline-block">
-                destination
-              </span>
+              <span className="inline-block text-accent">destination</span>
             </h2>
-            <p className="text-base text-gray-700 md:text-lg">
+            <p className="text-base  md:text-lg">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
               quae. explicabo.
@@ -66,10 +64,9 @@ export default function LeadBlog() {
           <div>
             <a
               href="/"
-              aria-label=""
-              className="text-deep-purple-accent-400 hover:text-deep-purple-800 inline-flex items-center font-semibold transition-colors duration-200"
+              className="link-primary link inline-flex items-center font-semibold transition-colors duration-200"
             >
-              Learn more
+              Learn more 2
               <svg
                 className="ml-2 inline-block w-3"
                 fill="currentColor"

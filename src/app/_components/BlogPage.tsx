@@ -6,18 +6,18 @@ const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
       <div className="row-gap-5 grid gap-5 lg:grid-cols-2">
         <div className="flex flex-col justify-center">
           <div className="mb-6 max-w-xl">
-            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
               The quick, brown fox
               <br className="hidden md:block" />
               jumps over{" "}
               <span className="relative px-1">
-                <div className="bg-teal-accent-400 absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
-                <span className="text-deep-purple-accent-400 relative inline-block">
+                <div className="bg-teal-accent absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
+                <span className="relative inline-block text-accent">
                   a lazy dog
                 </span>
               </span>
             </h2>
-            <p className="text-base text-gray-700 md:text-lg">
+            <p className="text-base  md:text-lg">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
               quae. explicabo.
@@ -31,7 +31,7 @@ const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
               <li className="flex">
                 <span className="mr-1">
                   <svg
-                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    className="mt-px h-5 w-5 text-accent"
                     stroke="currentColor"
                     viewBox="0 0 52 52"
                   >
@@ -49,7 +49,7 @@ const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
               <li className="flex">
                 <span className="mr-1">
                   <svg
-                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    className="mt-px h-5 w-5 text-accent"
                     stroke="currentColor"
                     viewBox="0 0 52 52"
                   >
@@ -67,7 +67,7 @@ const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
               <li className="flex">
                 <span className="mr-1">
                   <svg
-                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    className="mt-px h-5 w-5 text-accent"
                     stroke="currentColor"
                     viewBox="0 0 52 52"
                   >
@@ -87,7 +87,7 @@ const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
               <li className="flex">
                 <span className="mr-1">
                   <svg
-                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    className="mt-px h-5 w-5 text-accent"
                     stroke="currentColor"
                     viewBox="0 0 52 52"
                   >
@@ -105,7 +105,7 @@ const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
               <li className="flex">
                 <span className="mr-1">
                   <svg
-                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    className="mt-px h-5 w-5 text-accent"
                     stroke="currentColor"
                     viewBox="0 0 52 52"
                   >
@@ -123,7 +123,7 @@ const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
               <li className="flex">
                 <span className="mr-1">
                   <svg
-                    className="text-deep-purple-accent-400 mt-px h-5 w-5"
+                    className="mt-px h-5 w-5 text-accent"
                     stroke="currentColor"
                     viewBox="0 0 52 52"
                   >

@@ -9,7 +9,7 @@ const Sidebar = () => {
             <h5 className="mb-6 text-lg font-extrabold leading-none">
               The quick, brown fox jumps over a lazy dog
             </h5>
-            <p className="mb-6 text-sm text-gray-900">
+            <p className="mb-6 text-sm ">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque rem aperiam, eaque ipsa quae. Sed ut unde
               omnis iste natus.
@@ -28,17 +28,17 @@ const Sidebar = () => {
               {Array.from({ length: 3 }).map((_, index) => (
                 <div
                   key={index}
-                  className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200"
+                  className="group flex items-center rounded border border-accent p-2 shadow transition-colors duration-200 hover:bg-base-200"
                 >
                   <div className="mr-2">
-                    <Bookmark className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-6 sm:w-6" />
+                    <Bookmark className="h-6 w-6 text-accent transition-colors duration-200  sm:h-6 sm:w-6" />
                   </div>
-                  <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+                  <span className="text-sm  transition-colors duration-200 ">
                     Change the world by being yourself.&nbsp;
-                    <a className="link-accent link">Learn More</a>
+                    <a className="link-primary link">Learn More</a>
                   </span>
 
-                  <Share className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-6 sm:w-6" />
+                  <Share className="h-6 w-6 text-accent transition-colors duration-200  sm:h-6 sm:w-6" />
                 </div>
               ))}
             </div>
@@ -49,10 +49,10 @@ const Sidebar = () => {
           <div className="font-bold">My playground list</div>
 
           <div className="max-w-lg space-y-3 sm:mx-auto lg:max-w-xl">
-            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+            <div className="group flex items-center rounded border border-accent p-2 shadow transition-colors duration-200 hover:bg-base-200">
               <div className="mr-2">
                 <svg
-                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  className="h-6 w-6 text-accent transition-colors duration-200  sm:h-8 sm:w-8"
                   stroke="currentColor"
                   viewBox="0 0 52 52"
                 >
@@ -65,18 +65,18 @@ const Sidebar = () => {
                   />
                 </svg>
               </div>
-              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+              <span className="text-sm transition-colors duration-200 ">
                 Change the world by being yourself 2.&nbsp;
-                <a className="link-accent link">Learn More</a>
+                <a className="link-primary link">Learn More</a>
               </span>
               <button className="btn btn-outline btn-secondary btn-xs">
                 UnBookmark
               </button>
             </div>
-            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+            <div className="group flex items-center rounded border border-accent p-2 shadow transition-colors duration-200 hover:bg-base-200">
               <div className="mr-2">
                 <svg
-                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  className="h-6 w-6 text-accent transition-colors duration-200  sm:h-8 sm:w-8"
                   stroke="currentColor"
                   viewBox="0 0 52 52"
                 >
@@ -89,14 +89,14 @@ const Sidebar = () => {
                   />
                 </svg>
               </div>
-              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+              <span className="text-sm  transition-colors duration-200 ">
                 Die with memories, not dreams.
               </span>
             </div>
-            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+            <div className="group flex items-center rounded border border-accent p-2 shadow transition-colors duration-200 hover:bg-base-200">
               <div className="mr-2">
                 <svg
-                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  className="h-6 w-6 text-accent transition-colors duration-200  sm:h-8 sm:w-8"
                   stroke="currentColor"
                   viewBox="0 0 52 52"
                 >
@@ -109,14 +109,14 @@ const Sidebar = () => {
                   />
                 </svg>
               </div>
-              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+              <span className="text-sm transition-colors duration-200 ">
                 What we think, we become.
               </span>
             </div>
-            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+            <div className="group flex items-center rounded border border-accent p-2 shadow transition-colors duration-200 hover:bg-base-200">
               <div className="mr-2">
                 <svg
-                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  className="h-6 w-6 text-accent transition-colors duration-200  sm:h-8 sm:w-8"
                   stroke="currentColor"
                   viewBox="0 0 52 52"
                 >
@@ -129,14 +129,14 @@ const Sidebar = () => {
                   />
                 </svg>
               </div>
-              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+              <span className="text-sm transition-colors duration-200 ">
                 Be so good they can’t ignore you.
               </span>
             </div>
-            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+            <div className="group flex items-center rounded border border-accent p-2 shadow transition-colors duration-200 hover:bg-base-200">
               <div className="mr-2">
                 <svg
-                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  className="h-6 w-6 text-accent transition-colors duration-200  sm:h-8 sm:w-8"
                   stroke="currentColor"
                   viewBox="0 0 52 52"
                 >
@@ -149,14 +149,14 @@ const Sidebar = () => {
                   />
                 </svg>
               </div>
-              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+              <span className="text-sm transition-colors duration-200 ">
                 Simplicity is the ultimate sophistication.
               </span>
             </div>
-            <div className="hover:bg-deep-purple-accent-400 hover:border-deep-purple-accent-400 group flex items-center rounded border p-2 shadow transition-colors duration-200">
+            <div className="group flex items-center rounded border border-accent p-2 shadow transition-colors duration-200 hover:bg-base-200">
               <div className="mr-2">
                 <svg
-                  className="text-deep-purple-accent-400 h-6 w-6 transition-colors duration-200 group-hover:text-primary sm:h-8 sm:w-8"
+                  className="h-6 w-6 text-accent transition-colors duration-200  sm:h-8 sm:w-8"
                   stroke="currentColor"
                   viewBox="0 0 52 52"
                 >
@@ -169,7 +169,7 @@ const Sidebar = () => {
                   />
                 </svg>
               </div>
-              <span className="text-sm text-gray-800 transition-colors duration-200 group-hover:text-primary">
+              <span className="text-sm transition-colors duration-200 ">
                 Yesterday you said tomorrow. Just do it today.
               </span>
             </div>
