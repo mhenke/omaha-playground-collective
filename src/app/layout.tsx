@@ -32,14 +32,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="emerald"
+      data-theme="forest"
       className="relative flex h-full w-full flex-col space-y-4"
     >
       <TRPCReactProvider headers={trpcHeaders}>
         <body className={`${montserrat.className}`}>
           <Header title={metadata.title} />
           <div className="grid w-full grid-cols-12">
-            <section className="col-span-12 border-r border-gray-300 lg:col-span-8 lg:flex lg:flex-col">
+            <section className="col-span-12 border-r  lg:col-span-8 lg:flex lg:flex-col">
               <Feature />
               <div className="divider flex w-full items-center justify-between px-10"></div>
               <div className="relative flex h-full w-full flex-col space-y-4">

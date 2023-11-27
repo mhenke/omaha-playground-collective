@@ -1,6 +1,6 @@
 const SideSection = () => {
   return (
-    <div className="col-span-4 flex flex-col border-r border-gray-300">
+    <div className="col-span-4 flex flex-col border-r ">
       <button className="btn">Button</button>
       <button className="btn btn-neutral">Neutral</button>
       <button className="btn btn-primary">Primary</button>

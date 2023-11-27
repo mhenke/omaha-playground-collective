@@ -2,7 +2,7 @@ import { Bookmark, Share } from "react-feather";
 
 const Sidebar = () => {
   return (
-    <aside className="hidden border-r border-gray-300 lg:col-span-4 lg:flex lg:flex-col">
+    <aside className="hidden border-r  lg:col-span-4 lg:flex lg:flex-col">
       <section className="space-y-8 p-5">
         <div className="flex flex-col lg:flex-row">
           <div className="mx-auto mb-2 max-w-xl pr-16">
@@ -69,7 +69,7 @@ const Sidebar = () => {
                 Change the world by being yourself 2.&nbsp;
                 <a className="link-accent link">Learn More</a>
               </span>
-              <button className="btn btn-secondary btn-outline btn-xs">
+              <button className="btn btn-outline btn-secondary btn-xs">
                 UnBookmark
               </button>
             </div>

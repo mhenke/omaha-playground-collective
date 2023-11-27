@@ -25,7 +25,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
   console.log("hola post", post);
 
   return (
-    <div className="overflow-hidden rounded bg-white shadow-sm transition-shadow duration-300">
+    <div className="overflow-hidden rounded  shadow-sm transition-shadow duration-300">
       <div className="carousel w-full">
         {post.photos.map((photo, index) => (
           <div

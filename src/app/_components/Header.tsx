@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Edit } from "react-feather";
 import { getServerAuthSession } from "~/server/auth";
+import Modal from "./Modal";
 
 export default async function Header({ title }: { readonly title: string }) {
   const session = await getServerAuthSession();
@@ -45,6 +46,8 @@ export default async function Header({ title }: { readonly title: string }) {
         <a className="btn btn-ghost text-xl">{title}</a>
       </div>
       <div className="navbar-end">
+        {session ? <Modal /> : ""}
+
         {session ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
@@ -77,7 +80,7 @@ export default async function Header({ title }: { readonly title: string }) {
         ) : (
           <Link
             href="/api/auth/signin"
-            className="rounded-full bg-white/10 px-10 py-3 font-semibold no-underline transition hover:bg-white/20"
+            className="/10 hover:/20 rounded-full px-10 py-3 font-semibold no-underline transition"
           >
             Sign in
           </Link>
