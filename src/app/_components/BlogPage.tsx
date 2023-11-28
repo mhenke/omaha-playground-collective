@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const BlogPage = ({ isLastItem }: { isLastItem: boolean }) => {
+const BlogPage = () => {
   return (
     <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
       <div className="row-gap-5 grid gap-5 lg:grid-cols-2">

@@ -13,12 +13,6 @@ const Modal = () => {
     setIsWriteModalOpen(!isWriteModalOpen);
   };
 
-  // Define your form fields
-  type FormFields = {
-    title: string;
-    // other fields...
-  };
-
   const mutation = api.post.create.useMutation();
 
   // Then, in your form submit handler:

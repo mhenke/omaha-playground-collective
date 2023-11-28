@@ -16,15 +16,14 @@ type ExtendedPost = Post & {
   photos: Photo[] | [];
 };
 interface BlogItemProps {
-  isLastItem: boolean;
   post: ExtendedPost;
 }
 
-const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
+const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
   const totalPhotos = post.photos.length;
 
   return (
-    <div className="overflow-hidden rounded border border-t-0 p-5 shadow-sm transition-shadow duration-200">
+    <div className="overflow-hidden rounded border border-t-0 shadow-sm transition-shadow duration-200">
       <div className="carousel w-full">
         {post.photos.map((photo, index) => (
           <div
@@ -60,7 +59,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
           </div>
         ))}
       </div>
-      <div>
+      <div className="p-5">
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
           <a
             href="/"
