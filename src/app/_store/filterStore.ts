@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 type State = {
-  ageRange: number;
+  ageRange: number | null;
   surface: number | null;
   accessible: boolean | null;
 };
@@ -13,7 +13,7 @@ type Action = {
 };
 
 export const useFilterStore = create<State & Action>((set) => ({
-  ageRange: 1,
+  ageRange: null,
   surface: null,
   accessible: false,
   updateAgeRange: (ageRange) => set(() => ({ ageRange })),

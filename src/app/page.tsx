@@ -1,30 +1,41 @@
-import { api } from "~/trpc/server";
+"use client";
+
+import { AgeRange, Photo, Playground, Post, Surface } from "@prisma/client";
+import { useEffect, useState } from "react";
+import { api } from "~/trpc/react";
 import BlogItem from "./_components/BlogItem";
 import { useFilterStore } from "./_store/filterStore";
 
-export default async function Home() {
+type ExtendedPost = Post & {
+  playground:
+    | (Playground & { ageRange: AgeRange | null; Surface: Surface | null })
+    | null;
+  photos: Photo[] | [];
+};
+
+export default function Home() {
   try {
-    type FilterOptions = {
-      ageRangeId?: number;
-      surfaceId?: number;
+    const selectedAgeRange = useFilterStore((state) =>
+      state.ageRange === 1 ? null : state.ageRange,
+    );
+
+    const selectedSurface = useFilterStore((state) => state.surface);
+
+    const [posts, setPosts] = useState<ExtendedPost[]>([]);
+
+    const filterOptions = {
+      ageRangeId:
+        typeof selectedAgeRange === "number" ? selectedAgeRange : undefined,
+      surfaceId:
+        typeof selectedSurface === "number" ? selectedSurface : undefined,
     };
+    const newPostsQuery = api.post.getAll.useQuery(filterOptions, {});
 
-    const filterOptions: FilterOptions = {};
-
-    const selectedAgeRange = useFilterStore.getState().selectedAgeRange;
-    const selectedSurface = useFilterStore.getState().selectedSurface;
-
-    if (typeof selectedAgeRange === "number") {
-      filterOptions.ageRangeId = selectedAgeRange;
-    }
-
-    if (typeof selectedSurface === "number") {
-      filterOptions.surfaceId = selectedSurface;
-    }
-
-    const posts = await api.post.getAll.query(filterOptions, {});
-
-    console.log("hola posts from page", posts);
+    useEffect(() => {
+      if (newPostsQuery.data) {
+        setPosts(newPostsQuery.data);
+      }
+    }, [newPostsQuery.data, selectedAgeRange]);
 
     return (
       <div className="flex min-h-screen flex-col py-2">
