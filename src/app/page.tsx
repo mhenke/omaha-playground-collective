@@ -57,11 +57,7 @@ export default function Home() {
       <div className="mx-auto px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
         <div className="grid gap-8 sm:mx-auto sm:max-w-sm md:max-w-full md:grid-cols-3 lg:max-w-full lg:grid-cols-4">
           {posts.map((post, index) => (
-            <BlogItem
-              key={post.id}
-              isLastItem={index === posts.length - 1}
-              post={post}
-            />
+            <BlogItem key={post.id} post={post} />
           ))}
         </div>
       </div>
