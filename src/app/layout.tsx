@@ -8,7 +8,6 @@ import { TRPCReactProvider } from "~/trpc/react";
 import { FilterForm } from "./_components/FilterForm";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
-import Sidebar from "./_components/Sidebar";
 
 import { Analytics } from "@vercel/analytics/react";
 const montserrat = Montserrat({
@@ -39,14 +38,13 @@ export default function RootLayout({
         <body className={`${montserrat.className}`}>
           <Header title={metadata.title} />
           <div className="grid w-full grid-cols-12">
-            <section className="col-span-12 border-r  lg:col-span-8 lg:flex lg:flex-col">
+            <section className="col-span-12 lg:col-span-12 lg:flex lg:flex-col">
               <FilterForm />
-              <div className="divider flex w-full items-center justify-between px-10"></div>
+
               <div className="relative flex h-full w-full flex-col space-y-4">
                 {children}
               </div>
             </section>
-            <Sidebar />
           </div>
           <Footer />
           <Analytics />

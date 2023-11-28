@@ -23,10 +23,8 @@ interface BlogItemProps {
 const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
   const totalPhotos = post.photos.length;
 
-  console.log("hola post", post);
-
   return (
-    <div className="overflow-hidden rounded  shadow-sm transition-shadow duration-200">
+    <div className="overflow-hidden rounded border border-t-0 p-5 shadow-sm transition-shadow duration-200">
       <div className="carousel w-full">
         {post.photos.map((photo, index) => (
           <div
@@ -62,7 +60,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
           </div>
         ))}
       </div>
-      <div className="border border-t-0 p-5">
+      <div>
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
           <a
             href="/"
