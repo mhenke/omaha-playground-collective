@@ -7,7 +7,7 @@ export const FilterForm = () => {
   const ageRange = api.ageRange.getAll.useQuery(undefined, {});
   const surface = api.surface.getAll.useQuery(undefined, {});
 
-  const ageRangeValue = useFilterStore((state) => state.ageRange);
+  const ageRangeValue = useFilterStore((state) => state.ageRange) ?? 1;
   const updateAgeRange = useFilterStore((state) => state.updateAgeRange);
 
   return (

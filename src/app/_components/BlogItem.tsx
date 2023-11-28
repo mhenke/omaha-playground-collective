@@ -7,6 +7,7 @@ import type {
   Surface,
 } from "@prisma/client";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type ExtendedPost = Post & {
@@ -33,27 +34,27 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
           >
             <Image
               src={photo.url}
-              className="w-full"
+              className="h-[325px] w-full"
               alt={`Photo ${photo.id}`}
               width="1440"
               height="1800"
             />
             {post.photos.length > 1 && (
               <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                <a
+                <Link
                   href={`#slide${post.id}${index === 0 ? totalPhotos : index}`}
                   className="btn btn-circle"
                 >
                   ❮
-                </a>
-                <a
+                </Link>
+                <Link
                   href={`#slide${post.id}${
                     index === totalPhotos - 1 ? 1 : index + 2
                   }`}
                   className="btn btn-circle"
                 >
                   ❯
-                </a>
+                </Link>
               </div>
             )}
           </div>
@@ -61,8 +62,8 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
       </div>
       <div className="p-5">
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-          <a
-            href="/"
+          <Link
+            href={`/playground/${post.playground?.id}`}
             className="transition-colors duration-200 hover:text-accent"
             aria-label="Category"
             title="traveling"
@@ -82,26 +83,26 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
                 {post.playground.Surface.name}
               </button>
             )}
-          </a>
+          </Link>
         </p>
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
           <span>— {post.createdAt.toDateString()}</span>
         </p>
-        <a
-          href="/"
+        <Link
+          href={`/playground/${post.playground?.id}`}
           aria-label="Category"
-          title="Visit the East"
+          title={post.title}
           className="link-hover link mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
         >
           {post.title}
-        </a>
+        </Link>
         <p className="mb-2 ">{post.content.substring(0, 100)}...</p>
-        <a
-          href="/"
+        <Link
+          href={`/playground/${post.playground?.id}`}
           className="link-primary link inline-flex items-center font-semibold transition-colors duration-200"
         >
           Learn more
-        </a>
+        </Link>
       </div>
     </div>
   );
