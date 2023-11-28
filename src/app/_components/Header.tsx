@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getServerAuthSession } from "~/server/auth";
-import Modal from "./Modal";
 
 export default async function Header({ title }: { readonly title: string }) {
   const session = await getServerAuthSession();
@@ -45,8 +44,6 @@ export default async function Header({ title }: { readonly title: string }) {
         <a className="btn btn-ghost text-xl">{title}</a>
       </div>
       <div className="navbar-end">
-        {session ? <Modal /> : ""}
-
         {session ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
