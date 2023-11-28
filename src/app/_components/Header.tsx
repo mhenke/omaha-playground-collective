@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Edit } from "react-feather";
 import { getServerAuthSession } from "~/server/auth";
 import Modal from "./Modal";
 
@@ -84,13 +83,6 @@ export default async function Header({ title }: { readonly title: string }) {
           >
             Sign in
           </Link>
-        )}
-        {session ? (
-          <button className="btn btn-outline btn-primary px-2 py-1 text-sm ">
-            <Edit /> Write
-          </button>
-        ) : (
-          ""
         )}
       </div>
     </header>

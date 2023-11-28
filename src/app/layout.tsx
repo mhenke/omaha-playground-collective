@@ -5,7 +5,7 @@ import { Montserrat } from "next/font/google";
 import { headers } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
-import { Feature } from "./_components/Feature";
+import { FilterForm } from "./_components/FilterForm";
 import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import Sidebar from "./_components/Sidebar";
@@ -40,7 +40,7 @@ export default function RootLayout({
           <Header title={metadata.title} />
           <div className="grid w-full grid-cols-12">
             <section className="col-span-12 border-r  lg:col-span-8 lg:flex lg:flex-col">
-              <Feature />
+              <FilterForm />
               <div className="divider flex w-full items-center justify-between px-10"></div>
               <div className="relative flex h-full w-full flex-col space-y-4">
                 {children}

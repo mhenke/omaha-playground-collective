@@ -59,11 +59,11 @@ const Modal = () => {
             </form>
           </div>
           <div className="modal-action">
-            <button className="btn" onClick={onSubmit}>
-              save
-            </button>
             <button className="btn" onClick={toggleModal}>
-              Close!
+              Close
+            </button>
+            <button className="btn btn-primary" onClick={onSubmit}>
+              Save
             </button>
           </div>
 

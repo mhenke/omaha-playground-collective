@@ -8,15 +8,16 @@ import type {
 } from "@prisma/client";
 import Image from "next/image";
 import React from "react";
+
+type ExtendedPost = Post & {
+  playground:
+    | (Playground & { ageRange: AgeRange | null; Surface: Surface | null })
+    | null;
+  photos: Photo[] | [];
+};
 interface BlogItemProps {
   isLastItem: boolean;
-  // i need ageRange in Playground
-  post: Post & {
-    playground:
-      | (Playground & { ageRange: AgeRange | null; Surface: Surface | null })
-      | null;
-    photos: Photo[] | [];
-  };
+  post: ExtendedPost;
 }
 
 const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
@@ -70,17 +71,17 @@ const BlogItem: React.FC<BlogItemProps> = ({ isLastItem, post }) => {
             title="traveling"
           >
             {post.playground?.ageRange?.name && (
-              <button className="btn btn-neutral btn-xs mr-px">
+              <button className="btn btn-neutral btn-xs m-px">
                 {post.playground.ageRange.name}
               </button>
             )}
             {post.playground?.accessibleEquip && (
-              <button className="btn btn-secondary btn-xs mr-px">
+              <button className="btn btn-secondary btn-xs m-px">
                 Assessible
               </button>
             )}
             {post.playground?.Surface?.name && (
-              <button className="btn btn-accent btn-xs mr-px">
+              <button className="btn btn-accent btn-xs m-px">
                 {post.playground.Surface.name}
               </button>
             )}
