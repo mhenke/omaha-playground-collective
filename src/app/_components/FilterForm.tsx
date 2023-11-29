@@ -1,5 +1,7 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+
 import { api } from "~/trpc/react";
 import { useFilterStore } from "../_store/filterStore";
 
@@ -9,6 +11,11 @@ export const FilterForm = () => {
 
   const ageRangeValue = useFilterStore((state) => state.ageRange) ?? 1;
   const updateAgeRange = useFilterStore((state) => state.updateAgeRange);
+  const router = usePathname();
+
+  if (router !== "/") {
+    return null;
+  }
 
   return (
     <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">

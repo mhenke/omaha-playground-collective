@@ -41,7 +41,9 @@ export default async function Header({ title }: { readonly title: string }) {
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost text-xl">{title}</a>
+        <Link className="btn btn-ghost text-xl" href="/">
+          {title}
+        </Link>
       </div>
       <div className="navbar-end">
         {session ? (
@@ -61,9 +63,9 @@ export default async function Header({ title }: { readonly title: string }) {
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box  p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <Link className="justify-between" href="/">
                   Profile <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>
