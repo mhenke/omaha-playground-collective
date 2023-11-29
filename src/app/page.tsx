@@ -30,7 +30,7 @@ export default function Home() {
       setPosts(newPostsQuery.data);
       setIsLoading(false); // Set loading to false when posts have been fetched
     }
-  }, [newPostsQuery.data, selectedAgeRange]);
+  }, [newPostsQuery.data, selectedAgeRange, setIsLoading, setPosts]);
 
   if (isLoading) {
     return (
@@ -56,7 +56,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col py-2">
       <div className="mx-auto px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
         <div className="grid gap-8 sm:mx-auto sm:max-w-sm md:max-w-full md:grid-cols-3 lg:max-w-full lg:grid-cols-4">
-          {posts.map((post, index) => (
+          {posts.map((post) => (
             <BlogItem key={post.id} post={post} />
           ))}
         </div>

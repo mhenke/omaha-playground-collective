@@ -36,7 +36,9 @@ const Sidebar = () => {
                   </div>{" "}
                   <span className="text-sm  transition-colors duration-200 ">
                     Change the world by being yourself.{" "}
-                    <Link className="link-primary link" href="/">Learn More<Link/>
+                    <Link className="link link-primary" href="/">
+                      Learn More
+                    </Link>
                   </span>{" "}
                   <Share className="h-6 w-6 text-accent transition-colors duration-200  sm:h-6 sm:w-6" />
                 </div>
@@ -67,7 +69,9 @@ const Sidebar = () => {
               </div>
               <span className="text-sm transition-colors duration-200 ">
                 Change the world by being yourself 2.{" "}
-                <Link className="link-primary link" href="/">Learn More</Link>
+                <Link className="link link-primary" href="/">
+                  Learn More
+                </Link>
               </span>
               <button className="btn btn-outline btn-secondary btn-xs">
                 UnBookmark
