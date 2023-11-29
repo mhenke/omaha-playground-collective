@@ -63,7 +63,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
       <div className="p-5">
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
           <Link
-            href={`/playground/${post.playground?.id}`}
+            href={`/playground/${post?.id}/${post?.title}`}
             className="transition-colors duration-200 hover:text-accent"
             aria-label="Category"
             title="traveling"
@@ -89,7 +89,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
           <span>— {post.createdAt.toDateString()}</span>
         </p>
         <Link
-          href={`/playground/${post.playground?.id}`}
+          href={`/playground/${post?.id}/${post?.title}`}
           aria-label="Category"
           title={post.title}
           className="link-hover link mb-3 inline-block text-2xl font-bold leading-5 transition-colors duration-200"
@@ -98,7 +98,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
         </Link>
         <p className="mb-2 ">{post.content.substring(0, 100)}...</p>
         <Link
-          href={`/playground/${post.playground?.id}`}
+          href={`/playground/${post?.id}/${post?.title}`}
           className="link-primary link inline-flex items-center font-semibold transition-colors duration-200"
         >
           Learn more

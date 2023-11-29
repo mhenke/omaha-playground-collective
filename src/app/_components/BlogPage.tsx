@@ -43,7 +43,7 @@ const BlogPage = () => {
                       points="29 13 14 29 25 29 23 39 38 23 27 23"
                     />
                   </svg>
-                </span>
+                </span>{" "}
                 A slice of heaven
               </li>
               <li className="flex">
@@ -61,7 +61,7 @@ const BlogPage = () => {
                       points="29 13 14 29 25 29 23 39 38 23 27 23"
                     />
                   </svg>
-                </span>
+                </span>{" "}
                 Disrupt inspire
               </li>
               <li className="flex">
@@ -79,7 +79,7 @@ const BlogPage = () => {
                       points="29 13 14 29 25 29 23 39 38 23 27 23"
                     />
                   </svg>
-                </span>
+                </span>{" "}
                 Preliminary thinking
               </li>
             </ul>
@@ -99,7 +99,7 @@ const BlogPage = () => {
                       points="29 13 14 29 25 29 23 39 38 23 27 23"
                     />
                   </svg>
-                </span>
+                </span>{" "}
                 Flipboard curmudgeon
               </li>
               <li className="flex">
@@ -117,7 +117,7 @@ const BlogPage = () => {
                       points="29 13 14 29 25 29 23 39 38 23 27 23"
                     />
                   </svg>
-                </span>
+                </span>{" "}
                 Storage shed
               </li>
               <li className="flex">
@@ -135,7 +135,7 @@ const BlogPage = () => {
                       points="29 13 14 29 25 29 23 39 38 23 27 23"
                     />
                   </svg>
-                </span>
+                </span>{" "}
                 Satoshi Nakamoto
               </li>
             </ul>

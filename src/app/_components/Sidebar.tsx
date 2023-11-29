@@ -32,12 +32,11 @@ const Sidebar = () => {
                 >
                   <div className="mr-2">
                     <Bookmark className="h-6 w-6 text-accent transition-colors duration-200  sm:h-6 sm:w-6" />
-                  </div>
+                  </div>{" "}
                   <span className="text-sm  transition-colors duration-200 ">
-                    Change the world by being yourself.&nbsp;
+                    Change the world by being yourself.{" "}
                     <a className="link-primary link">Learn More</a>
-                  </span>
-
+                  </span>{" "}
                   <Share className="h-6 w-6 text-accent transition-colors duration-200  sm:h-6 sm:w-6" />
                 </div>
               ))}
@@ -66,7 +65,7 @@ const Sidebar = () => {
                 </svg>
               </div>
               <span className="text-sm transition-colors duration-200 ">
-                Change the world by being yourself 2.&nbsp;
+                Change the world by being yourself 2.{" "}
                 <a className="link-primary link">Learn More</a>
               </span>
               <button className="btn btn-outline btn-secondary btn-xs">
