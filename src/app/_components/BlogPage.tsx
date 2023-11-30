@@ -9,6 +9,8 @@ const BlogPage = async ({ id }: { id: number }) => {
   const remainingWords = undefined;
   const accentWords = undefined;
 
+  const carouselPhotoSize = { width: 1260, height: 750 };
+
   return (
     <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
       <div className="row-gap-5 grid gap-5 lg:grid-cols-2">
@@ -35,7 +37,7 @@ const BlogPage = async ({ id }: { id: number }) => {
           </div>
         </div>
         <div>
-          <Carousel photos={post.photos} />
+          <Carousel photos={post.photos} size={carouselPhotoSize} />
 
           <div className="mt-8 flex flex-col space-y-6">
             <p className="text-sm font-bold uppercase tracking-widest">
