@@ -1,154 +1,161 @@
-import Image from "next/image";
+import { api } from "~/trpc/server";
+import Carousel from "./Carousel";
 
-const BlogPage = () => {
+const BlogPage = async ({ id }: { id: number }) => {
+  const post = await api.post.getOne.query({ id }, {});
+
+  console.log("hola post from page", post);
+  const displayedTitle = post.title;
+  const remainingWords = undefined;
+  const accentWords = undefined;
+
   return (
     <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
       <div className="row-gap-5 grid gap-5 lg:grid-cols-2">
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col">
           <div className="mb-6 max-w-xl">
             <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
-              The quick, brown fox
-              <br className="hidden md:block" />
-              jumps over{" "}
-              <span className="relative px-1">
-                <div className="bg-teal-accent absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
-                <span className="relative inline-block text-accent">
-                  a lazy dog
+              {displayedTitle}
+              {remainingWords && (
+                <span>
+                  <br className="hidden md:block" />
+                  {remainingWords}
                 </span>
-              </span>
+              )}
+              {accentWords && (
+                <span className="relative px-1">
+                  <div className="bg-teal-accent absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
+                  <span className="relative inline-block text-accent">
+                    {accentWords}
+                  </span>
+                </span>
+              )}
             </h2>
-            <p className="text-base  md:text-lg">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae. explicabo.
-            </p>
-          </div>
-          <p className="mb-4 text-sm font-bold uppercase tracking-widest">
-            Features
-          </p>
-          <div className="grid space-y-3 sm:grid-cols-2 sm:gap-2 sm:space-y-0">
-            <ul className="space-y-3">
-              <li className="flex">
-                <span className="mr-1">
-                  <svg
-                    className="mt-px h-5 w-5 text-accent"
-                    stroke="currentColor"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
-                </span>{" "}
-                A slice of heaven
-              </li>
-              <li className="flex">
-                <span className="mr-1">
-                  <svg
-                    className="mt-px h-5 w-5 text-accent"
-                    stroke="currentColor"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
-                </span>{" "}
-                Disrupt inspire
-              </li>
-              <li className="flex">
-                <span className="mr-1">
-                  <svg
-                    className="mt-px h-5 w-5 text-accent"
-                    stroke="currentColor"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
-                </span>{" "}
-                Preliminary thinking
-              </li>
-            </ul>
-            <ul className="space-y-3">
-              <li className="flex">
-                <span className="mr-1">
-                  <svg
-                    className="mt-px h-5 w-5 text-accent"
-                    stroke="currentColor"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
-                </span>{" "}
-                Flipboard curmudgeon
-              </li>
-              <li className="flex">
-                <span className="mr-1">
-                  <svg
-                    className="mt-px h-5 w-5 text-accent"
-                    stroke="currentColor"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
-                </span>{" "}
-                Storage shed
-              </li>
-              <li className="flex">
-                <span className="mr-1">
-                  <svg
-                    className="mt-px h-5 w-5 text-accent"
-                    stroke="currentColor"
-                    viewBox="0 0 52 52"
-                  >
-                    <polygon
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      points="29 13 14 29 25 29 23 39 38 23 27 23"
-                    />
-                  </svg>
-                </span>{" "}
-                Satoshi Nakamoto
-              </li>
-            </ul>
+            <p className="text-base  md:text-lg">{post.content}</p>
           </div>
         </div>
         <div>
-          <Image
-            className="h-56 w-full rounded object-cover shadow-lg sm:h-96"
-            src="https://images.pexels.com/photos/927022/pexels-photo-927022.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260"
-            alt=""
-            width="1260"
-            height="750"
-          />
+          <Carousel photos={post.photos} />
+
+          <div className="mt-8 flex flex-col space-y-6">
+            <p className="text-sm font-bold uppercase tracking-widest">
+              Features
+            </p>
+            <div className="grid space-y-3 sm:grid-cols-2 sm:gap-2 sm:space-y-0">
+              <ul className="space-y-3">
+                <li className="flex">
+                  <span className="mr-1">
+                    <svg
+                      className="mt-px h-5 w-5 text-accent"
+                      stroke="currentColor"
+                      viewBox="0 0 52 52"
+                    >
+                      <polygon
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        points="29 13 14 29 25 29 23 39 38 23 27 23"
+                      />
+                    </svg>
+                  </span>
+                  A slice of heaven 222
+                </li>
+                <li className="flex">
+                  <span className="mr-1">
+                    <svg
+                      className="mt-px h-5 w-5 text-accent"
+                      stroke="currentColor"
+                      viewBox="0 0 52 52"
+                    >
+                      <polygon
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        points="29 13 14 29 25 29 23 39 38 23 27 23"
+                      />
+                    </svg>
+                  </span>
+                  Disrupt inspire
+                </li>
+                <li className="flex">
+                  <span className="mr-1">
+                    <svg
+                      className="mt-px h-5 w-5 text-accent"
+                      stroke="currentColor"
+                      viewBox="0 0 52 52"
+                    >
+                      <polygon
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        points="29 13 14 29 25 29 23 39 38 23 27 23"
+                      />
+                    </svg>
+                  </span>
+                  Preliminary thinking
+                </li>
+              </ul>
+              <ul className="space-y-3">
+                <li className="flex">
+                  <span className="mr-1">
+                    <svg
+                      className="mt-px h-5 w-5 text-accent"
+                      stroke="currentColor"
+                      viewBox="0 0 52 52"
+                    >
+                      <polygon
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        points="29 13 14 29 25 29 23 39 38 23 27 23"
+                      />
+                    </svg>
+                  </span>
+                  Flipboard curmudgeon
+                </li>
+                <li className="flex">
+                  <span className="mr-1">
+                    <svg
+                      className="mt-px h-5 w-5 text-accent"
+                      stroke="currentColor"
+                      viewBox="0 0 52 52"
+                    >
+                      <polygon
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        points="29 13 14 29 25 29 23 39 38 23 27 23"
+                      />
+                    </svg>
+                  </span>
+                  Storage shed
+                </li>
+                <li className="flex">
+                  <span className="mr-1">
+                    <svg
+                      className="mt-px h-5 w-5 text-accent"
+                      stroke="currentColor"
+                      viewBox="0 0 52 52"
+                    >
+                      <polygon
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        fill="none"
+                        points="29 13 14 29 25 29 23 39 38 23 27 23"
+                      />
+                    </svg>
+                  </span>
+                  Satoshi Nakamoto
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

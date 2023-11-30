@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
+import Link from "next/link";
 import { api } from "~/trpc/react";
 import { useFilterStore } from "../_store/filterStore";
 
@@ -12,9 +13,32 @@ export const FilterForm = () => {
   const ageRangeValue = useFilterStore((state) => state.ageRange) ?? 1;
   const updateAgeRange = useFilterStore((state) => state.updateAgeRange);
   const router = usePathname();
+  // if router starts with playground
+  if (router.startsWith("/playground")) {
+    return (
+      <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
+        {/* First Row */}
+
+        <div className="breadcrumbs text-sm">
+          <ul>
+            <li>
+              <Link className="link-hover link" href="/">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link className="link-hover link" href="#">
+                Current Playground
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    );
+  }
 
   if (router !== "/") {
-    return null;
+    null;
   }
 
   return (

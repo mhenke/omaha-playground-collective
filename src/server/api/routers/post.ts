@@ -53,4 +53,23 @@ export const postRouter = createTRPCRouter({
         },
       });
     }),
+  // get one post
+  getOne: publicProcedure
+    .input(
+      z.object({
+        id: z.number(),
+      }),
+    )
+    .query(({ ctx, input }) => {
+      return ctx.db.post.findFirstOrThrow({
+        where: {
+          id: input.id,
+        },
+        orderBy: { createdAt: "desc" },
+        include: {
+          playground: true,
+          photos: true,
+        },
+      });
+    }),
 });
