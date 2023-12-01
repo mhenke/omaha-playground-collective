@@ -67,7 +67,7 @@ export const postRouter = createTRPCRouter({
         },
         orderBy: { createdAt: "desc" },
         include: {
-          playground: true,
+          playground: { include: { ageRange: true, Surface: true } },
           photos: true,
         },
       });
