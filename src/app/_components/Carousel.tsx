@@ -22,11 +22,6 @@ const Carousel: React.FC<CarouselProps> = ({ photos, type }) => {
           id={`slide${photo.postId}-${index}`}
           className="carousel-item relative w-full"
         >
-          {" "}
-          {/* 278 and 750 */}
-          {/* className={`h-[${size.height}px] w-full object-cover`}
-          contents and blog
-          className="" */}
           <img src={photo.url} className={photoClass} />
           {totalPhotos === 1 ? null : (
             <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">

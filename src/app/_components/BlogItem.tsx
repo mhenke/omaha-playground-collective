@@ -23,7 +23,7 @@ interface BlogItemProps {
 const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
   return (
     <div className="overflow-hidden rounded border border-t-0 shadow-sm transition-shadow duration-200">
-      <Carousel photos={post.photos} size={{ width: 278, height: 278 }} />
+      <Carousel photos={post.photos} type={"blog"} />
       <div className="p-5">
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
           <span>— {post.createdAt.toDateString()}</span>
