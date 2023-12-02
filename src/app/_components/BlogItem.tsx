@@ -9,6 +9,7 @@ import type {
 import Link from "next/link";
 import React from "react";
 import Carousel from "./Carousel";
+import Ranking from "./Ranking";
 
 type ExtendedPost = Post & {
   playground:
@@ -36,6 +37,15 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
         >
           {post.title}
         </Link>
+        <div className="mb-4 border-b pb-4">
+          <h6 className="mb-2 text-xs font-semibold leading-5">
+            {post.playground?.address} {post.playground?.city},{" "}
+            {post.playground?.state} {post.playground?.zip}
+          </h6>
+          <div className="rating-xs text-sm  text-gray-900">
+            <Ranking rating={post?.playground?.rating} />
+          </div>
+        </div>
         <p className="mb-2 ">{post.content.substring(0, 100)}...</p>
         <p className="mb-2 ">
           <Link

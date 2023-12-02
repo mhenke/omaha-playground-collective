@@ -44,7 +44,7 @@ export const FilterForm = () => {
   return (
     <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
       {/* First Row */}
-      <div className="flex flex-row items-center space-x-4">
+      <div className="flex flex-row items-center justify-center space-x-4">
         <div className="dropdown">
           <label tabIndex={0} className="btn m-1">
             Surface
@@ -78,7 +78,19 @@ export const FilterForm = () => {
         </div>
       </div>
       {/* next div shoul be new row*/}
-      <div className="flex flex-row justify-center space-x-4">
+      <div className="flex flex-row items-center justify-center space-x-4">
+        <div className="rating rating-md">
+          <input type="radio" name="rating-9" className="rating-hidden" />
+          <input type="radio" name="rating-9" className="mask mask-star-2" />
+          <input type="radio" name="rating-9" className="mask mask-star-2" />
+          <input type="radio" name="rating-9" className="mask mask-star-2" />
+          <input type="radio" name="rating-9" className="mask mask-star-2" />
+          <input type="radio" name="rating-9" className="mask mask-star-2" />
+        </div>
+      </div>
+
+      {/* next div shoul be new row*/}
+      <div className="flex flex-row items-center justify-center space-x-4">
         <label className="label flex cursor-pointer space-x-2">
           <span className="label-text">Shade</span>
           <input type="checkbox" className="toggle toggle-primary" />
