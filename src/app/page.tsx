@@ -43,7 +43,7 @@ export default function Home() {
   const newPostsQuery = api.post.getAll.useQuery(filterOptions, {});
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       setIsLoading(true);
 
       try {

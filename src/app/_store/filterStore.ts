@@ -47,7 +47,7 @@ export const useFilterStore = create<State & Action>((set) => ({
   keys: includeKeys,
   updateAgeRange: (ageRange) => set({ ageRange }),
   updateSurface: (surface) => set({ surface }),
-  updateKey: (key, value) =>
+  updateKey: (key) =>
     set((state) => {
       const previousValue = state.keys[key]?.value ?? false;
 

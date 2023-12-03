@@ -18,7 +18,7 @@ export default function NotFound() {
               </span>
               , or it could have been eaten by the{" "}
               <span className="relative inline-block text-accent">
-                Internet's equivalent of a black hole.
+                Internet&apos;s equivalent of a black hole.
               </span>
             </p>
 
