@@ -11,11 +11,8 @@ export const FilterForm = () => {
   const surface = api.surface.getAll.useQuery(undefined, {});
 
   const includeKeys = useFilterStore((state) => {
-    const keys: Record<
-      string,
-      { value: boolean; displayName: string; showOnFilter: boolean }
-    > = state.keys;
-    const filteredKeys = Object.entries(keys)
+    const keys: Record<string, IncludeKey> = state.keys;
+    const filteredKeys: Record<string, IncludeKey> = Object.entries(keys)
       .filter(([_key, value]: [string, IncludeKey]) => value.showOnFilter)
       .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
     return filteredKeys;
@@ -23,7 +20,7 @@ export const FilterForm = () => {
 
   console.log("hola includeKeys", includeKeys);
 
-  const ageRangeValue = useFilterStore((state) => state.ageRange) ?? 1;
+  const ageRangeValue: number = useFilterStore((state) => state.ageRange) ?? 1;
   const updateAgeRange = useFilterStore((state) => state.updateAgeRange);
   const updateSurface = useFilterStore((state) => state.updateSurface);
   const updateKeys = useFilterStore((state) => state.updateKey);
@@ -110,7 +107,7 @@ export const FilterForm = () => {
       {/* next div shoul be new row*/}
       <div className="flex flex-row items-center justify-center space-x-4">
         {Object.keys(includeKeys).map((key) => {
-          const includeKey = includeKeys[key];
+          const includeKey: IncludeKey | undefined = includeKeys[key];
           if (includeKey) {
             return (
               <label key={key} className="label flex cursor-pointer space-x-2">
