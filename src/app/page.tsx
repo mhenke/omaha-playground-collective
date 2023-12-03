@@ -13,13 +13,7 @@ export default function Home() {
   const surface = useFilterStore((state) => state.surface);
 
   const includeKeys = useFilterStore((state) => {
-    const keys: {
-      [key: string]: {
-        value: boolean;
-        displayName: string;
-        showOnFilter: boolean;
-      };
-    } = state.keys;
+    const { keys } = state;
     const filteredKeys = Object.entries(keys)
       .filter(
         ([_key, value]: [
