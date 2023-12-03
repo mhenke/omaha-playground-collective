@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-export default function LeadBlog() {
+export default function About() {
   return (
-    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
+    <div className="mx-auto px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
       <div className="grid gap-5 lg:grid-cols-2">
         <div className="flex flex-col justify-center md:pr-8 lg:max-w-lg xl:pr-0">
           <div className="mb-6 max-w-xl">
@@ -20,16 +20,22 @@ export default function LeadBlog() {
               spaces our city has to offer.
             </p>
           </div>
-          <div className="mt-4 border-t pb-4">
-            <h6 className="mb-2 font-normal leading-5">
-              Our mission is simple: to be your ultimate source for all things
-              play-related in Omaha. Whether you&apos;re a local resident or a
-              visitor, we&apos;ve got you covered with detailed insights,
-              reviews, and recommendations to make your playtime adventures
-              memorable and stress-free.
-            </h6>
+          <div className="border-l-4 border-secondary bg-secondary-content shadow-sm">
+            <div className="h-full rounded-r border border-l-0 p-5">
+              <h6 className="mb-2 font-semibold leading-5">
+                Our mission is simple
+              </h6>
+              <p className="text-sm text-gray-900">
+                Our mission is simple: to be your ultimate source for all things
+                play-related in Omaha. Whether you&apos;re a local resident or a
+                visitor, we&apos;ve got you covered with detailed insights,
+                reviews, and recommendations to make your playtime adventures
+                memorable and stress-free.
+              </p>
+            </div>
           </div>
         </div>
+
         <div className="-mx-4 flex items-center justify-center lg:pl-8">
           <div className="flex flex-col items-end px-3">
             <Image

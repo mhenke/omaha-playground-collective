@@ -60,7 +60,7 @@ const BlogPage = async ({ id }: { id: number }) => {
           </ul>
         </div>
       </div>
-      <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
+      <div className="mx-auto px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
         <div className="row-gap-5 grid gap-5 lg:grid-cols-2">
           <div className="flex flex-col">
             <div className="mb-6 max-w-xl">
@@ -82,8 +82,8 @@ const BlogPage = async ({ id }: { id: number }) => {
                 )}
               </h2>
               {post.playground && (
-                <div className="mb-4 border-b pb-4">
-                  <h6 className="mb-2 font-semibold leading-5">
+                <div className="mb-4 border-b bg-secondary-content pb-4">
+                  <h6 className="mb-2 font-semibold leading-5 text-secondary">
                     {post.playground?.address} {post.playground?.city},{" "}
                     {post.playground?.state} {post.playground?.zip}
                   </h6>

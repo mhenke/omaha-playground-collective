@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-20">
+    <div className="mx-auto px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
       <div className="rounded bg-base-100 p-8 shadow-xl sm:p-16">
         <div className="flex flex-col lg:flex-row">
           <div className="mb-6 lg:mb-0 lg:w-1/2 lg:pr-5">
@@ -14,9 +14,12 @@ export default function NotFound() {
             <p className="mb-4 text-base">
               It seems the playground you were searching for took a spontaneous
               trip to another dimension or got caught up in the vast playgrounds
-              of the internet. Don&apos;t worry, though! You can always swing
-              back to our home page and continue your exploration of
-              Omaha&apos;s finest play spaces with the{" "}
+              of the internet.
+            </p>
+            <p className="mb-4 text-base">
+              Don&apos;t worry, though! You can always swing back to our home
+              page and continue your exploration of Omaha&apos;s finest play
+              spaces with the{" "}
               <span className="relative inline-block text-accent">
                 Omaha Playground Collective
               </span>

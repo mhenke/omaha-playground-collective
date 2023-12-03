@@ -27,8 +27,8 @@ const Feature: React.FC<FeatureProps> = ({ playground }) => {
   return (
     <div>
       {Object.values(features).some((value) => value) && (
-        <div className="mt-8 flex flex-col space-y-6">
-          <p className="text-sm font-bold uppercase tracking-widest">
+        <div className="mt-4 flex flex-col space-y-6 bg-neutral-content p-4 shadow-lg">
+          <p className="text-sm font-bold uppercase tracking-widest text-neutral">
             Features
           </p>
           <div className="grid space-y-3 sm:grid-cols-2 sm:gap-2 sm:space-y-0">
