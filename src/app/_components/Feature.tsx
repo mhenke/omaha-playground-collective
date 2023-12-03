@@ -26,8 +26,6 @@ const Feature: React.FC<FeatureProps> = ({ playground }) => {
     );
   }
 
-  console.log("hola features", features);
-
   return (
     <div>
       {Object.values(features).some((value) => value) && (

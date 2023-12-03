@@ -36,6 +36,9 @@ export const postRouter = createTRPCRouter({
         // ageRangeId can be null or number
         ageRangeId: z.number().optional(),
         surfaceId: z.number().optional(),
+        accessibleEquip: z.boolean().optional(),
+        shade: z.boolean().optional(),
+        restrooms: z.boolean().optional(),
       }),
     )
     .query(({ ctx, input }) => {
@@ -44,6 +47,9 @@ export const postRouter = createTRPCRouter({
           playground: {
             ageRangeId: input.ageRangeId,
             surfaceId: input.surfaceId,
+            accessibleEquip: input.accessibleEquip,
+            shade: input.shade,
+            restrooms: input.restrooms,
           },
         },
         orderBy: { createdAt: "desc" },

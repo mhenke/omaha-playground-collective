@@ -12,6 +12,25 @@ export default function Home() {
   const ageRange = useFilterStore((state) => state.ageRange);
   const surface = useFilterStore((state) => state.surface);
 
+  const includeKeys = useFilterStore((state) => {
+    const keys: {
+      [key: string]: {
+        value: boolean;
+        displayName: string;
+        showOnFilter: boolean;
+      };
+    } = state.keys;
+    const filteredKeys = Object.entries(keys)
+      .filter(
+        ([_key, value]: [
+          string,
+          { value: boolean; displayName: string; showOnFilter: boolean },
+        ]) => value.showOnFilter,
+      )
+      .reduce((obj, [key, value]) => ({ ...obj, [key]: value.value }), {});
+    return filteredKeys;
+  });
+
   const selectedAgeRange = ageRange === 1 ? null : ageRange;
   const selectedSurface = surface;
 
@@ -20,7 +39,12 @@ export default function Home() {
       typeof selectedAgeRange === "number" ? selectedAgeRange : undefined,
     surfaceId:
       typeof selectedSurface === "number" ? selectedSurface : undefined,
+    ...Object.fromEntries(
+      Object.entries(includeKeys).filter(([key, value]) => value),
+    ),
   };
+
+  console.log("hola filterOptions", filterOptions);
 
   const newPostsQuery = api.post.getAll.useQuery(filterOptions, {});
 
@@ -30,7 +54,13 @@ export default function Home() {
       setPosts(newPostsQuery.data);
       setIsLoading(false); // Set loading to false when posts have been fetched
     }
-  }, [newPostsQuery.data, selectedAgeRange, setIsLoading, setPosts]);
+  }, [
+    newPostsQuery.data,
+    selectedAgeRange,
+    selectedSurface,
+    setIsLoading,
+    setPosts,
+  ]);
 
   if (isLoading) {
     return (

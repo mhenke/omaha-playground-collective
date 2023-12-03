@@ -4,15 +4,31 @@ import { usePathname } from "next/navigation";
 
 import Link from "next/link";
 import { api } from "~/trpc/react";
-import { useFilterStore } from "../_store/filterStore";
+import { useFilterStore, type IncludeKey } from "../_store/filterStore";
 
 export const FilterForm = () => {
   const ageRange = api.ageRange.getAll.useQuery(undefined, {});
   const surface = api.surface.getAll.useQuery(undefined, {});
 
+  const includeKeys = useFilterStore((state) => {
+    const keys: Record<
+      string,
+      { value: boolean; displayName: string; showOnFilter: boolean }
+    > = state.keys;
+    const filteredKeys = Object.entries(keys)
+      .filter(([_key, value]: [string, IncludeKey]) => value.showOnFilter)
+      .reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {});
+    return filteredKeys;
+  });
+
+  console.log("hola includeKeys", includeKeys);
+
   const ageRangeValue = useFilterStore((state) => state.ageRange) ?? 1;
   const updateAgeRange = useFilterStore((state) => state.updateAgeRange);
+  const updateSurface = useFilterStore((state) => state.updateSurface);
+  const updateKeys = useFilterStore((state) => state.updateKey);
   const router = usePathname();
+
   // if router starts with playground
   if (router.startsWith("/playground")) {
     return (
@@ -45,22 +61,19 @@ export const FilterForm = () => {
     <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
       {/* First Row */}
       <div className="flex flex-row items-center justify-center space-x-4">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn m-1">
-            Surface
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow"
+        <div>
+          <select
+            className="select select-primary w-full max-w-xs"
+            onChange={(e) => updateSurface(Number(e.target.value))}
           >
+            <option selected>All Surfaces</option>
             {surface?.data?.map((surface) => (
-              <li key={surface.id}>
-                <a>{surface.name}</a>
-              </li>
+              <option key={surface.id} value={surface.id}>
+                {surface.name}
+              </option>
             ))}
-          </ul>
+          </select>
         </div>
-
         <div className="join">
           {ageRange?.data?.map((age) => (
             <div className="tooltip" data-tip={age.description} key={age.id}>
@@ -85,24 +98,33 @@ export const FilterForm = () => {
           <input type="radio" name="rating-9" className="mask mask-star-2" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
-          <input type="radio" name="rating-9" className="mask mask-star-2" />
+          <input
+            type="radio"
+            name="rating-9"
+            className="mask mask-star-2"
+            checked
+          />
         </div>
       </div>
 
       {/* next div shoul be new row*/}
       <div className="flex flex-row items-center justify-center space-x-4">
-        <label className="label flex cursor-pointer space-x-2">
-          <span className="label-text">Shade</span>
-          <input type="checkbox" className="toggle toggle-primary" />
-        </label>
-        <label className="label flex cursor-pointer space-x-2">
-          <span className="label-text">Restrooms</span>
-          <input type="checkbox" className="toggle toggle-primary" />
-        </label>
-        <label className="label flex cursor-pointer space-x-2">
-          <span className="label-text">Accessible</span>
-          <input type="checkbox" className="toggle toggle-primary" />
-        </label>
+        {Object.keys(includeKeys).map((key) => {
+          const includeKey = includeKeys[key];
+          if (includeKey) {
+            return (
+              <label key={key} className="label flex cursor-pointer space-x-2">
+                <span className="label-text">{includeKey.displayName}</span>
+                <input
+                  type="checkbox"
+                  className="toggle toggle-primary"
+                  checked={includeKey.value}
+                  onChange={() => updateKeys(key, !includeKey.value)}
+                />
+              </label>
+            );
+          }
+        })}
       </div>
     </div>
   );
