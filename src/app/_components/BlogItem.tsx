@@ -42,7 +42,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
             {post.playground?.address} {post.playground?.city},{" "}
             {post.playground?.state} {post.playground?.zip}
           </h6>
-          <div className="rating-xs text-sm  text-gray-900">
+          <div className="rating-xs text-sm">
             <Ranking rating={post?.playground?.rating} />
           </div>
         </div>

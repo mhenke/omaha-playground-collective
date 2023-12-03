@@ -49,7 +49,7 @@ export default function LeadBlog() {
             </svg>
           </div>
           <div className="mb-6 max-w-xl">
-            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
+            <h2 className="mb-6 max-w-lg text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
               Let us handle
               <br className="hidden md:block" />
               your next{" "}
@@ -64,7 +64,7 @@ export default function LeadBlog() {
           <div>
             <a
               href="/"
-              className="link-primary link inline-flex items-center font-semibold transition-colors duration-200"
+              className="link link-primary inline-flex items-center font-semibold transition-colors duration-200"
             >
               Learn more 2
               <svg

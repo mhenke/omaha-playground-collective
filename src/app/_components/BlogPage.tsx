@@ -37,7 +37,7 @@ const BlogPage = async ({ id }: { id: number }) => {
       <div className="row-gap-5 grid gap-5 lg:grid-cols-2">
         <div className="flex flex-col">
           <div className="mb-6 max-w-xl">
-            <h2 className="mb-6 max-w-lg font-sans text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
+            <h2 className="mb-6 max-w-lg text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
               {leadingWords}
               {middleWords && (
                 <span>
@@ -47,7 +47,7 @@ const BlogPage = async ({ id }: { id: number }) => {
               )}
               {accentWords && (
                 <span className="relative px-1">
-                  <div className="bg-teal-accent absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
+                  <div className="accent-content absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
                   <span className="relative inline-block text-accent">
                     {accentWords}
                   </span>
@@ -59,7 +59,7 @@ const BlogPage = async ({ id }: { id: number }) => {
                 {post.playground?.address} {post.playground?.city},{" "}
                 {post.playground?.state} {post.playground?.zip}
               </h6>
-              <div className="text-sm text-gray-900">
+              <div className="text-sm">
                 <Ranking rating={post?.playground?.rating} />
               </div>
             </div>

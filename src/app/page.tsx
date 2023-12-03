@@ -43,18 +43,23 @@ export default function Home() {
   const newPostsQuery = api.post.getAll.useQuery(filterOptions, {});
 
   useEffect(() => {
-    setIsLoading(true); // Set loading to true when starting to fetch posts
-    if (newPostsQuery.data) {
-      setPosts(newPostsQuery.data);
-      setIsLoading(false); // Set loading to false when posts have been fetched
-    }
-  }, [
-    newPostsQuery.data,
-    selectedAgeRange,
-    selectedSurface,
-    setIsLoading,
-    setPosts,
-  ]);
+    const fetchData = async () => {
+      setIsLoading(true);
+
+      try {
+        if (newPostsQuery.isSuccess) {
+          setPosts(newPostsQuery.data);
+        }
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        // Handle error: Update state or show an error message to the user
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [newPostsQuery.isSuccess, newPostsQuery.data, setIsLoading, setPosts]);
 
   if (isLoading) {
     return (
