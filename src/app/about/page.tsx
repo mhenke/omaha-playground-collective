@@ -7,8 +7,7 @@ export default function LeadBlog() {
         <div className="flex flex-col justify-center md:pr-8 lg:max-w-lg xl:pr-0">
           <div className="mb-6 max-w-xl">
             <h2 className="mb-6 max-w-lg text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
-              Let us handle
-              <br className="hidden md:block" />
+              Let us handle <br className="hidden md:block" />
               your next{" "}
               <span className="inline-block text-accent">playground fun</span>
             </h2>

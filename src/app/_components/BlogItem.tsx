@@ -37,15 +37,19 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
         >
           {post.title}
         </Link>
-        <div className="mb-4 border-b pb-4">
-          <h6 className="mb-2 text-xs font-semibold leading-5">
-            {post.playground?.address} {post.playground?.city},{" "}
-            {post.playground?.state} {post.playground?.zip}
-          </h6>
-          <div className="rating-xs text-sm">
-            <Ranking rating={post?.playground?.rating} />
+
+        {post.playground && (
+          <div className="mb-4 border-b pb-4">
+            <h6 className="mb-2 text-xs font-semibold leading-5">
+              {post.playground?.address} {post.playground?.city},{" "}
+              {post.playground?.state} {post.playground?.zip}
+            </h6>
+            <div className="rating-xs text-sm">
+              <Ranking rating={post?.playground?.rating} />
+            </div>
           </div>
-        </div>
+        )}
+
         <p className="mb-2 ">{post.content.substring(0, 100)}...</p>
         <p className="mb-2 ">
           <Link

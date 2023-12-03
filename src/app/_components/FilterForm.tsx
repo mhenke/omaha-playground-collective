@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 
-import Link from "next/link";
 import { api } from "~/trpc/react";
 import { useFilterStore, type IncludeKey } from "../_store/filterStore";
 
@@ -18,41 +17,12 @@ export const FilterForm = () => {
     return filteredKeys;
   });
 
-  console.log("hola includeKeys", includeKeys);
-
   const ageRangeValue: number = useFilterStore((state) => state.ageRange) ?? 1;
   const updateAgeRange = useFilterStore((state) => state.updateAgeRange);
   const updateSurface = useFilterStore((state) => state.updateSurface);
   const updateKeys = useFilterStore((state) => state.updateKey);
   const router = usePathname();
-
-  // if router starts with playground
-  if (router.startsWith("/playground")) {
-    return (
-      <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
-        {/* First Row */}
-
-        <div className="breadcrumbs text-sm">
-          <ul>
-            <li>
-              <Link className="link-hover link" href="/">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link className="link-hover link" href="#">
-                Current Playground
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    );
-  }
-
-  if (router !== "/") {
-    null;
-  }
+  const selectedValue = "allSurfaces";
 
   return (
     <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
@@ -63,7 +33,7 @@ export const FilterForm = () => {
             className="select select-primary w-full max-w-xs"
             onChange={(e) => updateSurface(Number(e.target.value))}
           >
-            <option selected>All Surfaces</option>
+            <option value={selectedValue}>All Surfaces</option>
             {surface?.data?.map((surface) => (
               <option key={surface.id} value={surface.id}>
                 {surface.name}
@@ -89,18 +59,13 @@ export const FilterForm = () => {
       </div>
       {/* next div shoul be new row*/}
       <div className="flex flex-row items-center justify-center space-x-4">
-        <div className="rating rating-md">
+        <div className="rating rating-sm">
           <input type="radio" name="rating-9" className="rating-hidden" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
           <input type="radio" name="rating-9" className="mask mask-star-2" />
-          <input
-            type="radio"
-            name="rating-9"
-            className="mask mask-star-2"
-            checked
-          />
+          <input type="radio" name="rating-9" className="mask mask-star-2" />
         </div>
       </div>
 

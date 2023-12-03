@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { api } from "~/trpc/server";
 import Carousel from "./Carousel";
 import Feature from "./Feature";
@@ -33,43 +34,72 @@ const BlogPage = async ({ id }: { id: number }) => {
   }
 
   return (
-    <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
-      <div className="row-gap-5 grid gap-5 lg:grid-cols-2">
-        <div className="flex flex-col">
-          <div className="mb-6 max-w-xl">
-            <h2 className="mb-6 max-w-lg text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
-              {leadingWords}
-              {middleWords && (
-                <span>
-                  <br className="hidden md:block" />
-                  {middleWords}
-                </span>
-              )}
-              {accentWords && (
-                <span className="relative px-1">
-                  <div className="accent-content absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
-                  <span className="relative inline-block text-accent">
-                    {accentWords}
-                  </span>
-                </span>
-              )}
-            </h2>
-            <div className="mb-4 border-b pb-4">
-              <h6 className="mb-2 font-semibold leading-5">
-                {post.playground?.address} {post.playground?.city},{" "}
-                {post.playground?.state} {post.playground?.zip}
-              </h6>
-              <div className="text-sm">
-                <Ranking rating={post?.playground?.rating} />
-              </div>
-            </div>
-            <p className="text-base  md:text-lg">{post.content}</p>
-          </div>
-        </div>
-        <div>
-          <Carousel photos={post.photos} type={"content"} />
+    <div>
+      <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
+        {/* First Row */}
 
-          <Feature playground={post?.playground} />
+        <div className="breadcrumbs flex justify-center text-sm">
+          <ul>
+            <li>
+              <Link className="link-hover link" href="/">
+                Home
+              </Link>
+            </li>
+
+            {!post.playground && <li>{post.title}</li>}
+            {post.playground && (
+              <>
+                <li>Playground</li>
+                <li>
+                  <Link className="link-hover link" href="#">
+                    {post.playground?.name}
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      </div>
+      <div className="mx-auto px-4 py-16 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-10">
+        <div className="row-gap-5 grid gap-5 lg:grid-cols-2">
+          <div className="flex flex-col">
+            <div className="mb-6 max-w-xl">
+              <h2 className="mb-6 max-w-lg text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">
+                {leadingWords}
+                {middleWords && (
+                  <span>
+                    <br className="hidden md:block" />
+                    {middleWords}
+                  </span>
+                )}
+                {accentWords && (
+                  <span className="relative px-1">
+                    <div className="accent-content absolute inset-x-0 bottom-0 h-3 -skew-x-12 transform" />
+                    <span className="relative inline-block text-accent">
+                      {accentWords}
+                    </span>
+                  </span>
+                )}
+              </h2>
+              {post.playground && (
+                <div className="mb-4 border-b pb-4">
+                  <h6 className="mb-2 font-semibold leading-5">
+                    {post.playground?.address} {post.playground?.city},{" "}
+                    {post.playground?.state} {post.playground?.zip}
+                  </h6>
+                  <div className="text-sm">
+                    <Ranking rating={post?.playground?.rating} />
+                  </div>
+                </div>
+              )}
+              <p className="text-base  md:text-lg">{post.content}</p>
+            </div>
+          </div>
+          <div>
+            <Carousel photos={post.photos} type={"content"} />
+
+            <Feature playground={post?.playground} />
+          </div>
         </div>
       </div>
     </div>

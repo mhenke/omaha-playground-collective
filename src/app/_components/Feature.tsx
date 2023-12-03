@@ -16,8 +16,6 @@ const Feature: React.FC<FeatureProps> = ({ playground }) => {
 
   let features = {};
 
-  console.log("hola playground", playground);
-
   if (playground) {
     features = Object.fromEntries(
       Object.entries(playground)

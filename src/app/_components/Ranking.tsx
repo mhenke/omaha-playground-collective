@@ -12,7 +12,6 @@ const Rating: React.FC<RatingProps> = ({ rating }) => {
         <input
           key={`rating-${i}`}
           type="radio"
-          name="rating-1"
           className="mask mask-star"
           checked={i === rating}
           readOnly

@@ -32,7 +32,7 @@ const Modal = () => {
         id="my_modal_6"
         className="modal-toggle"
         checked={isWriteModalOpen}
-        onChange={() => setIsWriteModalOpen(isWriteModalOpen)}
+        onChange={() => setIsWriteModalOpen(!isWriteModalOpen)}
       />
       <dialog className="modal">
         <div className="modal-box">
