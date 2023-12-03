@@ -9,7 +9,7 @@ type State = {
 };
 
 export type IncludeKey = {
-  displayName: string; // Ensure displayName is always defined
+  displayName: string;
   value: boolean;
   showOnFilter: boolean;
 };
@@ -47,13 +47,23 @@ export const useFilterStore = create<State & Action>((set) => ({
   keys: includeKeys,
   updateAgeRange: (ageRange) => set({ ageRange }),
   updateSurface: (surface) => set({ surface }),
-  updateKey: (key) =>
+  updateKey: (key, value) =>
     set((state) => {
       const previousValue = state.keys[key]?.value ?? false;
+
+      // Ensure that displayName is always defined
+      const displayName = state.keys[key]?.displayName ?? "";
+      const showOnFilter = state.keys[key]?.showOnFilter ?? false;
+
       return {
         keys: {
           ...state.keys,
-          [key]: { ...state.keys[key], value: !previousValue },
+          [key]: {
+            ...state.keys[key],
+            value: !previousValue,
+            displayName: displayName,
+            showOnFilter: showOnFilter,
+          },
         },
       };
     }),
