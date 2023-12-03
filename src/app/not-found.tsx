@@ -12,14 +12,15 @@ export default function NotFound() {
           </div>
           <div className="lg:w-1/2">
             <p className="mb-4 text-base">
-              The page you are looking for might be in{" "}
+              It seems the playground you were searching for took a spontaneous
+              trip to another dimension or got caught up in the vast playgrounds
+              of the internet. Don&apos;t worry, though! You can always swing
+              back to our home page and continue your exploration of
+              Omaha&apos;s finest play spaces with the{" "}
               <span className="relative inline-block text-accent">
-                another dimension
+                Omaha Playground Collective
               </span>
-              , or it could have been eaten by the{" "}
-              <span className="relative inline-block text-accent">
-                Internet&apos;s equivalent of a black hole.
-              </span>
+              .
             </p>
 
             <Link
