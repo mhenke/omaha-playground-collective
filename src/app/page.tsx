@@ -35,7 +35,7 @@ export default function Home() {
     surfaceId:
       typeof selectedSurface === "number" ? selectedSurface : undefined,
     ...Object.fromEntries(
-      Object.entries(includeKeys).filter(([key, value]) => value),
+      Object.entries(includeKeys).filter(([_key, value]) => value),
     ),
   };
 

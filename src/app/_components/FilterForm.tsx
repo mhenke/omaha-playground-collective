@@ -1,7 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 import { api } from "~/trpc/react";
 import { useFilterStore, type IncludeKey } from "../_store/filterStore";
 
@@ -21,7 +19,7 @@ export const FilterForm = () => {
   const updateAgeRange = useFilterStore((state) => state.updateAgeRange);
   const updateSurface = useFilterStore((state) => state.updateSurface);
   const updateKeys = useFilterStore((state) => state.updateKey);
-  const router = usePathname();
+
   const selectedValue = "allSurfaces";
 
   return (
