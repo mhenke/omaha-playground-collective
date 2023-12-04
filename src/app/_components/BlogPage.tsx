@@ -7,7 +7,6 @@ import Ranking from "./Ranking";
 const BlogPage = async ({ id }: { id: number }) => {
   const post = await api.post.getOne.query({ id }, {});
 
-  // const title = "The quick, brown fox jumps over a lazy dog";
   const title = post.title;
   const wordCount = title.split(" ").length;
 
