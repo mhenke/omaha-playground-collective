@@ -1,8 +1,22 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function About() {
   return (
     <div className="mx-auto px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
+      <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
+        {/* First Row */}
+        <div className="breadcrumbs flex justify-center text-sm">
+          <ul>
+            <li>
+              <Link className="link-hover link" href="/">
+                Home
+              </Link>
+            </li>
+            <li>About</li>
+          </ul>
+        </div>
+      </div>
       <div className="grid gap-5 lg:grid-cols-2">
         <div className="flex flex-col justify-center md:pr-8 lg:max-w-lg xl:pr-0">
           <div className="mb-6 max-w-xl">

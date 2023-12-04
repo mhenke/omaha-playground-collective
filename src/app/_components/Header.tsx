@@ -26,16 +26,16 @@ export default async function Header({ title }: { readonly title: string }) {
           </label>
           <ul
             tabIndex={0}
-            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box  p-2 shadow"
+            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral-content p-2 text-neutral shadow"
           >
             <li>
-              <a>Homepage</a>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <a>Portfolio</a>
+              <Link href="/about">About</Link>
             </li>
             <li>
-              <a>About</a>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </div>
@@ -60,26 +60,15 @@ export default async function Header({ title }: { readonly title: string }) {
             </label>
             <ul
               tabIndex={0}
-              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box  p-2 shadow"
+              className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral-content p-2 text-neutral shadow"
             >
-              <li>
-                <Link className="justify-between" href="/">
-                  Profile <span className="badge">New</span>
-                </Link>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
               <li>
                 <Link href="/api/auth/signout">Signout</Link>
               </li>
             </ul>
           </div>
         ) : (
-          <Link
-            href="/api/auth/signin"
-            className="/10 hover:/20 rounded-full px-10 py-3 font-semibold no-underline transition"
-          >
+          <Link href="/api/auth/signin" className="btn btn-ghost">
             Sign in
           </Link>
         )}
