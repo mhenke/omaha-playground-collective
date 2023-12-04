@@ -1,69 +1,85 @@
 import { type Playground } from "@prisma/client";
+import { useFilterStore } from "../_store/filterStore";
 
 interface FeatureProps {
   playground: Playground | null;
 }
 
 const Feature: React.FC<FeatureProps> = ({ playground }) => {
-  const includeKeys = [
-    "restrooms",
-    "picnicAreas",
-    "benches",
-    "shade",
-    "accessibleEquip",
-    "adaCompliance",
-  ];
+  const { keys } = useFilterStore.getState();
 
-  let features = {};
-
-  if (playground) {
-    features = Object.fromEntries(
-      Object.entries(playground)
-        .filter(([key]) => includeKeys.includes(key))
-        .map(([key, value]) => [key, value]),
-    );
+  if (!playground || !keys) {
+    return null; // Return null if no playground or keys
   }
+
+  const features = Object.fromEntries(
+    Object.entries(keys)
+      .filter(
+        ([key, { showOnFilter }]) =>
+          showOnFilter &&
+          playground[key as keyof Playground] !== null &&
+          playground[key as keyof Playground] !== undefined,
+      )
+      .map(([key, { displayName }]) => [
+        key,
+        { displayName, value: playground[key as keyof Playground] },
+      ]),
+  );
+
+  // Add ageRange value
+  if (playground.ageRange && playground.ageRange.name) {
+    features["ageRange" as keyof typeof features] = {
+      displayName: "Age Range",
+      value: playground.ageRange.name,
+    };
+  }
+
+  // Add Surface value
+  if (playground.Surface && playground.Surface.name) {
+    features["Surface" as keyof typeof features] = {
+      displayName: "Surface",
+      value: playground.Surface.name,
+    };
+  }
+
+  const hasFeatures = Object.values(features).some(({ value }) => value);
 
   return (
     <div>
-      {Object.values(features).some((value) => value) && (
+      {hasFeatures && (
         <div className="mt-4 flex flex-col space-y-6 bg-neutral-content p-4 shadow-lg">
           <p className="text-sm font-bold uppercase tracking-widest text-neutral">
             Features
           </p>
           <div className="grid space-y-3 sm:grid-cols-2 sm:gap-2 sm:space-y-0">
-            {Object.entries(features).map(([key, value], index) => {
-              if (value) {
-                return (
-                  <ul key={index} className="space-y-3">
-                    <li className="flex">
-                      <span className="mr-1">
-                        <svg
-                          className="mt-px h-5 w-5 text-accent"
-                          stroke="currentColor"
-                          viewBox="0 0 52 52"
-                        >
-                          <polygon
-                            strokeWidth="4"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            fill="none"
-                            points="29 13 14 29 25 29 23 39 38 23 27 23"
-                          />
-                        </svg>
-                      </span>{" "}
-                      {key}{" "}
-                      {/* Optional chaining to handle null or undefined */}
-                    </li>
-                  </ul>
-                );
-              }
-              return null; // return null when value is falsy
-            })}
+            {Object.entries(features).map(
+              ([key, { displayName, value }], index) => (
+                <ul key={index} className="space-y-3">
+                  <li className="flex">
+                    <span className="mr-1">
+                      <svg
+                        className="mt-px h-5 w-5 text-accent"
+                        stroke="currentColor"
+                        viewBox="0 0 52 52"
+                      >
+                        <polygon
+                          strokeWidth="4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          fill="none"
+                          points="29 13 14 29 25 29 23 39 38 23 27 23"
+                        />
+                      </svg>
+                    </span>{" "}
+                    {displayName}: {value}
+                  </li>
+                </ul>
+              ),
+            )}
           </div>
         </div>
       )}
-      {!Object.values(features).some((value) => value) && playground && (
+      {!hasFeatures && (
         <div className="mt-4 flex flex-col space-y-6 bg-neutral-content p-4 shadow-lg">
           <p className="text-sm font-bold uppercase tracking-widest text-neutral">
             Parks are great
