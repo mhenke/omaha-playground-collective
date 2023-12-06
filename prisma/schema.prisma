@@ -10,7 +10,7 @@ datasource db {
 model Account {
   id                String  @id @default(cuid())
   userId            String
-  user_id           Int?
+  user_id           BigInt?
   type              String
   provider          String
   providerAccountId String
