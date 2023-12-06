@@ -35,6 +35,7 @@ declare module "next-auth" {
 import type { Provider } from "next-auth/providers";
 
 export const authOptions: NextAuthOptions = {
+  // debug: true,
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -54,9 +55,6 @@ export const authOptions: NextAuthOptions = {
     InstagramProvider({
       clientId: env.INSTAGRAM_CLIENT_ID,
       clientSecret: env.INSTAGRAM_CLIENT_SECRET,
-      client: {
-        token_endpoint_auth_method: "client_secret_post",
-      },
     }),
 
     //  SlackProvider({
