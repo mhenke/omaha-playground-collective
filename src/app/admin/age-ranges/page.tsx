@@ -27,8 +27,13 @@ const AgeRangesPage = ({}) => {
         console.error("Error submitting form:", response.statusText);
       }
     } catch (error) {
-      // Handle network or other client-side errors
-      console.error("Error submitting form:", error.message);
+      if (error instanceof Error) {
+        // Now TypeScript knows that `error` is an instance of `Error`
+        console.error("Error submitting form:", error.message);
+      } else {
+        // If it's not an `Error`, we can't be sure what properties it has
+        console.error("An error occurred:", error);
+      }
     }
   };
 
