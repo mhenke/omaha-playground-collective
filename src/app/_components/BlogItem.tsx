@@ -13,7 +13,7 @@ import Ranking from "./Ranking";
 
 type ExtendedPost = Post & {
   playground:
-    | (Playground & { ageRange: AgeRange | null; Surface: Surface | null })
+    | (Playground & { ageRange: AgeRange | null; surface: Surface | null })
     | null;
   photos: Photo[] | [];
 };
@@ -70,9 +70,9 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
               Assessible
             </button>
           )}
-          {post.playground?.Surface?.name && (
+          {post.playground?.surface?.name && (
             <button className="btn btn-accent btn-xs m-px">
-              {post.playground.Surface.name}
+              {post.playground.surface.name}
             </button>
           )}
         </p>

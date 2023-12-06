@@ -54,7 +54,7 @@ export const postRouter = createTRPCRouter({
         },
         orderBy: { createdAt: "desc" },
         include: {
-          playground: { include: { ageRange: true, Surface: true } },
+          playground: { include: { ageRange: true, surface: true } },
           photos: true,
         },
       });
@@ -73,7 +73,7 @@ export const postRouter = createTRPCRouter({
         },
         orderBy: { createdAt: "desc" },
         include: {
-          playground: { include: { ageRange: true, Surface: true } },
+          playground: { include: { ageRange: true, surface: true } },
           photos: true,
         },
       });

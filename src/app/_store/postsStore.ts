@@ -9,7 +9,7 @@ import { create } from "zustand";
 
 type ExtendedPost = Post & {
   playground:
-    | (Playground & { ageRange: AgeRange | null; Surface: Surface | null })
+    | (Playground & { ageRange: AgeRange | null; surface: Surface | null })
     | null;
   photos: Photo[] | [];
 };

@@ -3,7 +3,7 @@ import { useFilterStore } from "../_store/filterStore";
 
 type ExtendedPlayground = Playground & {
   ageRange: AgeRange | null; // Add ageRange property
-  Surface: Surface | null; // Add Surface property
+  surface: Surface | null; // Add Surface property
 };
 
 interface FeatureProps {
@@ -40,10 +40,10 @@ const Feature: React.FC<FeatureProps> = ({ playground }) => {
   }
 
   // Add Surface value
-  if (playground?.Surface?.name) {
+  if (playground?.surface?.name) {
     features["Surface" as keyof typeof features] = {
       displayName: "Surface",
-      value: playground.Surface.name,
+      value: playground?.surface?.name,
     };
   }
 
