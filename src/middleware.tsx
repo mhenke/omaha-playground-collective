@@ -1,17 +1,27 @@
-import { withAuth, type NextRequestWithAuth } from "next-auth/middleware";
-import { NextResponse } from "next/server";
-console.log("hola middleware");
+// Ref: https://next-auth.js.org/configuration/nextjs#advanced-usage
+import { withAuth, NextRequestWithAuth } from "next-auth/middleware"
+import { NextResponse } from "next/server"
 
-export default withAuth(function middleware(req: NextRequestWithAuth) {
-  console.log("hola req.nextUrl.pathname", req.nextUrl.pathname);
-  console.log("hola req?.nextauth?.token?.role", req?.nextauth?.token?.role);
+export default withAuth(
+    // `withAuth` augments your `Request` with the user's token.
+    function middleware(request: NextRequestWithAuth) {
+        // console.log(request.nextUrl.pathname)
+        // console.log(request.nextauth.token)
 
-  if (
-    req.nextUrl.pathname.startsWith("/admin") &&
-    req?.nextauth?.token?.role != "admin"
-  ) {
-    return NextResponse.rewrite(new URL("/denied", req.url));
-  }
-});
-console.log("hola middleware 2");
-export const config = { matcher: ["/admin"] };
+        if (request.nextUrl.pathname.startsWith("/admin")
+            && request.nextauth.token?.role !== "admin") {
+            return NextResponse.rewrite(
+                new URL("/denied", request.url)
+            )
+        }
+    },
+    {
+        callbacks: {
+            authorized: ({ token }) => !!token
+        },
+    }
+)
+
+// Applies next-auth only to matching routes - can be regex
+// Ref: https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+export const config = { matcher: ["/admin"] }
