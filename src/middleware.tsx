@@ -15,7 +15,7 @@ export default withAuth(
     }
   },
   {
-    secret: process.env.SECRET,
+    secret: process.env.NEXTAUTH_SECRET,
   },
 );
 console.log("hola middleware 2");

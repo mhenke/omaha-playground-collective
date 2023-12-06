@@ -35,7 +35,7 @@ declare module "next-auth" {
 import type { Provider } from "next-auth/providers";
 
 export const authOptions: NextAuthOptions = {
-  secret: process.env.SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   // debug: true,
   callbacks: {
     session: ({ session, user }) => ({
