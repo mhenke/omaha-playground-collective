@@ -10,6 +10,7 @@ datasource db {
 model Account {
   id                String  @id @default(cuid())
   userId            String
+  user_id           String
   type              String
   provider          String
   providerAccountId String
@@ -94,7 +95,7 @@ model Playground {
   adaCompliance   Boolean?
   ageRange        AgeRange? @relation(fields: [ageRangeId], references: [id])
   ageRangeId      Int?
-  Surface         Surface?  @relation(fields: [surfaceId], references: [id])
+  surface         Surface?  @relation(fields: [surfaceId], references: [id])
   surfaceId       Int?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @default(now()) @updatedAt

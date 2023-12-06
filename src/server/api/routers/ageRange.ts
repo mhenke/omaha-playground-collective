@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 import {
   createTRPCRouter,
   protectedProcedure,
@@ -10,7 +9,6 @@ export const ageRangeRouter = createTRPCRouter({
   create: protectedProcedure
     .input(z.object({ name: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       return ctx.db.ageRange.create({
@@ -26,4 +24,27 @@ export const ageRangeRouter = createTRPCRouter({
       orderBy: { description: "asc" },
     });
   }),
+
+  update: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        name: z.string().min(1),
+        description: z.string().min(1),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { id, name, description } = input;
+      return ctx.db.ageRange.update({
+        where: { id },
+        data: { name, description },
+      });
+    }),
+
+  remove: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const { id } = input;
+      return ctx.db.ageRange.delete({ where: { id } });
+    }),
 });
