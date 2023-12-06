@@ -22,12 +22,12 @@ const Feature: React.FC<FeatureProps> = ({ playground }) => {
       .filter(
         ([key, { showOnFilter }]) =>
           showOnFilter &&
-          playground[key as keyof ExtendedPlayground] !== null &&
-          playground[key as keyof ExtendedPlayground] !== undefined,
+          playground[key as keyof Playground] !== null &&
+          playground[key as keyof Playground] !== undefined,
       )
       .map(([key, { displayName }]) => [
         key,
-        { displayName, value: playground[key as keyof ExtendedPlayground] },
+        { displayName, value: playground[key as keyof Playground] },
       ]),
   );
 
@@ -41,7 +41,7 @@ const Feature: React.FC<FeatureProps> = ({ playground }) => {
 
   // Add Surface value
   if (playground?.surface?.name) {
-    features["Surface" as keyof typeof features] = {
+    features["surface" as keyof typeof features] = {
       displayName: "Surface",
       value: playground?.surface?.name,
     };
@@ -77,7 +77,7 @@ const Feature: React.FC<FeatureProps> = ({ playground }) => {
                           />
                         </svg>
                       </span>{" "}
-                      {displayName}: {value}
+                      {displayName}: {String(value)}
                     </li>
                   </ul>
                 ),
