@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 import {
   createTRPCRouter,
   protectedProcedure,
@@ -18,7 +17,7 @@ export const postRouter = createTRPCRouter({
   create: protectedProcedure
     .input(z.object({ title: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
-      // simulate a slow db call
+      // Simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       return ctx.db.post.create({
@@ -33,7 +32,6 @@ export const postRouter = createTRPCRouter({
   getAll: publicProcedure
     .input(
       z.object({
-        // ageRangeId can be null or number
         ageRangeId: z.number().optional(),
         surfaceId: z.number().optional(),
         accessibleEquip: z.boolean().optional(),
@@ -59,7 +57,7 @@ export const postRouter = createTRPCRouter({
         },
       });
     }),
-  // get one post
+
   getOne: publicProcedure
     .input(
       z.object({

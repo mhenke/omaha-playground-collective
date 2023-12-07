@@ -1,10 +1,12 @@
 "use client";
 
+import { type Surface } from "@prisma/client";
 import { useState } from "react";
+import Loading from "~/app/_components/Loading";
 import { api } from "~/trpc/react";
 import AdminNav from "../AdminNav";
 
-export default function Home() {
+const Surfaces = () => {
   const surfacesQuery = api.surface.getAll.useQuery();
   const { data: surfaces } = surfacesQuery;
 
@@ -12,13 +14,19 @@ export default function Home() {
   const [description, setDescription] = useState("");
   const [selectedSurface, setSelectedSurface] = useState(null);
 
+  const resetFormState = () => {
+    setName("");
+    setDescription("");
+  };
+
+  const handleCreateSuccess = () => {
+    resetFormState();
+    document.getElementById("edit_modal").classList.remove("modal-open");
+    surfacesQuery.refetch();
+  };
+
   const createSurfaceMutation = api.surface.create.useMutation({
-    onSuccess: () => {
-      setName("");
-      setDescription("");
-      document.getElementById("edit_modal").classList.remove("modal-open");
-      surfacesQuery.refetch();
-    },
+    onSuccess: handleCreateSuccess,
   });
 
   const updateSurfaceMutation = api.surface.update.useMutation({
@@ -29,9 +37,7 @@ export default function Home() {
   });
 
   const deleteSurfaceMutation = api.surface.delete.useMutation({
-    onSuccess: () => {
-      surfacesQuery.refetch();
-    },
+    onSuccess: surfacesQuery.refetch,
   });
 
   const handleUpdateSurface = () => {
@@ -50,7 +56,7 @@ export default function Home() {
     deleteSurfaceMutation.mutate({ id });
   };
 
-  const openEditModal = (surface) => {
+  const openEditModal = (surface: Surface) => {
     setSelectedSurface(surface);
     setName(surface ? surface.name : "");
     setDescription(surface ? surface.description : "");
@@ -71,37 +77,41 @@ export default function Home() {
               Add Surface
             </button>
           </div>
-          <table className="min-w-full border border-gray-300">
-            <thead>
-              <tr>
-                <th className="border p-2">Name</th>
-                <th className="border p-2">Description</th>
-                <th className="border p-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {surfaces?.map((surfaceItem) => (
-                <tr key={surfaceItem.id}>
-                  <td className="border p-2">{surfaceItem.name}</td>
-                  <td className="border p-2">{surfaceItem.description}</td>
-                  <td className="border p-2">
-                    <button
-                      className="btn btn-sm m-1"
-                      onClick={() => openEditModal(surfaceItem)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-error btn-sm m-1"
-                      onClick={() => handleDeleteSurface(surfaceItem.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+          {surfacesQuery.isLoading ? (
+            <Loading />
+          ) : (
+            <table className="min-w-full border border-gray-300">
+              <thead>
+                <tr>
+                  <th className="border p-2">Name</th>
+                  <th className="border p-2">Description</th>
+                  <th className="border p-2">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {surfaces?.map((surfaceItem) => (
+                  <tr key={surfaceItem.id}>
+                    <td className="border p-2">{surfaceItem.name}</td>
+                    <td className="border p-2">{surfaceItem.description}</td>
+                    <td className="border p-2">
+                      <button
+                        className="btn btn-sm m-1"
+                        onClick={() => openEditModal(surfaceItem)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-error btn-sm m-1"
+                        onClick={() => handleDeleteSurface(surfaceItem.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
           <dialog
             id="edit_modal"
             className="modal modal-bottom sm:modal-middle"
@@ -156,4 +166,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Surfaces;
