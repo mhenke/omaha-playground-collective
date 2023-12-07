@@ -57,12 +57,6 @@ export default function Home() {
     document.getElementById("edit_modal").showModal();
   };
 
-  const closeEditModal = () => {
-    setSelectedSurface(null);
-    setName("");
-    setDescription("");
-  };
-
   return (
     <div>
       <AdminNav />
