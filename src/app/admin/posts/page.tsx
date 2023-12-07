@@ -3,16 +3,22 @@
 import { useState } from "react";
 import Loading from "~/app/_components/Loading";
 import { api } from "~/trpc/react";
+import AdminNav from "../AdminNav";
 
 const Posts = () => {
-  const postsQuery = api.post.getAll.useQuery({});
+  const postsQuery = api.post.getAll.useQuery();
   const { data: posts } = postsQuery;
 
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  // Assuming authorId is a string
+  const [authorId, setAuthorId] = useState("");
   const [selectedPost, setSelectedPost] = useState(null);
 
   const resetFormState = () => {
     setTitle("");
+    setContent("");
+    setAuthorId("");
   };
 
   const handleCreateSuccess = () => {
@@ -24,7 +30,6 @@ const Posts = () => {
   const createPostMutation = api.post.create.useMutation({
     onSuccess: handleCreateSuccess,
   });
-
   const updatePostMutation = api.post.update.useMutation({
     onSuccess: () => {
       document.getElementById("edit_modal").classList.remove("modal-open");
@@ -41,25 +46,32 @@ const Posts = () => {
       updatePostMutation.mutate({
         id: selectedPost.id,
         title,
+        content,
+        authorId,
+        // Add other fields as needed
       });
     } else {
-      createPostMutation.mutate({ title });
+      createPostMutation.mutate({
+        title,
+        content,
+        authorId,
+        // Add other fields as needed
+      });
     }
-  };
-
-  const handleDeletePost = (id) => {
-    deletePostMutation.mutate({ id });
   };
 
   const openEditModal = (post) => {
     setSelectedPost(post);
     setTitle(post ? post.title : "");
+    setContent(post ? post.content : "");
+    setAuthorId(post ? post.authorId : "");
+    // Set other fields as needed
     document.getElementById("edit_modal").showModal();
   };
 
   return (
     <div>
-      {/* Your AdminNav component goes here */}
+      <AdminNav />
       <div className="min-h-screen px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
         <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
           <h1 className="mb-4 text-3xl font-bold">Manage Posts</h1>
@@ -128,7 +140,29 @@ const Posts = () => {
                   className="mt-1 w-full rounded border p-2"
                 />
               </div>
-
+              {/* Additional fields for Content, Author, Photos, Playground, etc. */}
+              <div className="py-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Content
+                </label>
+                <textarea
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  className="mt-1 w-full rounded border p-2"
+                />
+              </div>
+              <div className="py-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Author ID
+                </label>
+                <input
+                  type="text"
+                  value={authorId}
+                  onChange={(e) => setAuthorId(e.target.value)}
+                  className="mt-1 w-full rounded border p-2"
+                />
+              </div>
+              {/* Add other fields as needed */}
               <div className="modal-action">
                 <form method="dialog">
                   <div className="flex justify-end">

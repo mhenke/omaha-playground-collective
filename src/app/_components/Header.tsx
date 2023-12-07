@@ -64,6 +64,9 @@ export default async function Header({ title }: { readonly title: string }) {
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral-content p-2 text-neutral shadow"
             >
               <li>
+                <Link href="/admin">Admin Panel</Link>
+              </li>
+              <li>
                 <Link href="/api/auth/signout">Signout</Link>
               </li>
             </ul>

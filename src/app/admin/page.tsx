@@ -9,34 +9,22 @@ export default function AdminPage() {
         <nav>
           <ul className="flex-col space-y-4">
             <li>
-              <Link
-                href="/admin/posts"
-                className="text-blue-500 hover:underline"
-              >
+              <Link href="/admin/posts" className="link-hover link">
                 Manage Posts
               </Link>
             </li>
             <li>
-              <Link
-                href="/admin/playgrounds"
-                className="text-blue-500 hover:underline"
-              >
+              <Link href="/admin/playgrounds" className="link-hover link">
                 Manage Playgrounds
               </Link>
             </li>
             <li>
-              <Link
-                href="/admin/age-ranges"
-                className="text-blue-500 hover:underline"
-              >
+              <Link href="/admin/age-ranges" className="link-hover link">
                 Manage Age Range
               </Link>
             </li>
             <li>
-              <Link
-                href="/admin/surfaces"
-                className="text-blue-500 hover:underline"
-              >
+              <Link href="/admin/surfaces" className="link-hover link">
                 Manage Surfaces
               </Link>
             </li>
