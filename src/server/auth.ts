@@ -10,19 +10,20 @@ import InstagramProvider from "next-auth/providers/instagram";
 
 import { env } from "~/env.mjs";
 import { db } from "~/server/db";
-
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
  *
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
+
+type UserRole = "admin" | "GitHub User" | "Instagram User";
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
       id: string;
       // ...other properties
-      // role: UserRole;
+      role: UserRole;
     } & DefaultSession["user"];
   }
 }
@@ -38,22 +39,54 @@ export const authOptions: NextAuthOptions = {
   // secret: process.env.NEXTAUTH_SECRET,
   // debug: true,
   callbacks: {
+    jwt({ token, user }) {
+      if (user) token.role = user.role;
+      return token;
+    },
     session: ({ session, user }) => ({
       ...session,
       user: {
         ...session.user,
         id: user.id,
+        role: user.role,
       },
     }),
   },
   adapter: PrismaAdapter(db),
   providers: [
     GithubProvider({
+      profile(profile) {
+        console.log("Profile GitHub: ", profile);
+
+        let userRole = "GitHub User";
+        if (profile?.email == "henke.mike@gmail.com") {
+          console.log("Admin user matched");
+          userRole = "admin";
+        }
+
+        return {
+          ...profile,
+          role: userRole,
+        };
+      },
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
 
     InstagramProvider({
+      profile(profile) {
+        console.log("Profile Instagram: ", profile);
+
+        let userRole = "Instagram User";
+        if (profile?.name == "henkemike") {
+          userRole = "admin";
+        }
+
+        return {
+          ...profile,
+          role: userRole,
+        };
+      },
       clientId: env.INSTAGRAM_CLIENT_ID,
       clientSecret: env.INSTAGRAM_CLIENT_SECRET,
     }),
