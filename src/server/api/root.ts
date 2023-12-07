@@ -2,7 +2,6 @@ import { postRouter } from "~/server/api/routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
 import { ageRangeRouter } from "./routers/ageRange";
 import { surfaceRouter } from "./routers/surface";
-import { todoRouter } from "./routers/todos";
 
 /**
  * This is the primary router for your server.
@@ -13,7 +12,6 @@ export const appRouter = createTRPCRouter({
   post: postRouter,
   surface: surfaceRouter,
   ageRange: ageRangeRouter,
-  todo: todoRouter,
 });
 
 // export type definition of API

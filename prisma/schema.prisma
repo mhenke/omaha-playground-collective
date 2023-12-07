@@ -7,22 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Todo {
-    id String @id @default(cuid())
-
-    title   String
-    details String
-    done    Boolean
-
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    userId String
-    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@index([userId])
-}
-
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -59,7 +43,6 @@ model User {
   posts         Post[]    @relation("AuthorOfPost")
   sessions      Session[]
   Account       Account[]
-  todos         Todo[]
 }
 
 model Post {
