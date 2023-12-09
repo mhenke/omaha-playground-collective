@@ -4,7 +4,6 @@ import {
   type DefaultSession,
   type NextAuthOptions,
   type Profile,
-  type User,
 } from "next-auth";
 import GithubProvider, { type GithubProfile } from "next-auth/providers/github";
 import InstagramProvider from "next-auth/providers/instagram";
@@ -20,8 +19,9 @@ import { db } from "~/server/db";
  */
 
 type UserRole = "admin" | "user" | null;
+
 declare module "next-auth" {
-  interface Session extends DefaultSession {
+  interface Session {
     role: UserRole;
     user: {
       id: string;
@@ -36,7 +36,6 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 import type { Provider } from "next-auth/providers";
-let userRole: UserRole = null;
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -45,38 +44,45 @@ export const authOptions: NextAuthOptions = {
   // secret: process.env.NEXTAUTH_SECRET,
   // debug: true,
   callbacks: {
-    session: ({ session, token }) => ({
-      ...session,
-      role: token.role,
-      user: {
-        ...session.user,
-        id: token.id,
-      },
-    }),
-    jwt: ({ token, user }) => ({
-      ...token,
-      user,
-      role: userRole,
-    }),
+    session: ({ session, token }) => {
+      console.log("Session Callback - Token: ", token);
+
+      return {
+        ...session,
+        role: token.role,
+        user: {
+          ...session.user,
+          id: token.id,
+        },
+      };
+    },
+    jwt: ({ token, user }) => {
+      console.log("JWT Callback - Token: ", token);
+
+      if (user) {
+        token.role = user.email === "henke.mike@gmail.com" ? "admin" : "user";
+      }
+      return {
+        ...token,
+        user,
+        role: token.role,
+      };
+    },
   },
   adapter: PrismaAdapter(db),
   providers: [
     GithubProvider({
       profile: (profile: GithubProfile) => {
         console.log("Profile GitHub: ", profile);
-
-        userRole = profile?.email === "henke.mike@gmail.com" ? "admin" : "user";
-
-        // Modify this part based on your User type and the properties you want to include
-        const user: User & { role: UserRole } = {
+        const userRole: UserRole =
+          profile?.email === "henke.mike@gmail.com" ? "admin" : "user";
+        return {
           id: profile.id.toString(),
-          name: profile.name ?? "",
-          email: profile.email ?? "",
-          image: profile.avatar_url ?? "",
-          // Add other properties as needed
+          name: profile.name,
+          email: profile.email,
+          image: profile.avatar_url,
+          role: userRole,
         };
-
-        return user;
       },
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
@@ -86,13 +92,11 @@ export const authOptions: NextAuthOptions = {
       profile(profile: Profile) {
         console.log("Profile Instagram: ", profile);
 
-        userRole = "Instagram User";
-        if (profile?.name == "henkemike") {
-          userRole = "user";
-        }
-
+        const userRole: UserRole =
+          profile?.name === "henkemike" ? "user" : "user"; // This line seems redundant
         return {
           ...profile,
+          role: userRole,
         };
       },
       clientId: env.INSTAGRAM_CLIENT_ID,
