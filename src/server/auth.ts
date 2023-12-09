@@ -3,8 +3,10 @@ import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
+  type Profile,
+  type User,
 } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+import GithubProvider, { type GithubProfile } from "next-auth/providers/github";
 import InstagramProvider from "next-auth/providers/instagram";
 // import SlackProvider from "next-auth/providers/slack";
 
@@ -17,7 +19,7 @@ import { db } from "~/server/db";
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
 
-type UserRole = "admin" | "GitHub User" | "Instagram User";
+type UserRole = "admin" | "GitHub User" | "Instagram User" | null;
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
@@ -34,57 +36,65 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 import type { Provider } from "next-auth/providers";
+let userRole: UserRole = null;
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: "jwt",
+  },
   // secret: process.env.NEXTAUTH_SECRET,
   // debug: true,
   callbacks: {
-    jwt({ token, user }) {
-      if (user) token.role = user.role;
-      return token;
-    },
-    session: ({ session, user }) => ({
+    session: ({ session, token }) => ({
       ...session,
       user: {
         ...session.user,
-        id: user.id,
-        role: user.role,
+        id: token.id,
+      },
+    }),
+    jwt: ({ token, user }) => ({
+      ...token,
+      user,
+      role: {
+        role: userRole,
       },
     }),
   },
   adapter: PrismaAdapter(db),
   providers: [
     GithubProvider({
-      profile(profile) {
+      profile: (profile: GithubProfile) => {
         console.log("Profile GitHub: ", profile);
 
-        let userRole = "GitHub User";
-        if (profile?.email == "henke.mike@gmail.com") {
-          console.log("Admin user matched");
-          userRole = "admin";
-        }
+        userRole =
+          profile?.email === "henke.mike@gmail.com" ? "admin" : "GitHub User";
 
-        return {
-          ...profile,
-          role: userRole,
+        // Modify this part based on your User type and the properties you want to include
+        const user: User = {
+          id: profile.id.toString(),
+          name: profile.name ?? "",
+          email: profile.email ?? "",
+          image: profile.avatar_url ?? "",
+          // Add other properties as needed
         };
+
+        return user;
       },
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
 
     InstagramProvider({
-      profile(profile) {
+      profile(profile: Profile) {
         console.log("Profile Instagram: ", profile);
 
-        let userRole = "Instagram User";
+        userRole = "Instagram User";
         if (profile?.name == "henkemike") {
           userRole = "admin";
         }
 
         return {
           ...profile,
-          role: userRole,
         };
       },
       clientId: env.INSTAGRAM_CLIENT_ID,

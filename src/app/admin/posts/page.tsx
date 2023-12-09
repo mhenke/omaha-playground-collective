@@ -1,19 +1,20 @@
 "use client";
 
+import { type Post } from "@prisma/client";
 import { useState } from "react";
 import Loading from "~/app/_components/Loading";
 import { api } from "~/trpc/react";
 import AdminNav from "../AdminNav";
 
 const Posts = () => {
-  const postsQuery = api.post.getAll.useQuery();
+  const postsQuery = api.post.getAll.useQuery({}, {});
   const { data: posts } = postsQuery;
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   // Assuming authorId is a string
   const [authorId, setAuthorId] = useState("");
-  const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   const resetFormState = () => {
     setTitle("");
@@ -21,25 +22,30 @@ const Posts = () => {
     setAuthorId("");
   };
 
-  const handleCreateSuccess = () => {
+  const handleCreateSuccess = async () => {
     resetFormState();
-    document.getElementById("edit_modal").classList.remove("modal-open");
-    postsQuery.refetch();
+    document.getElementById("edit_modal")?.classList.remove("modal-open");
+    await postsQuery.refetch();
   };
 
   const createPostMutation = api.post.create.useMutation({
     onSuccess: handleCreateSuccess,
   });
+
   const updatePostMutation = api.post.update.useMutation({
-    onSuccess: () => {
-      document.getElementById("edit_modal").classList.remove("modal-open");
-      postsQuery.refetch();
+    onSuccess: async () => {
+      document.getElementById("edit_modal")?.classList.remove("modal-open");
+      await postsQuery.refetch();
     },
   });
 
   const deletePostMutation = api.post.delete.useMutation({
-    onSuccess: postsQuery.refetch,
+    onSuccess: () => postsQuery.refetch,
   });
+
+  const handleDeletePost = (id: number) => {
+    deletePostMutation.mutate({ id });
+  };
 
   const handleUpdatePost = () => {
     if (selectedPost) {
@@ -54,19 +60,18 @@ const Posts = () => {
       createPostMutation.mutate({
         title,
         content,
-        authorId,
         // Add other fields as needed
       });
     }
   };
 
-  const openEditModal = (post) => {
+  const openEditModal = (post: Post | null) => {
     setSelectedPost(post);
     setTitle(post ? post.title : "");
     setContent(post ? post.content : "");
     setAuthorId(post ? post.authorId : "");
     // Set other fields as needed
-    document.getElementById("edit_modal").showModal();
+    document.getElementById("edit_modal")?.classList.add("modal-open");
   };
 
   return (

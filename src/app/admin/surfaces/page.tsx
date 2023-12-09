@@ -12,17 +12,17 @@ const Surfaces = () => {
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedSurface, setSelectedSurface] = useState(null);
+  const [selectedSurface, setSelectedSurface] = useState<Surface | null>(null);
 
   const resetFormState = () => {
     setName("");
     setDescription("");
   };
 
-  const handleCreateSuccess = () => {
+  const handleCreateSuccess = async () => {
     resetFormState();
-    document.getElementById("edit_modal").classList.remove("modal-open");
-    surfacesQuery.refetch();
+    document.getElementById("edit_modal")?.classList.remove("modal-open");
+    await surfacesQuery.refetch();
   };
 
   const createSurfaceMutation = api.surface.create.useMutation({
@@ -30,14 +30,16 @@ const Surfaces = () => {
   });
 
   const updateSurfaceMutation = api.surface.update.useMutation({
-    onSuccess: () => {
-      document.getElementById("edit_modal").classList.remove("modal-open");
-      surfacesQuery.refetch();
+    onSuccess: async () => {
+      document.getElementById("edit_modal")?.classList.remove("modal-open");
+      await surfacesQuery.refetch();
     },
   });
 
   const deleteSurfaceMutation = api.surface.delete.useMutation({
-    onSuccess: surfacesQuery.refetch,
+    onSuccess: async () => {
+      await surfacesQuery.refetch();
+    },
   });
 
   const handleUpdateSurface = () => {
@@ -52,15 +54,15 @@ const Surfaces = () => {
     }
   };
 
-  const handleDeleteSurface = (id) => {
+  const handleDeleteSurface = (id: number) => {
     deleteSurfaceMutation.mutate({ id });
   };
 
-  const openEditModal = (surface: Surface) => {
+  const openEditModal = (surface: Surface | null) => {
     setSelectedSurface(surface);
     setName(surface ? surface.name : "");
     setDescription(surface ? surface.description : "");
-    document.getElementById("edit_modal").showModal();
+    document.getElementById("edit_modal")?.classList.add("modal-open");
   };
 
   return (

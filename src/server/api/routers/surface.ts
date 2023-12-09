@@ -28,6 +28,7 @@ export const surfaceRouter = createTRPCRouter({
       z.object({
         id: z.number(),
         name: z.string().min(1),
+        description: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {

@@ -1,6 +1,7 @@
 "use client";
 
 import type { Photo } from "@prisma/client";
+import Image from "next/image";
 
 type CarouselProps = {
   photos: Photo[];
@@ -22,7 +23,7 @@ const Carousel: React.FC<CarouselProps> = ({ photos, type }) => {
           id={`slide${photo.postId}-${index}`}
           className="carousel-item relative w-full"
         >
-          <img src={photo.url} className={photoClass} />
+          <Image src={photo.url} className={photoClass} alt={""} />
           {totalPhotos === 1 ? null : (
             <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
               <a
