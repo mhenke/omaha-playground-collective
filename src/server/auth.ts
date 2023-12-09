@@ -19,14 +19,13 @@ import { db } from "~/server/db";
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
 
-type UserRole = "admin" | "GitHub User" | "Instagram User" | null;
+type UserRole = "admin" | "user" | null;
 declare module "next-auth" {
   interface Session extends DefaultSession {
     role: UserRole;
     user: {
       id: string;
       // ...other properties
-      role: UserRole;
     } & DefaultSession["user"];
   }
 }
@@ -66,11 +65,10 @@ export const authOptions: NextAuthOptions = {
       profile: (profile: GithubProfile) => {
         console.log("Profile GitHub: ", profile);
 
-        userRole =
-          profile?.email === "henke.mike@gmail.com" ? "admin" : "GitHub User";
+        userRole = profile?.email === "henke.mike@gmail.com" ? "admin" : "user";
 
         // Modify this part based on your User type and the properties you want to include
-        const user: User = {
+        const user: User & { role: UserRole } = {
           id: profile.id.toString(),
           name: profile.name ?? "",
           email: profile.email ?? "",
@@ -90,7 +88,7 @@ export const authOptions: NextAuthOptions = {
 
         userRole = "Instagram User";
         if (profile?.name == "henkemike") {
-          userRole = "admin";
+          userRole = "user";
         }
 
         return {
