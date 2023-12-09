@@ -11,13 +11,8 @@ import InstagramProvider from "next-auth/providers/instagram";
 
 import { env } from "~/env.mjs";
 import { db } from "~/server/db";
-/**
- * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
- * object and keep type safety.
- *
- * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
- */
 
+// Module augmentation for `next-auth` types
 type UserRole = "admin" | "user" | null;
 
 declare module "next-auth" {
@@ -30,13 +25,63 @@ declare module "next-auth" {
   }
 }
 
-/**
- * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
- *
- * @see https://next-auth.js.org/configuration/options
- */
+// Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
 import type { Provider } from "next-auth/providers";
 
+// Session callback function
+const sessionCallback = ({ session, token }) => {
+  console.log("Session Callback - Token: ", token);
+
+  return {
+    ...session,
+    role: token.role,
+    user: {
+      ...session.user,
+      id: token.id,
+    },
+  };
+};
+
+// JWT callback function
+const jwtCallback = ({ token, user }) => {
+  console.log("JWT Callback - Token: ", token);
+
+  if (user) {
+    token.role = user.email === "henke.mike@gmail.com" ? "admin" : "user";
+  }
+  return {
+    ...token,
+    user,
+    role: token.role,
+  };
+};
+
+// Profile callback function for GitHub provider
+const githubProfileCallback = (profile: GithubProfile) => {
+  console.log("Profile GitHub: ", profile);
+  const userRole: UserRole =
+    profile?.email === "henke.mike@gmail.com" ? "admin" : "user";
+  return {
+    id: profile.id.toString(),
+    name: profile.name,
+    email: profile.email,
+    image: profile.avatar_url,
+    role: userRole,
+  };
+};
+
+// Profile callback function for Instagram provider
+const instagramProfileCallback = (profile: Profile) => {
+  console.log("Profile Instagram: ", profile);
+
+  const userRole: UserRole = profile?.name === "henkemike" ? "user" : "user";
+  return {
+    ...profile,
+    role: userRole,
+  };
+};
+
+// Auth options configuration
 export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
@@ -44,61 +89,19 @@ export const authOptions: NextAuthOptions = {
   // secret: process.env.NEXTAUTH_SECRET,
   // debug: true,
   callbacks: {
-    session: ({ session, token }) => {
-      console.log("Session Callback - Token: ", token);
-
-      return {
-        ...session,
-        role: token.role,
-        user: {
-          ...session.user,
-          id: token.id,
-        },
-      };
-    },
-    jwt: ({ token, user }) => {
-      console.log("JWT Callback - Token: ", token);
-
-      if (user) {
-        token.role = user.email === "henke.mike@gmail.com" ? "admin" : "user";
-      }
-      return {
-        ...token,
-        user,
-        role: token.role,
-      };
-    },
+    session: sessionCallback,
+    jwt: jwtCallback,
   },
   adapter: PrismaAdapter(db),
   providers: [
     GithubProvider({
-      profile: (profile: GithubProfile) => {
-        console.log("Profile GitHub: ", profile);
-        const userRole: UserRole =
-          profile?.email === "henke.mike@gmail.com" ? "admin" : "user";
-        return {
-          id: profile.id.toString(),
-          name: profile.name,
-          email: profile.email,
-          image: profile.avatar_url,
-          role: userRole,
-        };
-      },
+      profile: githubProfileCallback,
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET,
     }),
 
     InstagramProvider({
-      profile(profile: Profile) {
-        console.log("Profile Instagram: ", profile);
-
-        const userRole: UserRole =
-          profile?.name === "henkemike" ? "user" : "user"; // This line seems redundant
-        return {
-          ...profile,
-          role: userRole,
-        };
-      },
+      profile: instagramProfileCallback,
       clientId: env.INSTAGRAM_CLIENT_ID,
       clientSecret: env.INSTAGRAM_CLIENT_SECRET,
     }),
@@ -110,18 +113,14 @@ export const authOptions: NextAuthOptions = {
     /**
      * ...add more providers here.
      *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
+     * Most other providers require a bit more work than the Discord provider.
+     * For example, the GitHub provider requires you to add the `refresh_token_expires_in` field to the Account model.
+     * Refer to the NextAuth.js docs for the provider you want to use. Example:
      *
      * @see https://next-auth.js.org/providers/github
      */
   ] as Provider[],
 };
 
-/**
- * Wrapper for `getServerSession` so that you don't need to import the `authOptions` in every file.
- *
- * @see https://next-auth.js.org/configuration/nextjs
- */
+// Wrapper for `getServerSession`
 export const getServerAuthSession = () => getServerSession(authOptions);
