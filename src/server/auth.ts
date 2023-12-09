@@ -22,6 +22,7 @@ import { db } from "~/server/db";
 type UserRole = "admin" | "GitHub User" | "Instagram User" | null;
 declare module "next-auth" {
   interface Session extends DefaultSession {
+    role: UserRole;
     user: {
       id: string;
       // ...other properties
@@ -47,6 +48,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, token }) => ({
       ...session,
+      role: userRole,
       user: {
         ...session.user,
         id: token.id,
@@ -55,9 +57,7 @@ export const authOptions: NextAuthOptions = {
     jwt: ({ token, user }) => ({
       ...token,
       user,
-      role: {
-        role: userRole,
-      },
+      role: userRole,
     }),
   },
   adapter: PrismaAdapter(db),

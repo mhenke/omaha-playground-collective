@@ -8,9 +8,6 @@ await import("./src/env.mjs");
 
 /** @type {import("next").NextConfig} */
 const config = {
-  experimental: {
-    serverActions: true,
-  },
   output: "standalone",
   images: {
     domains: ["znmzqhaphohpkdunuiqu.supabase.co", "images.pexels.com"], // Add your image domain here

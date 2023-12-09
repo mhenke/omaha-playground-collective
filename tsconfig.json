@@ -18,8 +18,7 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-      "types": ["react-dom/experimental"]
+      "~/*": ["./src/*"]
     },
     "plugins": [{ "name": "next" }]
   },

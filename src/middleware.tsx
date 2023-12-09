@@ -6,6 +6,8 @@ export default withAuth(function middleware(request: NextRequestWithAuth) {
   const pathname = request.nextUrl?.pathname;
   const token = request.nextauth.token;
 
+  console.log("middleware", request.nextauth);
+
   // if the user is not authenticated, redirect to /api/auth/signin
   if (!token) {
     return NextResponse.rewrite(new URL("/api/auth/signin", request.url));

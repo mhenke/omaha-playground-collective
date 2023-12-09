@@ -4,7 +4,7 @@ import { getServerAuthSession } from "~/server/auth";
 
 export default async function Header({ title }: { readonly title: string }) {
   const session = await getServerAuthSession();
-
+  console.log(session);
   return (
     <header className="navbar ">
       <div className="navbar-start">
@@ -63,9 +63,12 @@ export default async function Header({ title }: { readonly title: string }) {
               tabIndex={0}
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral-content p-2 text-neutral shadow"
             >
-              <li>
-                <Link href="/admin">Admin Panel</Link>
-              </li>
+              {session?.role === "admin" ? (
+                <li>
+                  <Link href="/admin">Admin Panel</Link>
+                </li>
+              ) : null}
+
               <li>
                 <Link href="/api/auth/signout">Signout</Link>
               </li>
