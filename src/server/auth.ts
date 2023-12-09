@@ -47,7 +47,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, token }) => ({
       ...session,
-      role: userRole,
+      role: token.role,
       user: {
         ...session.user,
         id: token.id,
