@@ -13,6 +13,7 @@ export const surfaceRouter = createTRPCRouter({
         data: {
           name: input.name,
           description: input.description,
+          authorId: ctx.session.user.id,
         },
       });
     }),
@@ -36,6 +37,8 @@ export const surfaceRouter = createTRPCRouter({
         where: { id: input.id },
         data: {
           name: input.name,
+          description: input.description,
+          authorId: ctx.session.user.id,
         },
       });
     }),

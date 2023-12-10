@@ -7,14 +7,15 @@ import {
 
 export const ageRangeRouter = createTRPCRouter({
   create: protectedProcedure
-    .input(z.object({ name: z.string().min(1) }))
+    .input(z.object({ name: z.string().min(1), description: z.string() }))
     .mutation(async ({ ctx, input }) => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       return ctx.db.ageRange.create({
         data: {
           name: input.name,
-          description: "hello world",
+          description: input.description,
+          authorId: ctx.session.user.id,
         },
       });
     }),
@@ -34,10 +35,13 @@ export const ageRangeRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const { id, name, description } = input;
-      return ctx.db.ageRange.update({
-        where: { id },
-        data: { name, description },
+      return ctx.db.surface.update({
+        where: { id: input.id },
+        data: {
+          name: input.name,
+          description: input.description,
+          authorId: ctx.session.user.id,
+        },
       });
     }),
 
