@@ -4,10 +4,10 @@ import {
   type DefaultSession,
   type NextAuthOptions,
   type Profile,
+  type User,
 } from "next-auth";
 import GithubProvider, { type GithubProfile } from "next-auth/providers/github";
 import InstagramProvider from "next-auth/providers/instagram";
-f;
 
 // import SlackProvider from "next-auth/providers/slack";
 
@@ -15,6 +15,10 @@ import { env } from "~/env.mjs";
 import { db } from "~/server/db";
 
 type UserRole = "USER" | "ADMIN";
+
+type UserWithRole = User & {
+  role: string;
+};
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -45,10 +49,12 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    jwt({ token, user }) {
+    jwt: ({ token, user }) => {
       console.log("JWT Callback: ", token, user);
-      if (user) token.role = user.role;
-      return token;
+      return {
+        ...token,
+        role: (user as UserWithRole).role,
+      };
     },
     session: ({ session, token }) => ({
       ...session,
@@ -72,6 +78,7 @@ export const authOptions: NextAuthOptions = {
 
         return {
           ...profile,
+          id: profile.id.toString(),
           role: userRole,
         };
       },

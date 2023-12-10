@@ -18,7 +18,6 @@ const Posts = () => {
   const resetFormState = () => {
     setTitle("");
     setContent("");
-    setAuthorId("");
   };
 
   const handleCreateSuccess = async () => {
