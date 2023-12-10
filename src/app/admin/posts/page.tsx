@@ -1,6 +1,6 @@
 "use client";
 
-import { type Post } from "@prisma/client";
+import { Playground, type Post } from "@prisma/client";
 import { useState } from "react";
 import Loading from "~/app/_components/Loading";
 import { api } from "~/trpc/react";
@@ -8,21 +8,32 @@ import AdminNav from "../AdminNav";
 
 const Posts = () => {
   const postsQuery = api.post.getAll.useQuery({}, {});
-  const { data: posts } = postsQuery;
+  console.log(postsQuery);
 
+  const { data: posts } = postsQuery;
+  console.log(posts);
+
+  const playgroundsQuery = api.playground.getAll.useQuery();
+  console.log(playgroundsQuery);
+
+  const { data: playgrounds } = playgroundsQuery;
+  console.log(playgrounds);
+
+  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const [selectedPlayground, setSelectedPlayground] = useState("");
 
   const resetFormState = () => {
     setTitle("");
     setContent("");
+    setSelectedPlayground("");
   };
 
   const handleCreateSuccess = async () => {
     resetFormState();
-    document.getElementById("edit_modal")?.classList.remove("modal-open");
+    handleCloseDialog();
     await postsQuery.refetch();
   };
 
@@ -32,7 +43,7 @@ const Posts = () => {
 
   const updatePostMutation = api.post.update.useMutation({
     onSuccess: async () => {
-      document.getElementById("edit_modal")?.classList.remove("modal-open");
+      handleCloseDialog();
       await postsQuery.refetch();
     },
   });
@@ -60,10 +71,17 @@ const Posts = () => {
     }
   };
 
+  const handleCloseDialog = () => {
+    document.getElementById("edit_modal")?.classList.remove("modal-open");
+  };
+
   const openEditModal = (post: Post | null) => {
     setSelectedPost(post);
     setTitle(post ? post.title : "");
     setContent(post ? post.content : "");
+    setSelectedPlayground(
+      post?.playgroundId ? post.playgroundId.toString() : null,
+    );
 
     // Set other fields as needed
     document.getElementById("edit_modal")?.classList.add("modal-open");
@@ -122,7 +140,10 @@ const Posts = () => {
           >
             <div className="modal-box">
               <form method="dialog" className="flex justify-end">
-                <button className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">
+                <button
+                  className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
+                  onClick={handleCloseDialog}
+                >
                   ✕
                 </button>
               </form>
@@ -140,7 +161,27 @@ const Posts = () => {
                   className="mt-1 w-full rounded border p-2"
                 />
               </div>
-              {/* Additional fields for Content, Author, Photos, Playground, etc. */}
+
+              <div className="py-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Playground:
+                </label>
+                <select
+                  value={selectedPlayground || ""}
+                  onChange={(e) => setSelectedPlayground(e.target.value)}
+                  className="select mt-1 w-full max-w-xs rounded border p-2"
+                >
+                  <option disabled value="">
+                    Pick a playground
+                  </option>
+                  {playgrounds?.map((playground: Playground) => (
+                    <option key={playground.id} value={playground.id}>
+                      {playground.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div className="py-4">
                 <label className="block text-sm font-medium text-gray-700">
                   Content
@@ -152,16 +193,15 @@ const Posts = () => {
                 />
               </div>
               <div className="py-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Author Name
-                </label>
-                <input type="text" className="mt-1 w-full rounded border p-2" />
+                <p>Author Name: NAME GOES HERE</p>
               </div>
-              {/* Add other fields as needed */}
+
               <div className="modal-action">
                 <form method="dialog">
                   <div className="flex justify-end">
-                    <button className="btn">Cancel</button>
+                    <button className="btn" onClick={handleCloseDialog}>
+                      Cancel
+                    </button>
                     <button
                       className="btn btn-primary"
                       onClick={handleUpdatePost}

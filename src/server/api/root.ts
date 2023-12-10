@@ -1,3 +1,4 @@
+import { playgroundRouter } from "~/server/api/routers/playground";
 import { postRouter } from "~/server/api/routers/post";
 import { createTRPCRouter } from "~/server/api/trpc";
 import { ageRangeRouter } from "./routers/ageRange";
@@ -12,6 +13,7 @@ export const appRouter = createTRPCRouter({
   post: postRouter,
   surface: surfaceRouter,
   ageRange: ageRangeRouter,
+  playground: playgroundRouter,
 });
 
 // export type definition of API
