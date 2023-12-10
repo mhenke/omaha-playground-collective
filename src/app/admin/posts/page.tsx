@@ -1,56 +1,76 @@
 "use client";
 
-import { Playground, type Post } from "@prisma/client";
-import { useState } from "react";
+import { Playground, Post as PostType } from "@prisma/client";
+import { useEffect, useState } from "react";
 import Loading from "~/app/_components/Loading";
 import { api } from "~/trpc/react";
 import AdminNav from "../AdminNav";
 
 const Posts = () => {
-  const postsQuery = api.post.getAll.useQuery({}, {});
-  console.log(postsQuery);
+  const postsQuery = api.post.getAll;
 
-  const { data: posts } = postsQuery;
-  console.log(posts);
+  useEffect(() => {
+    // Fetch posts and playgrounds when the component mounts
+    const { data: posts } = postsQuery.useQuery({}, {});
 
-  const playgroundsQuery = api.playground.getAll.useQuery();
-  console.log(playgroundsQuery);
+    const playgroundsQuery = api.playground.getAll.useQuery();
+    const { data: playgrounds } = playgroundsQuery.useQuery();
 
-  const { data: playgrounds } = playgroundsQuery;
-  console.log(playgrounds);
+    setPosts(posts);
+    setPlaygrounds(playgrounds);
+  }, []); // Empty dependency array means this effect runs once when the component mounts
 
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
+  const createPostMutation = api.post.create.useMutation({
+    onSuccess: handleMutationSuccess(postsQuery.useQuery({}, {}).refetch),
+  });
+  const updatePostMutation = api.post.update.useMutation({
+    onSuccess: handleMutationSuccess(postsQuery.useQuery({}, {}).refetch),
+  });
+  const deletePostMutation = api.post.delete.useMutation({
+    onSuccess: handleMutationSuccess(postsQuery.useQuery({}, {}).refetch),
+  });
+
+  const [selectedPost, setSelectedPost] = useState<PostType | null>(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
   const [selectedPlayground, setSelectedPlayground] = useState("");
+  const [playgrounds, setPlaygrounds] = useState<Playground[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
+
+  useEffect(() => {
+    // Fetch posts and playgrounds when the component mounts
+    const postsQuery = api.post.getAll.useQuery({}, {});
+    const playgroundsQuery = api.playground.getAll.useQuery();
+
+    const { data: posts } = postsQuery;
+    const { data: playgrounds } = playgroundsQuery;
+
+    setPosts(posts);
+    setPlaygrounds(playgrounds);
+  }, []); // Empty dependency array means this effect runs once when the component mounts
+
+  useEffect(() => {
+    if (selectedPost) {
+      setTitle(selectedPost.title);
+      setContent(selectedPost.content);
+      setSelectedPlayground(selectedPost.playgroundId?.toString() || "");
+    } else {
+      resetFormState();
+    }
+  }, [selectedPost]);
+
+  function handleMutationSuccess(refetch: () => void) {
+    return async () => {
+      handleCloseDialog();
+      await refetch();
+    };
+  }
 
   const resetFormState = () => {
     setTitle("");
     setContent("");
     setSelectedPlayground("");
   };
-
-  const handleCreateSuccess = async () => {
-    resetFormState();
-    handleCloseDialog();
-    await postsQuery.refetch();
-  };
-
-  const createPostMutation = api.post.create.useMutation({
-    onSuccess: handleCreateSuccess,
-  });
-
-  const updatePostMutation = api.post.update.useMutation({
-    onSuccess: async () => {
-      handleCloseDialog();
-      await postsQuery.refetch();
-    },
-  });
-
-  const deletePostMutation = api.post.delete.useMutation({
-    onSuccess: () => postsQuery.refetch,
-  });
 
   const handleDeletePost = (id: number) => {
     deletePostMutation.mutate({ id });
@@ -72,19 +92,15 @@ const Posts = () => {
   };
 
   const handleCloseDialog = () => {
-    document.getElementById("edit_modal")?.classList.remove("modal-open");
+    const modal = document.getElementById("edit_modal");
+    modal?.classList.remove("modal-open");
   };
 
-  const openEditModal = (post: Post | null) => {
+  const openEditModal = (post: PostType | null) => {
     setSelectedPost(post);
-    setTitle(post ? post.title : "");
-    setContent(post ? post.content : "");
-    setSelectedPlayground(
-      post?.playgroundId ? post.playgroundId.toString() : null,
-    );
-
     // Set other fields as needed
-    document.getElementById("edit_modal")?.classList.add("modal-open");
+    const modal = document.getElementById("edit_modal");
+    modal?.classList.add("modal-open");
   };
 
   return (
