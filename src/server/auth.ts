@@ -3,22 +3,15 @@ import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
-  type Profile,
-  type User,
 } from "next-auth";
-import GithubProvider, { type GithubProfile } from "next-auth/providers/github";
+import GithubProvider from "next-auth/providers/github";
 import InstagramProvider from "next-auth/providers/instagram";
-
 // import SlackProvider from "next-auth/providers/slack";
 
 import { env } from "~/env.mjs";
 import { db } from "~/server/db";
 
-type UserRole = "USER" | "ADMIN";
-
-type UserWithRole = User & {
-  role: string;
-};
+type UserRole = "USER" | "ADMIN" | null;
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -50,36 +43,32 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     jwt: ({ token, user }) => {
-      console.log("JWT Callback: ", token, user);
+      console.log("jwt callback:", token, user);
+      if (user) token.role = user.role;
+      return token;
+    },
+    session: ({ session, token }) => {
+      console.log("session callback:", token, session);
       return {
-        ...token,
-        role: (user as UserWithRole).role,
+        ...session,
+        user: {
+          ...session.user,
+          id: token.sub,
+        },
+        role: token.role,
       };
     },
-    session: ({ session, token }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: token.sub,
-      },
-      role: token.role,
-    }),
   },
   adapter: PrismaAdapter(db),
   providers: [
     GithubProvider({
-      profile(profile: GithubProfile) {
-        console.log("Profile GitHub: ", profile);
-
-        let userRole: UserRole = "USER";
-        if (profile?.email == "henke.mike@gmail") {
-          userRole = "ADMIN";
-        }
-
+      profile(profile) {
         return {
-          ...profile,
           id: profile.id.toString(),
-          role: userRole,
+          name: profile.name ?? profile.login,
+          email: profile.email,
+          image: profile.avatar_url,
+          role: profile.email === "henke.mike@gmail.com" ? "ADMIN" : "USER",
         };
       },
       clientId: env.GITHUB_CLIENT_ID,
@@ -87,16 +76,6 @@ export const authOptions: NextAuthOptions = {
     }),
 
     InstagramProvider({
-      profile(profile: Profile) {
-        console.log("Profile Instagram: ", profile);
-
-        const userRole: UserRole = "USER";
-        return {
-          ...profile,
-          id: profile.sub,
-          role: userRole,
-        };
-      },
       clientId: env.INSTAGRAM_CLIENT_ID,
       clientSecret: env.INSTAGRAM_CLIENT_SECRET,
     }),
