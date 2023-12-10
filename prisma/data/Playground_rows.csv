@@ -1,4 +1,4 @@
-id,name,postId,rating,address,city,state,zip,latitude,longitude,restrooms,picnicAreas,benches,shade,accessibleEquip,adaCompliance,ageRangeId,surfaceId,createdAt,updatedAt
-1,Lewis & Clark Landing at The River Front,,5,345 Riverfront Dr,Omaha,NE,68102,41.19971,-95.82071,true,,,true,,,6,,2023-11-21 17:57:07.256,2023-11-21 17:57:07.256
-2,Elmwood Park Playground,3,,,,,,,,,,,,,,7,,2023-11-22 20:17:01,2023-11-22 20:17:05
-4,Blondo Ridges Park,1,4,Big Elk Pkwy,Elkhorn,NE,68022,41.2836,-96.2016,,,,,true,,6,6,2023-11-21 17:57:07.256,2023-11-21 17:57:07.256
+id,name,postId,rating,address,city,state,zip,latitude,longitude,restrooms,picnicAreas,benches,shade,accessibleEquip,adaCompliance,ageRangeId,surfaceId,createdAt,updatedAt,authorId
+1,Lewis & Clark Landing at The River Front,,5,345 Riverfront Dr,Omaha,NE,68102,41.19971,-95.82071,true,,,true,,,6,,2023-11-21 17:57:07.256,2023-11-21 17:57:07.256,clpyvflz80003io8z74udk1wq
+2,Elmwood Park Playground,3,,,,,,,,,,,,,,7,,2023-11-22 20:17:01,2023-11-22 20:17:05,clpyvflz80003io8z74udk1wq
+4,Blondo Ridges Park,1,4,Big Elk Pkwy,Elkhorn,NE,68022,41.2836,-96.2016,,,,,true,,6,6,2023-11-21 17:57:07.256,2023-11-21 17:57:07.256,clpyvflz80003io8z74udk1wq

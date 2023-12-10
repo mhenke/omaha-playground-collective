@@ -12,8 +12,7 @@ const Posts = () => {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  // Assuming authorId is a string
-  const [authorId, setAuthorId] = useState("");
+
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   const resetFormState = () => {
@@ -53,14 +52,11 @@ const Posts = () => {
         id: selectedPost.id,
         title,
         content,
-        authorId,
-        // Add other fields as needed
       });
     } else {
       createPostMutation.mutate({
         title,
         content,
-        // Add other fields as needed
       });
     }
   };
@@ -69,7 +65,7 @@ const Posts = () => {
     setSelectedPost(post);
     setTitle(post ? post.title : "");
     setContent(post ? post.content : "");
-    setAuthorId(post ? post.authorId : "");
+
     // Set other fields as needed
     document.getElementById("edit_modal")?.classList.add("modal-open");
   };
@@ -158,14 +154,9 @@ const Posts = () => {
               </div>
               <div className="py-4">
                 <label className="block text-sm font-medium text-gray-700">
-                  Author ID
+                  Author Name
                 </label>
-                <input
-                  type="text"
-                  value={authorId}
-                  onChange={(e) => setAuthorId(e.target.value)}
-                  className="mt-1 w-full rounded border p-2"
-                />
+                <input type="text" className="mt-1 w-full rounded border p-2" />
               </div>
               {/* Add other fields as needed */}
               <div className="modal-action">

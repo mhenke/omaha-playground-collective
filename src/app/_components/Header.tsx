@@ -63,7 +63,7 @@ export default async function Header({ title }: { readonly title: string }) {
               tabIndex={0}
               className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral-content p-2 text-neutral shadow"
             >
-              {session?.role === "admin" ? (
+              {session?.role === "ADMIN" ? (
                 <li>
                   <Link href="/admin">Admin Panel</Link>
                 </li>

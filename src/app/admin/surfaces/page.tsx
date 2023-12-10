@@ -21,7 +21,7 @@ const Surfaces = () => {
 
   const handleCreateSuccess = async () => {
     resetFormState();
-    document.getElementById("edit_modal")?.classList.remove("modal-open");
+    handleCloseDialog();
     await surfacesQuery.refetch();
   };
 
@@ -31,7 +31,7 @@ const Surfaces = () => {
 
   const updateSurfaceMutation = api.surface.update.useMutation({
     onSuccess: async () => {
-      document.getElementById("edit_modal")?.classList.remove("modal-open");
+      handleCloseDialog();
       await surfacesQuery.refetch();
     },
   });
@@ -56,6 +56,10 @@ const Surfaces = () => {
 
   const handleDeleteSurface = (id: number) => {
     deleteSurfaceMutation.mutate({ id });
+  };
+
+  const handleCloseDialog = () => {
+    document.getElementById("edit_modal")?.classList.remove("modal-open");
   };
 
   const openEditModal = (surface: Surface | null) => {
@@ -120,7 +124,10 @@ const Surfaces = () => {
           >
             <div className="modal-box">
               <form method="dialog" className="flex justify-end">
-                <button className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2">
+                <button
+                  className="btn btn-circle btn-ghost btn-sm absolute right-2 top-2"
+                  onClick={handleCloseDialog}
+                >
                   ✕
                 </button>
               </form>
@@ -152,7 +159,9 @@ const Surfaces = () => {
               <div className="modal-action">
                 <form method="dialog">
                   <div className="flex justify-end">
-                    <button className="btn">Cancel</button>
+                    <button className="btn" onClick={handleCloseDialog}>
+                      Cancel
+                    </button>
                     <button
                       className="btn btn-primary"
                       onClick={handleUpdateSurface}

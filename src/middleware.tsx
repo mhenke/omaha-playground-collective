@@ -12,7 +12,7 @@ export default withAuth(function middleware(request: NextRequestWithAuth) {
     return NextResponse.rewrite(new URL("/api/auth/signin", request.url));
   }
   // if the user is authenticated but not authorized, redirect to /denied
-  if (pathname === "/admin" && token?.role !== "admin") {
+  if (pathname === "/admin" && token?.role !== "ADMIN") {
     console.log("do something", url, pathname, token);
     return NextResponse.rewrite(new URL("/denied", request.url));
   }

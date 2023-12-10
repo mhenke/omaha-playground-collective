@@ -13,15 +13,15 @@ import { env } from "~/env.mjs";
 import { db } from "~/server/db";
 
 // Module augmentation for `next-auth` types
-type UserRole = "admin" | "user" | null;
+type UserRole = "ADMIN" | "USER" | null;
 
 declare module "next-auth" {
   interface Session {
     role: UserRole;
-    user: {
+    USER: {
       id: string;
       // ...other properties
-    } & DefaultSession["user"];
+    } & DefaultSession["USER"];
   }
 }
 
@@ -35,8 +35,8 @@ const sessionCallback = ({ session, token }) => {
   return {
     ...session,
     role: token.role,
-    user: {
-      ...session.user,
+    USER: {
+      ...session.USER,
       id: token.id,
     },
   };
@@ -47,7 +47,7 @@ const jwtCallback = ({ token, user }) => {
   console.log("JWT Callback - Token: ", token);
 
   if (user) {
-    token.role = user.email === "henke.mike@gmail.com" ? "admin" : "user";
+    token.role = user?.email === "henke.mike@gmail.com" ? "ADMIN" : "USER";
   }
   return {
     ...token,
@@ -60,7 +60,7 @@ const jwtCallback = ({ token, user }) => {
 const githubProfileCallback = (profile: GithubProfile) => {
   console.log("Profile GitHub: ", profile);
   const userRole: UserRole =
-    profile?.email === "henke.mike@gmail.com" ? "admin" : "user";
+    profile?.email === "henke.mike@gmail.com" ? "ADMIN" : "USER";
   return {
     id: profile.id.toString(),
     name: profile.name,
@@ -74,7 +74,7 @@ const githubProfileCallback = (profile: GithubProfile) => {
 const instagramProfileCallback = (profile: Profile) => {
   console.log("Profile Instagram: ", profile);
 
-  const userRole: UserRole = profile?.name === "henkemike" ? "user" : "user";
+  const userRole: UserRole = profile?.name === "henkemike" ? "USER" : "USER";
   return {
     ...profile,
     role: userRole,

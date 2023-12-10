@@ -41,7 +41,7 @@ export const ageRangeRouter = createTRPCRouter({
       });
     }),
 
-  remove: protectedProcedure
+  delete: protectedProcedure
     .input(z.object({ id: z.number() }))
     .mutation(async ({ ctx, input }) => {
       const { id } = input;

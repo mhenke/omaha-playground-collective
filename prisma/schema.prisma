@@ -34,15 +34,25 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum Role {
+   USER
+   ADMIN
+ }
+
 model User {
-  id            String    @id @default(cuid())
+  id            String        @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
-  posts         Post[]    @relation("AuthorOfPost")
+  posts         Post[]        @relation("AuthorOfPost")
+  photos        Photo[]       @relation("AuthorPhoto")
+  playgrounds   Playground[]  @relation("AuthorPlayground")
+  surfaces      Surface[]     @relation("AuthorSurface")
+  ageranges     AgeRange[]    @relation("AuthorAgeRange")
   sessions      Session[]
   Account       Account[]
+  role          Role          @default(USER)
 }
 
 model Post {
@@ -71,9 +81,12 @@ model Photo {
   url       String
   post      Post     @relation("PostPhotos", fields: [postId], references: [id])
   postId    Int
+  author    User     @relation("AuthorPhoto",fields: [authorId], references: [id])
+  authorId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }
+
 
 model Playground {
   id              Int       @id @default(autoincrement())
@@ -97,6 +110,8 @@ model Playground {
   ageRangeId      Int?
   surface         Surface?  @relation(fields: [surfaceId], references: [id])
   surfaceId       Int?
+  author          User      @relation(name: "AuthorPlayground", fields: [authorId], references: [id])
+  authorId        String
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @default(now()) @updatedAt
 }
@@ -106,6 +121,8 @@ model Surface {
   name        String
   description String
   playgrounds Playground[]
+  author      User         @relation(name: "AuthorSurface", fields: [authorId], references: [id])
+  authorId    String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now()) @updatedAt
 }
@@ -115,6 +132,8 @@ model AgeRange {
   name        String
   description String
   playgrounds Playground[]
+  author      User         @relation(name: "AuthorAgeRange", fields: [authorId], references: [id])
+  authorId    String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now()) @updatedAt
 }

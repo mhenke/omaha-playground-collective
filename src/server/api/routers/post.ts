@@ -23,7 +23,6 @@ export const postRouter = createTRPCRouter({
       return ctx.db.post.create({
         data: {
           title: input.title,
-          author: { connect: { id: ctx.session.user.id } },
           content: input.content,
           authorId: ctx.session.user.id,
         },
@@ -84,7 +83,6 @@ export const postRouter = createTRPCRouter({
         id: z.number(),
         title: z.string().min(1),
         content: z.string(), // Assuming content is a string
-        authorId: z.string(), // Assuming authorId is a string
         // Add other fields as needed
       }),
     )
@@ -96,7 +94,7 @@ export const postRouter = createTRPCRouter({
         data: {
           title: input.title,
           content: input.content,
-          authorId: input.authorId,
+          authorId: ctx.session.user.id,
         },
       });
     }),
