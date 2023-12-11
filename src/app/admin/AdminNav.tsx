@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function AdminNav() {
+  const pathname = usePathname();
   return (
     <nav className="flex justify-center">
       <ul className="flex space-x-4">
@@ -11,22 +13,42 @@ export default function AdminNav() {
           </Link>
         </li>
         <li>
-          <Link href="/admin/posts" className="link-hover link">
+          <Link
+            href="/admin/posts"
+            className={`link ${
+              pathname === "/admin/posts" ? "" : "link-hover"
+            }`}
+          >
             Manage Posts
           </Link>
         </li>
         <li>
-          <Link href="/admin/playgrounds" className="link-hover link">
+          <Link
+            href="/admin/playgrounds"
+            className={`link ${
+              pathname === "/admin/playgrounds" ? "" : "link-hover"
+            }`}
+          >
             Manage Playgrounds
           </Link>
         </li>
         <li>
-          <Link href="/admin/age-ranges" className="link-hover link">
+          <Link
+            href="/admin/age-ranges"
+            className={`link ${
+              pathname === "/admin/age-ranges" ? "" : "link-hover"
+            }`}
+          >
             Manage Age Range
           </Link>
         </li>
         <li>
-          <Link href="/admin/surfaces" className="link-hover link">
+          <Link
+            href="/admin/surfaces"
+            className={`link ${
+              pathname === "/admin/surfaces" ? "" : "link-hover"
+            }`}
+          >
             Manage Surfaces
           </Link>
         </li>

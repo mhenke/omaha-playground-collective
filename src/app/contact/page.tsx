@@ -12,7 +12,11 @@ export default function Contact() {
                 Home
               </Link>
             </li>
-            <li>Contact</li>
+            <li>
+              <Link className="link" href="/contact">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

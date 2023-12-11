@@ -50,7 +50,7 @@ const BlogPage = async ({ id }: { id: number }) => {
               <>
                 <li>Playground</li>
                 <li>
-                  <Link className="link-hover link" href="#">
+                  <Link className="link" href="#">
                     {post.playground?.name}
                   </Link>
                 </li>

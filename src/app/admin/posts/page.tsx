@@ -178,7 +178,7 @@ const Posts = () => {
                   Playground:
                 </label>
                 <select
-                  value={selectedPlayground || ""}
+                  value={selectedPlayground ?? ""}
                   onChange={(e) =>
                     setSelectedPlayground(parseInt(e.target.value))
                   }

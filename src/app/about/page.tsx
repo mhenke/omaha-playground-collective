@@ -13,7 +13,11 @@ export default function About() {
                 Home
               </Link>
             </li>
-            <li>About</li>
+            <li>
+              <Link className="link" href="/about">
+                About
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
