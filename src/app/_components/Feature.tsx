@@ -77,7 +77,9 @@ const Feature: React.FC<FeatureProps> = ({ playground }) => {
                           />
                         </svg>
                       </span>{" "}
-                      {displayName}: {String(value)}
+                      {typeof value === "boolean" && value
+                        ? `${displayName}`
+                        : `${displayName}: ${String(value)}`}
                     </li>
                   </ul>
                 ),
