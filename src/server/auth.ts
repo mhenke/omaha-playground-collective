@@ -35,8 +35,6 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 import type { Provider } from "next-auth/providers";
-import { type User } from "@sentry/nextjs";
-import { type JWT } from "next-auth/jwt";
 
 export const authOptions: NextAuthOptions = {
   // debug: true,
@@ -44,8 +42,9 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    jwt: ({ token, user }: { token: JWT; user: User }) => {
+    jwt: ({ token, user }) => {
       console.log("jwt callback:", token, user);
+      // @ts-expect-error We're ignoring the error because we know that user always has a role property in this context
       if (user) token.role = user.role;
       return token;
     },
