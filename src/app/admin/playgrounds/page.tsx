@@ -290,7 +290,7 @@ const Playgrounds = () => {
                 </label>
                 <input
                   type="text"
-                  value={address}
+                  value={address ?? ""}
                   onChange={(e) => setAddress(e.target.value)}
                   className="mt-1 w-full rounded border p-2"
                 />
@@ -301,7 +301,7 @@ const Playgrounds = () => {
                 </label>
                 <input
                   type="text"
-                  value={city}
+                  value={city ?? ""}
                   onChange={(e) => setCity(e.target.value)}
                   className="mt-1 w-full rounded border p-2"
                 />
@@ -312,7 +312,7 @@ const Playgrounds = () => {
                 </label>
                 <input
                   type="text"
-                  value={state}
+                  value={state ?? ""}
                   onChange={(e) => setState(e.target.value)}
                   className="mt-1 w-full rounded border p-2"
                 />
@@ -323,7 +323,7 @@ const Playgrounds = () => {
                 </label>
                 <input
                   type="text"
-                  value={zip}
+                  value={zip ?? ""}
                   onChange={(e) => setZip(e.target.value)}
                   className="mt-1 w-full rounded border p-2"
                 />
@@ -334,7 +334,7 @@ const Playgrounds = () => {
                 </label>
                 <input
                   type="number"
-                  value={latitude}
+                  value={latitude ?? ""}
                   onChange={(e) => setLatitude(parseFloat(e.target.value))}
                   className="mt-1 w-full rounded border p-2"
                 />
@@ -345,7 +345,7 @@ const Playgrounds = () => {
                 </label>
                 <input
                   type="number"
-                  value={longitude}
+                  value={longitude ?? ""}
                   onChange={(e) => setLongitude(parseFloat(e.target.value))}
                   className="mt-1 w-full rounded border p-2"
                 />
