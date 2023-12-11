@@ -28,7 +28,7 @@ const Posts = () => {
       await postsQuery.refetch();
     },
   });
-  const deletePostMutation = api.post.update.useMutation({
+  const deletePostMutation = api.post.delete.useMutation({
     onSuccess: async () => {
       handleCloseDialog();
       await postsQuery.refetch();
