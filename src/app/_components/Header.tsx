@@ -42,7 +42,10 @@ export default async function Header({ title }: { readonly title: string }) {
         </div>
       </div>
       <div className="navbar-center">
-        <Link className="btn btn-ghost whitespace-normal text-xl" href="/">
+        <Link
+          className="btn btn-ghost btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+          href="/"
+        >
           {title}
         </Link>
       </div>
