@@ -31,7 +31,9 @@ export const playgroundRouter = createTRPCRouter({
       return ctx.db.playground.create({
         data: {
           name: input.name,
-          post: input.post,
+          post: {
+            connect: { id: input.post },
+          },
           rating: input.rating,
           address: input.address,
           city: input.city,
@@ -45,7 +47,7 @@ export const playgroundRouter = createTRPCRouter({
           shade: input.shade,
           accessibleEquip: input.accessibleEquip,
           adaCompliance: input.adaCompliance,
-          // Map other fields from the input
+
           authorId: ctx.session.user.id,
         },
       });
@@ -90,7 +92,9 @@ export const playgroundRouter = createTRPCRouter({
         where: { id: input.id },
         data: {
           name: input.name,
-          post: input.post,
+          post: {
+            connect: { id: input.post },
+          },
           rating: input.rating,
           address: input.address,
           city: input.city,
@@ -104,7 +108,7 @@ export const playgroundRouter = createTRPCRouter({
           shade: input.shade,
           accessibleEquip: input.accessibleEquip,
           adaCompliance: input.adaCompliance,
-          // Map other fields from the input
+
           authorId: ctx.session.user.id,
         },
       });
