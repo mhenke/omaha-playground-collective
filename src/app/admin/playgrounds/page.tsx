@@ -1,18 +1,12 @@
 "use client";
 
-import { type Post } from "@prisma/client";
-import { useState } from "react";
+import { type Playground } from "@prisma/client";
+import { useEffect, useState } from "react";
 import Loading from "~/app/_components/Loading";
 import { api } from "~/trpc/react";
 import AdminNav from "../AdminNav";
 
-const Posts = () => {
-  const postsQuery = api.post.getAll.useQuery({}, {});
-  console.log(postsQuery);
-
-  const { data: posts } = postsQuery;
-  console.log(posts);
-
+const Playgrounds = () => {
   const playgroundsQuery = api.playground.getAll.useQuery();
   console.log(playgroundsQuery);
 
@@ -31,26 +25,27 @@ const Posts = () => {
   const { data: surfaces } = surfacesQuery;
   console.log(surfaces);
 
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null);
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [selectedPlayground, setSelectedPlayground] =
+    useState<Playground | null>(null);
+  const [name, setName] = useState("");
   const [rating, setRating] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [zip, setZip] = useState("");
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+  const [address, setAddress] = useState<string | null>(null);
+  const [city, setCity] = useState<string | null>(null);
+  const [state, setState] = useState<string | null>(null);
+  const [zip, setZip] = useState<string | null>(null);
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
   const [restrooms, setRestrooms] = useState(false);
   const [picnicAreas, setPicnicAreas] = useState(false);
   const [benches, setBenches] = useState(false);
   const [shade, setShade] = useState(false);
   const [accessibleEquip, setAccessibleEquip] = useState(false);
   const [adaCompliance, setAdaCompliance] = useState(false);
+  const [selectedSurface, setSelectedSurface] = useState<string | null>(null);
+  const [selectedAgeRange, setSelectedAgeRange] = useState<string | null>(null);
 
   const resetFormState = () => {
-    setTitle("");
-    setContent("");
+    setName("");
     setRating("");
     setAddress("");
     setCity("");
@@ -64,44 +59,94 @@ const Posts = () => {
     setShade(false);
     setAccessibleEquip(false);
     setAdaCompliance(false);
+    setSelectedSurface("");
+    setSelectedAgeRange("");
   };
+
+  useEffect(() => {
+    if (selectedPlayground) {
+      setName(selectedPlayground.name);
+      setSelectedAgeRange(selectedPlayground.ageRangeId?.toString() ?? "");
+      setSelectedSurface(selectedPlayground.surfaceId?.toString() ?? "");
+      setAddress(selectedPlayground?.address);
+      setCity(selectedPlayground.city);
+      setState(selectedPlayground.state);
+      setZip(selectedPlayground.zip);
+      setLatitude(selectedPlayground.latitude);
+      setLongitude(selectedPlayground.longitude);
+      setRestrooms(!!selectedPlayground.restrooms);
+      setPicnicAreas(!!selectedPlayground.picnicAreas);
+      setBenches(!!selectedPlayground.benches);
+      setShade(!!selectedPlayground.shade);
+      setAccessibleEquip(!!selectedPlayground.accessibleEquip);
+      setAdaCompliance(!!selectedPlayground.adaCompliance);
+    } else {
+      resetFormState();
+    }
+  }, [selectedPlayground]);
 
   const handleCreateSuccess = async () => {
     resetFormState();
     handleCloseDialog();
-    await postsQuery.refetch();
+    await playgroundsQuery.refetch();
   };
 
-  const createPostMutation = api.post.create.useMutation({
+  const createPlaygroundMutation = api.playground.create.useMutation({
     onSuccess: handleCreateSuccess,
   });
 
-  const updatePostMutation = api.post.update.useMutation({
+  const updatePlaygroundMutation = api.playground.update.useMutation({
     onSuccess: async () => {
       handleCloseDialog();
-      await postsQuery.refetch();
+      await playgroundsQuery.refetch();
     },
   });
 
-  const deletePostMutation = api.post.delete.useMutation({
-    onSuccess: () => postsQuery.refetch,
+  const deletePlaygroundMutation = api.playground.delete.useMutation({
+    onSuccess: () => playgroundsQuery.refetch,
   });
 
-  const handleDeletePost = (id: number) => {
-    deletePostMutation.mutate({ id });
+  const handleDeletePlayground = (id: number) => {
+    deletePlaygroundMutation.mutate({ id });
   };
 
-  const handleUpdatePost = () => {
-    if (selectedPost) {
-      updatePostMutation.mutate({
-        id: selectedPost.id,
-        title,
-        content,
+  const handleUpdatePlayground = () => {
+    if (selectedPlayground) {
+      updatePlaygroundMutation.mutate({
+        id: selectedPlayground.id,
+        name,
+        accessibleEquip,
+        adaCompliance,
+        address,
+        benches,
+        city,
+        latitude,
+        longitude,
+        picnicAreas,
+        restrooms,
+        shade,
+        state,
+        zip,
+        post: 0,
+        rating: null,
       });
     } else {
-      createPostMutation.mutate({
-        title,
-        content,
+      createPlaygroundMutation.mutate({
+        name,
+        accessibleEquip,
+        adaCompliance,
+        address,
+        benches,
+        city,
+        latitude,
+        longitude,
+        picnicAreas,
+        restrooms,
+        shade,
+        state,
+        zip,
+        rating: null,
+        post: 0,
       });
     }
   };
@@ -110,11 +155,11 @@ const Posts = () => {
     document.getElementById("edit_modal")?.classList.remove("modal-open");
   };
 
-  const openEditModal = (post: Post | null) => {
-    setSelectedPost(post);
-    setTitle(post ? post.title : "");
-    setContent(post ? post.content : "");
-
+  const openEditModal = (playgroundItem: Playground | null) => {
+    setSelectedPlayground(playgroundItem);
+    setName(playgroundItem ? playgroundItem.name : "");
+    setSelectedAgeRange(playgroundItem?.ageRangeId?.toString() ?? "");
+    setSelectedSurface(playgroundItem?.surfaceId?.toString() ?? "");
     // Set other fields as needed
     document.getElementById("edit_modal")?.classList.add("modal-open");
   };
@@ -124,39 +169,41 @@ const Posts = () => {
       <AdminNav />
       <div className="min-h-screen px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
         <div className="flex flex-col sm:mx-auto sm:max-w-full md:max-w-full lg:max-w-full">
-          <h1 className="mb-4 text-3xl font-bold">Manage Posts</h1>
+          <h1 className="mb-4 text-3xl font-bold">Manage Playgrounds</h1>
           <div className="min-w-full">
             <button
               className="btn btn-primary mb-4 flex justify-end"
               onClick={() => openEditModal(null)}
             >
-              Add Post
+              Add Playground
             </button>
           </div>
-          {postsQuery.isLoading ? (
+          {playgroundsQuery.isLoading ? (
             <Loading />
           ) : (
             <table className="min-w-full border border-gray-300">
               <thead>
                 <tr>
-                  <th className="border p-2">Title</th>
+                  <th className="border p-2">Name</th>
                   <th className="border p-2">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {posts?.map((postItem) => (
-                  <tr key={postItem.id}>
-                    <td className="border p-2">{postItem.title}</td>
+                {playgrounds?.map((playgroundItem) => (
+                  <tr key={playgroundItem.id}>
+                    <td className="border p-2">{playgroundItem.name}</td>
                     <td className="border p-2">
                       <button
                         className="btn btn-sm m-1"
-                        onClick={() => openEditModal(postItem)}
+                        onClick={() => openEditModal(playgroundItem)}
                       >
                         Edit
                       </button>
                       <button
                         className="btn btn-error btn-sm m-1"
-                        onClick={() => handleDeletePost(postItem.id)}
+                        onClick={() =>
+                          handleDeletePlayground(playgroundItem.id)
+                        }
                       >
                         Delete
                       </button>
@@ -180,43 +227,53 @@ const Posts = () => {
                 </button>
               </form>
               <h3 className="text-lg font-bold">
-                {selectedPost ? "Edit Post" : "Add New Post"}
+                {selectedPlayground ? "Edit Playground" : "Add New Playground"}
               </h3>
               <div className="py-4">
                 <label className="block text-sm font-medium text-gray-700">
-                  Title
+                  Name
                 </label>
                 <input
                   type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="mt-1 w-full rounded border p-2"
                 />
               </div>
 
               <div className="py-4">
                 <label className="block text-sm font-medium text-gray-700">
-                  Content
+                  Age Range
                 </label>
-                <textarea
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  className="mt-1 w-full rounded border p-2"
-                />
+                <select
+                  value={selectedAgeRange ?? ""}
+                  onChange={(e) => setSelectedAgeRange(e.target.value)}
+                  className="select mt-1 w-full max-w-xs rounded border p-2"
+                >
+                  <option disabled value="">
+                    Pick an age range
+                  </option>
+                  {ageRanges?.map((ageRange) => (
+                    <option key={ageRange.id} value={ageRange.id}>
+                      {ageRange.name}
+                    </option>
+                  ))}
+                </select>
               </div>
+
               <div className="py-4">
                 <label className="block text-sm font-medium text-gray-700">
                   Surface
                 </label>
                 <select
-                  value={selectedSurface}
+                  value={selectedSurface ?? ""}
                   onChange={(e) => setSelectedSurface(e.target.value)}
                   className="select mt-1 w-full max-w-xs rounded border p-2"
                 >
-                  <option disabled value="" selected>
+                  <option disabled value="">
                     Pick a surface
                   </option>
-                  {surfaces.map((surface) => (
+                  {surfaces?.map((surface) => (
                     <option key={surface.id} value={surface.id}>
                       {surface.name}
                     </option>
@@ -368,9 +425,9 @@ const Posts = () => {
                     </button>
                     <button
                       className="btn btn-primary"
-                      onClick={handleUpdatePost}
+                      onClick={handleUpdatePlayground}
                     >
-                      {selectedPost ? "Update" : "Save"}
+                      {selectedPlayground ? "Update" : "Save"}
                     </button>
                   </div>
                 </form>
@@ -383,4 +440,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Playgrounds;

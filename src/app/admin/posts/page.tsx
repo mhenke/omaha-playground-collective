@@ -1,70 +1,54 @@
 "use client";
 
-import { Playground, Post as PostType } from "@prisma/client";
+import { type Playground, type Post as PostType } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Loading from "~/app/_components/Loading";
 import { api } from "~/trpc/react";
 import AdminNav from "../AdminNav";
 
 const Posts = () => {
-  const postsQuery = api.post.getAll;
+  const postsQuery = api.post.getAll.useQuery({}, {});
+  const playgroundsQuery = api.playground.getAll.useQuery();
 
-  useEffect(() => {
-    // Fetch posts and playgrounds when the component mounts
-    const { data: posts } = postsQuery.useQuery({}, {});
+  const { data: posts } = postsQuery;
+  const { data: playgrounds } = playgroundsQuery;
 
-    const playgroundsQuery = api.playground.getAll.useQuery();
-    const { data: playgrounds } = playgroundsQuery.useQuery();
-
-    setPosts(posts);
-    setPlaygrounds(playgrounds);
-  }, []); // Empty dependency array means this effect runs once when the component mounts
+  const handleCreateSuccess = async () => {
+    resetFormState();
+    handleCloseDialog();
+    await postsQuery.refetch();
+  };
 
   const createPostMutation = api.post.create.useMutation({
-    onSuccess: handleMutationSuccess(postsQuery.useQuery({}, {}).refetch),
+    onSuccess: handleCreateSuccess,
   });
   const updatePostMutation = api.post.update.useMutation({
-    onSuccess: handleMutationSuccess(postsQuery.useQuery({}, {}).refetch),
+    onSuccess: async () => {
+      handleCloseDialog();
+      await postsQuery.refetch();
+    },
   });
-  const deletePostMutation = api.post.delete.useMutation({
-    onSuccess: handleMutationSuccess(postsQuery.useQuery({}, {}).refetch),
+  const deletePostMutation = api.post.update.useMutation({
+    onSuccess: async () => {
+      handleCloseDialog();
+      await postsQuery.refetch();
+    },
   });
 
   const [selectedPost, setSelectedPost] = useState<PostType | null>(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedPlayground, setSelectedPlayground] = useState("");
-  const [playgrounds, setPlaygrounds] = useState<Playground[]>([]);
-  const [posts, setPosts] = useState<PostType[]>([]);
-
-  useEffect(() => {
-    // Fetch posts and playgrounds when the component mounts
-    const postsQuery = api.post.getAll.useQuery({}, {});
-    const playgroundsQuery = api.playground.getAll.useQuery();
-
-    const { data: posts } = postsQuery;
-    const { data: playgrounds } = playgroundsQuery;
-
-    setPosts(posts);
-    setPlaygrounds(playgrounds);
-  }, []); // Empty dependency array means this effect runs once when the component mounts
 
   useEffect(() => {
     if (selectedPost) {
       setTitle(selectedPost.title);
       setContent(selectedPost.content);
-      setSelectedPlayground(selectedPost.playgroundId?.toString() || "");
+      setSelectedPlayground(selectedPost.playgroundId?.toString() ?? "");
     } else {
       resetFormState();
     }
   }, [selectedPost]);
-
-  function handleMutationSuccess(refetch: () => void) {
-    return async () => {
-      handleCloseDialog();
-      await refetch();
-    };
-  }
 
   const resetFormState = () => {
     setTitle("");

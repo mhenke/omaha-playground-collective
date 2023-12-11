@@ -1,13 +1,24 @@
 import Link from "next/link";
 
 export default function AdminNav() {
+  console.log(window.location.pathname);
+  const currentPath = window.location.pathname;
+
+  //remove link-hover if current path matches href
+  const isLinkActive = (href) => {
+    console.log(href, currentPath);
+    return currentPath === href;
+  };
+
   return (
     <nav className="flex justify-center">
       <ul className="flex space-x-4">
         {" "}
-        {/* Use "space-x-4" to add space between items */}
         <li>
-          <Link href="/admin" className="link-hover link">
+          <Link
+            href="/admin"
+            className={`link ${isLinkActive("/admin") ? "" : "link-hover"}`}
+          >
             Admin Panel
           </Link>
         </li>
@@ -17,7 +28,13 @@ export default function AdminNav() {
           </Link>
         </li>
         <li>
-          <Link href="/admin/playgrounds" className="link-hover link">
+          
+            <Link
+              href="/admin/playgrounds"
+              className={`link ${
+                isLinkActive("/admin/playgrounds") ? "" : "link-hover"
+              }`}
+            >
             Manage Playgrounds
           </Link>
         </li>

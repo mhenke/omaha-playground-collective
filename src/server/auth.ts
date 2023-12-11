@@ -4,7 +4,7 @@ import {
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
+import GithubProvider, { type GithubProfile } from "next-auth/providers/github";
 import InstagramProvider from "next-auth/providers/instagram";
 // import SlackProvider from "next-auth/providers/slack";
 
@@ -62,7 +62,7 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
   providers: [
     GithubProvider({
-      profile(profile) {
+      profile(profile: GithubProfile & { role: string }) {
         return {
           id: profile.id.toString(),
           name: profile.name ?? profile.login,
