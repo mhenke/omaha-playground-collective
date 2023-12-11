@@ -24,8 +24,8 @@ declare module "next-auth" {
     user: {
       id: string;
       // ...other properties
-      role: UserRole;
     } & DefaultSession["user"];
+    role: UserRole;
   }
 }
 
@@ -35,6 +35,8 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 import type { Provider } from "next-auth/providers";
+import { type User } from "@sentry/nextjs";
+import { type JWT } from "next-auth/jwt";
 
 export const authOptions: NextAuthOptions = {
   // debug: true,
@@ -42,7 +44,7 @@ export const authOptions: NextAuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    jwt: ({ token, user }) => {
+    jwt: ({ token, user }: { token: JWT; user: User }) => {
       console.log("jwt callback:", token, user);
       if (user) token.role = user.role;
       return token;
