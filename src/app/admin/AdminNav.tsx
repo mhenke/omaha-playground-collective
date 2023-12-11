@@ -16,12 +16,7 @@ export default function AdminNav() {
           </Link>
         </li>
         <li>
-          <Link
-            href="/admin/playgrounds"
-            className={`link ${
-              isLinkActive("/admin/playgrounds") ? "" : "link-hover"
-            }`}
-          >
+          <Link href="/admin/playgrounds" className="link-hover link">
             Manage Playgrounds
           </Link>
         </li>
