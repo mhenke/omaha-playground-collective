@@ -76,11 +76,14 @@ const Posts = () => {
     if (selectedPost) {
       updatePostMutation.mutate({
         id: selectedPost.id,
+        title: title || "",
+        content: content || "",
         ...filteredData,
       });
     } else {
       createPostMutation.mutate({
-        title,
+        title: title || "",
+        content: content || "",
         ...filteredData,
       });
     }
