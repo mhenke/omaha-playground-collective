@@ -38,13 +38,15 @@ const Posts = () => {
   const [selectedPost, setSelectedPost] = useState<PostType | null>(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [selectedPlayground, setSelectedPlayground] = useState("");
+  const [selectedPlayground, setSelectedPlayground] = useState<number | null>(
+    null,
+  );
 
   useEffect(() => {
     if (selectedPost) {
       setTitle(selectedPost.title);
       setContent(selectedPost.content);
-      setSelectedPlayground(selectedPost.playgroundId?.toString() ?? "");
+      setSelectedPlayground(selectedPost.playgroundId ?? null);
     } else {
       resetFormState();
     }
@@ -53,7 +55,7 @@ const Posts = () => {
   const resetFormState = () => {
     setTitle("");
     setContent("");
-    setSelectedPlayground("");
+    setSelectedPlayground(null);
   };
 
   const handleDeletePost = (id: number) => {
@@ -61,16 +63,25 @@ const Posts = () => {
   };
 
   const handleUpdatePost = () => {
+    const postData = {
+      title,
+      content,
+      playgroundId: selectedPlayground,
+    };
+
+    const filteredData = Object.fromEntries(
+      Object.entries(postData).filter(([key, value]) => value !== null),
+    );
+
     if (selectedPost) {
       updatePostMutation.mutate({
         id: selectedPost.id,
-        title,
-        content,
+        ...filteredData,
       });
     } else {
       createPostMutation.mutate({
         title,
-        content,
+        ...filteredData,
       });
     }
   };
@@ -168,7 +179,9 @@ const Posts = () => {
                 </label>
                 <select
                   value={selectedPlayground || ""}
-                  onChange={(e) => setSelectedPlayground(e.target.value)}
+                  onChange={(e) =>
+                    setSelectedPlayground(parseInt(e.target.value))
+                  }
                   className="select mt-1 w-full max-w-xs rounded border p-2"
                 >
                   <option disabled value="">
@@ -199,11 +212,11 @@ const Posts = () => {
               <div className="modal-action">
                 <form method="dialog">
                   <div className="flex justify-end">
-                    <button className="btn" onClick={handleCloseDialog}>
+                    <button className="btn ml-1" onClick={handleCloseDialog}>
                       Cancel
                     </button>
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-primary ml-1"
                       onClick={handleUpdatePost}
                     >
                       {selectedPost ? "Update" : "Save"}

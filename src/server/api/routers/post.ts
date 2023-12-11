@@ -8,7 +8,13 @@ import {
 
 export const postRouter = createTRPCRouter({
   create: adminProcedure
-    .input(z.object({ title: z.string().min(1), content: z.string() }))
+    .input(
+      z.object({
+        title: z.string().min(1),
+        content: z.string(),
+        playgroundId: z.number().optional(),
+      }),
+    )
     .mutation(async ({ ctx, input }) => {
       // Simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -18,6 +24,7 @@ export const postRouter = createTRPCRouter({
           title: input.title,
           content: input.content,
           authorId: ctx.session.user.id,
+          playgroundId: input.playgroundId,
         },
       });
     }),
@@ -75,6 +82,7 @@ export const postRouter = createTRPCRouter({
         id: z.number(),
         title: z.string().min(1),
         content: z.string(),
+        playgroundId: z.number().optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -86,6 +94,7 @@ export const postRouter = createTRPCRouter({
           title: input.title,
           content: input.content,
           authorId: ctx.session.user.id,
+          playgroundId: input.playgroundId,
         },
       });
     }),

@@ -159,11 +159,11 @@ const Surfaces = () => {
               <div className="modal-action">
                 <form method="dialog">
                   <div className="flex justify-end">
-                    <button className="btn" onClick={handleCloseDialog}>
+                    <button className="btn ml-1" onClick={handleCloseDialog}>
                       Cancel
                     </button>
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-primary ml-1"
                       onClick={handleUpdateSurface}
                     >
                       {selectedSurface ? "Update" : "Save"}
