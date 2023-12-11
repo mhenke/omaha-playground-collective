@@ -79,7 +79,7 @@ export default function Home() {
         <FilterForm />
         <div className="flex min-h-screen flex-col py-2">
           <div className="mx-auto px-4 py-4 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
-            <p>No posts found.</p>
+            <p>No posts found. Try again please.</p>
           </div>
         </div>
       </div>
