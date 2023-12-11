@@ -47,8 +47,7 @@ export const playgroundRouter = createTRPCRouter({
           shade: input.shade,
           accessibleEquip: input.accessibleEquip,
           adaCompliance: input.adaCompliance,
-
-          authorId: ctx.session.user.id,
+          authorId: ctx.session.user.id ?? "",
         },
       });
     }),
@@ -109,7 +108,7 @@ export const playgroundRouter = createTRPCRouter({
           accessibleEquip: input.accessibleEquip,
           adaCompliance: input.adaCompliance,
 
-          authorId: ctx.session.user.id,
+          authorId: ctx.session.user.id ?? undefined,
         },
       });
     }),
