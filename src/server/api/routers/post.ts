@@ -69,7 +69,6 @@ export const postRouter = createTRPCRouter({
         where: {
           id: input.id,
         },
-        orderBy: { name: "desc" },
         include: {
           playground: { include: { ageRange: true, surface: true } },
           photos: true,
