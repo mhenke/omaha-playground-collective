@@ -9,6 +9,8 @@ import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -46,6 +48,7 @@ export default function RootLayout({
           <Footer />
           <Analytics />
           <AxiomWebVitals />
+          <SpeedInsights />
         </body>
       </TRPCReactProvider>
     </html>
