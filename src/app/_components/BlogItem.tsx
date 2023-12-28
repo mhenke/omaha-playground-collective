@@ -8,8 +8,8 @@ import type {
 } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
+import { getFeatures } from "../_lib/GetFeatures";
 import Carousel from "./Carousel";
-import Ranking from "./Ranking";
 
 type ExtendedPost = Post & {
   playground:
@@ -22,6 +22,11 @@ interface BlogItemProps {
 }
 
 const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
+  let features = null;
+  if (post.playground) {
+    features = getFeatures(post.playground);
+  }
+
   return (
     <div className="overflow-hidden rounded border border-t-0 shadow-sm transition-shadow duration-200">
       <Carousel photos={post.photos} type={"blog"} />
@@ -44,9 +49,6 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
               {post.playground?.address} {post.playground?.city},{" "}
               {post.playground?.state} {post.playground?.zip}
             </h6>
-            <div className="rating-xs text-sm">
-              <Ranking rating={post?.playground?.rating} />
-            </div>
           </div>
         )}
 
@@ -60,21 +62,16 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
           </Link>
         </p>
         <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
-          {post.playground?.ageRange?.name && (
-            <button className="btn btn-neutral btn-xs m-px">
-              {post.playground.ageRange.name}
-            </button>
-          )}
-          {post.playground?.accessibleEquip && (
-            <button className="btn btn-secondary btn-xs m-px">
-              Assessible
-            </button>
-          )}
-          {post.playground?.surface?.name && (
-            <button className="btn btn-accent btn-xs m-px">
-              {post.playground.surface.name}
-            </button>
-          )}
+          {features &&
+            Object.entries(features).map(
+              ([_key, { displayName, value, color }], index) => (
+                <div key={index} className={`badge badge-${color}`}>
+                  {typeof value === "boolean" && value
+                    ? `${displayName}`
+                    : `${String(value)}`}
+                </div>
+              ),
+            )}
         </p>
       </div>
     </div>

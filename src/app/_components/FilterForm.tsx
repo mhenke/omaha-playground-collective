@@ -57,18 +57,6 @@ export const FilterForm = () => {
       </div>
       {/* next div shoul be new row*/}
       <div className="flex flex-row items-center justify-center space-x-4">
-        <div className="rating rating-sm">
-          <input type="radio" name="rating-9" className="rating-hidden" />
-          <input type="radio" name="rating-9" className="mask mask-star-2" />
-          <input type="radio" name="rating-9" className="mask mask-star-2" />
-          <input type="radio" name="rating-9" className="mask mask-star-2" />
-          <input type="radio" name="rating-9" className="mask mask-star-2" />
-          <input type="radio" name="rating-9" className="mask mask-star-2" />
-        </div>
-      </div>
-
-      {/* next div shoul be new row*/}
-      <div className="flex flex-row items-center justify-center space-x-4">
         {Object.keys(includeKeys).map((key) => {
           const includeKey: IncludeKey | undefined = includeKeys[key];
           if (includeKey) {

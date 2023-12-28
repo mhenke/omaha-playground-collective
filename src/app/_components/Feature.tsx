@@ -1,5 +1,5 @@
 import { type AgeRange, type Playground, type Surface } from "@prisma/client";
-import { useFilterStore } from "../_store/filterStore";
+import { getFeatures } from "../_lib/GetFeatures";
 
 type ExtendedPlayground = Playground & {
   ageRange: AgeRange | null; // Add ageRange property
@@ -11,41 +11,11 @@ interface FeatureProps {
 }
 
 const Feature: React.FC<FeatureProps> = ({ playground }) => {
-  const { keys } = useFilterStore.getState();
-
-  if (!playground || !keys) {
+  if (!playground) {
     return null; // Return null if no playground or keys
   }
 
-  const features = Object.fromEntries(
-    Object.entries(keys)
-      .filter(
-        ([key, { showOnFilter }]) =>
-          showOnFilter &&
-          playground[key as keyof Playground] !== null &&
-          playground[key as keyof Playground] !== undefined,
-      )
-      .map(([key, { displayName }]) => [
-        key,
-        { displayName, value: playground[key as keyof Playground] },
-      ]),
-  );
-
-  // Add ageRange value
-  if (playground?.ageRange?.name) {
-    features["ageRange" as keyof typeof features] = {
-      displayName: "Age Range",
-      value: playground.ageRange.name,
-    };
-  }
-
-  // Add Surface value
-  if (playground?.surface?.name) {
-    features["surface" as keyof typeof features] = {
-      displayName: "Surface",
-      value: playground?.surface?.name,
-    };
-  }
+  const features = getFeatures(playground);
 
   const hasFeatures = Object.values(features).some(({ value }) => value);
 

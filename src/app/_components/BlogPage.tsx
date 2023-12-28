@@ -2,7 +2,6 @@ import Link from "next/link";
 import { api } from "~/trpc/server";
 import Carousel from "./Carousel";
 import Feature from "./Feature";
-import Ranking from "./Ranking";
 
 const BlogPage = async ({ id }: { id: number }) => {
   const post = await api.post.getOne.query({ id }, {});
@@ -86,9 +85,6 @@ const BlogPage = async ({ id }: { id: number }) => {
                     {post.playground?.address} {post.playground?.city},{" "}
                     {post.playground?.state} {post.playground?.zip}
                   </h6>
-                  <div className="text-sm">
-                    <Ranking rating={post?.playground?.rating} />
-                  </div>
                 </div>
               )}
               <p className="text-base  md:text-lg">{post.content}</p>

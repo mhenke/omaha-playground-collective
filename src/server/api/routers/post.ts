@@ -39,21 +39,12 @@ export const postRouter = createTRPCRouter({
         restrooms: z.boolean().optional(),
       }),
     )
-    .query(({ ctx, input }) => {
+    .query(({ ctx }) => {
       return ctx.db.post.findMany({
-        where: {
-          playground: {
-            ageRangeId: input.ageRangeId,
-            surfaceId: input.surfaceId,
-            accessibleEquip: input.accessibleEquip,
-            shade: input.shade,
-            restrooms: input.restrooms,
-          },
-        },
         orderBy: { createdAt: "desc" },
         include: {
-          playground: { include: { ageRange: true, surface: true } },
           photos: true,
+          playground: { include: { ageRange: true, surface: true } },
         },
       });
     }),
@@ -70,8 +61,8 @@ export const postRouter = createTRPCRouter({
           id: input.id,
         },
         include: {
-          playground: { include: { ageRange: true, surface: true } },
           photos: true,
+          playground: { include: { ageRange: true, surface: true } }, // include ageRange and surface
         },
       });
     }),

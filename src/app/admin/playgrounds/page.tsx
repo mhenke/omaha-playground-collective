@@ -8,27 +8,21 @@ import AdminNav from "../AdminNav";
 
 const Playgrounds = () => {
   const playgroundsQuery = api.playground.getAll.useQuery();
-  console.log(playgroundsQuery);
 
   const { data: playgrounds } = playgroundsQuery;
-  console.log(playgrounds);
 
   const ageRangesQuery = api.ageRange.getAll.useQuery();
-  console.log(ageRangesQuery);
 
   const { data: ageRanges } = ageRangesQuery;
-  console.log(ageRanges);
 
   const surfacesQuery = api.surface.getAll.useQuery();
-  console.log(surfacesQuery);
 
   const { data: surfaces } = surfacesQuery;
-  console.log(surfaces);
 
   const [selectedPlayground, setSelectedPlayground] =
     useState<Playground | null>(null);
   const [name, setName] = useState("");
-  const [rating, setRating] = useState("");
+
   const [address, setAddress] = useState<string | null>(null);
   const [city, setCity] = useState<string | null>(null);
   const [state, setState] = useState<string | null>(null);
@@ -46,7 +40,6 @@ const Playgrounds = () => {
 
   const resetFormState = () => {
     setName("");
-    setRating("");
     setAddress("");
     setCity("");
     setState("");
@@ -127,7 +120,6 @@ const Playgrounds = () => {
         shade,
         state,
         zip,
-        post: 0,
         rating: null,
       });
     } else {
@@ -146,7 +138,6 @@ const Playgrounds = () => {
         state,
         zip,
         rating: null,
-        post: 0,
       });
     }
   };

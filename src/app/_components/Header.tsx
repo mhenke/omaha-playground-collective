@@ -4,7 +4,7 @@ import { getServerAuthSession } from "~/server/auth";
 
 export default async function Header({ title }: { readonly title: string }) {
   const session = await getServerAuthSession();
-  console.log(session);
+
   return (
     <header className="navbar ">
       <div className="navbar-start">

@@ -70,7 +70,7 @@ const Posts = () => {
     };
 
     const filteredData = Object.fromEntries(
-      Object.entries(postData).filter(([key, value]) => value !== null),
+      Object.entries(postData).filter(([value]) => value !== null),
     );
 
     if (selectedPost) {

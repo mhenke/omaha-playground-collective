@@ -10,7 +10,6 @@ export const playgroundRouter = createTRPCRouter({
     .input(
       z.object({
         name: z.string().min(1),
-        post: z.number(),
         rating: z.number().nullable(),
         address: z.string().nullable(),
         city: z.string().nullable(),
@@ -31,9 +30,6 @@ export const playgroundRouter = createTRPCRouter({
       return ctx.db.playground.create({
         data: {
           name: input.name,
-          post: {
-            connect: { id: input.post },
-          },
           rating: input.rating,
           address: input.address,
           city: input.city,
@@ -61,7 +57,6 @@ export const playgroundRouter = createTRPCRouter({
       include: {
         surface: true,
         ageRange: true,
-        post: true,
       },
     });
   }),
@@ -71,7 +66,6 @@ export const playgroundRouter = createTRPCRouter({
       z.object({
         id: z.number(),
         name: z.string().min(1),
-        post: z.number(),
         rating: z.number().nullable(),
         address: z.string().nullable(),
         city: z.string().nullable(),
@@ -93,9 +87,6 @@ export const playgroundRouter = createTRPCRouter({
         where: { id: input.id },
         data: {
           name: input.name,
-          post: {
-            connect: { id: input.post },
-          },
           rating: input.rating,
           address: input.address,
           city: input.city,

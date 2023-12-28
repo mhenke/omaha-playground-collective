@@ -35,24 +35,24 @@ model Session {
 }
 
 enum Role {
-   USER
-   ADMIN
- }
+  USER
+  ADMIN
+}
 
 model User {
-  id            String        @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String?       @unique
+  email         String?      @unique
   emailVerified DateTime?
   image         String?
-  posts         Post[]        @relation("AuthorOfPost")
-  photos        Photo[]       @relation("AuthorPhoto")
-  playgrounds   Playground[]  @relation("AuthorPlayground")
-  surfaces      Surface[]     @relation("AuthorSurface")
-  ageranges     AgeRange[]    @relation("AuthorAgeRange")
+  posts         Post[]       @relation("AuthorOfPost")
+  photos        Photo[]      @relation("AuthorPhoto")
+  playgrounds   Playground[] @relation("AuthorPlayground")
+  surfaces      Surface[]    @relation("AuthorSurface")
+  ageranges     AgeRange[]   @relation("AuthorAgeRange")
   sessions      Session[]
   Account       Account[]
-  role          Role          @default(USER)
+  role          Role         @default(USER)
 }
 
 model Post {
@@ -62,37 +62,17 @@ model Post {
   author       User        @relation(name: "AuthorOfPost", fields: [authorId], references: [id])
   authorId     String
   photos       Photo[]     @relation("PostPhotos")
-  playground   Playground? @relation("PlaygroundPosts")
+  playground   Playground? @relation("PlaygroundPosts", fields: [playgroundId], references: [id])
+  playgroundId Int?
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @default(now()) @updatedAt
   instagram_id String?
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-}
-
-model Photo {
-  id        Int      @id @default(autoincrement())
-  url       String
-  post      Post     @relation("PostPhotos", fields: [postId], references: [id])
-  postId    Int
-  author    User     @relation("AuthorPhoto",fields: [authorId], references: [id])
-  authorId  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
-}
-
-
 model Playground {
   id              Int       @id @default(autoincrement())
   name            String
-  post            Post?     @relation("PlaygroundPosts", fields: [postId], references: [id])
-  postId          Int?      @unique
+  posts           Post[]    @relation("PlaygroundPosts")
   rating          Float?
   address         String?
   city            String?
@@ -125,6 +105,25 @@ model Surface {
   authorId    String
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now()) @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Photo {
+  id        Int      @id @default(autoincrement())
+  url       String
+  post      Post     @relation("PostPhotos", fields: [postId], references: [id])
+  postId    Int
+  author    User     @relation("AuthorPhoto", fields: [authorId], references: [id])
+  authorId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model AgeRange {

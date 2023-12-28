@@ -12,26 +12,45 @@ export type IncludeKey = {
   displayName: string;
   value: boolean;
   showOnFilter: boolean;
+  color: "neutral" | "primary" | "secondary" | "accent" | "ghost";
 };
 
 const includeKeys: IncludeKeys = {
-  restrooms: { displayName: "Restrooms", value: false, showOnFilter: true },
-  shade: { displayName: "Shade", value: false, showOnFilter: true },
+  restrooms: {
+    displayName: "Restrooms",
+    value: false,
+    showOnFilter: true,
+    color: "ghost",
+  },
+  shade: {
+    displayName: "Shade",
+    value: false,
+    showOnFilter: true,
+    color: "accent",
+  },
   accessibleEquip: {
     displayName: "Accessible Equipment",
     value: false,
     showOnFilter: true,
+    color: "neutral",
   },
   picnicAreas: {
     displayName: "Picnic Areas",
     value: false,
     showOnFilter: false,
+    color: "accent",
   },
-  benches: { displayName: "Benches", value: false, showOnFilter: false },
+  benches: {
+    displayName: "Benches",
+    value: false,
+    showOnFilter: false,
+    color: "ghost",
+  },
   adaCompliance: {
     displayName: "ADA Compliance",
     value: false,
     showOnFilter: false,
+    color: "accent",
   },
 };
 

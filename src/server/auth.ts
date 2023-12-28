@@ -43,13 +43,11 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     jwt: ({ token, user }) => {
-      console.log("jwt callback:", token, user);
       // @ts-expect-error We're ignoring the error because we know that user always has a role property in this context
       if (user) token.role = user.role;
       return token;
     },
     session: ({ session, token }) => {
-      console.log("session callback:", token, session);
       return {
         ...session,
         user: {
