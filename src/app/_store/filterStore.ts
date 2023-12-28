@@ -12,7 +12,7 @@ export type IncludeKey = {
   displayName: string;
   value: boolean;
   showOnFilter: boolean;
-  color: "neutral" | "primary" | "secondary" | "accent" | "ghost";
+  color: "neutral" | "primary" | "secondary" | "accent" | "ghost" | "default";
 };
 
 const includeKeys: IncludeKeys = {
@@ -35,7 +35,7 @@ const includeKeys: IncludeKeys = {
     color: "neutral",
   },
   picnicAreas: {
-    displayName: "Picnic Areas",
+    displayName: "Picnic Area",
     value: false,
     showOnFilter: false,
     color: "accent",
@@ -69,10 +69,9 @@ export const useFilterStore = create<State & Action>((set) => ({
   updateKey: (key) =>
     set((state) => {
       const previousValue = state.keys[key]?.value ?? false;
-
-      // Ensure that displayName is always defined
       const displayName = state.keys[key]?.displayName ?? "";
       const showOnFilter = state.keys[key]?.showOnFilter ?? false;
+      const color = state.keys[key]?.color ?? "default";
 
       return {
         keys: {
@@ -80,8 +79,9 @@ export const useFilterStore = create<State & Action>((set) => ({
           [key]: {
             ...state.keys[key],
             value: !previousValue,
-            displayName: displayName,
-            showOnFilter: showOnFilter,
+            displayName,
+            showOnFilter,
+            color,
           },
         },
       };
