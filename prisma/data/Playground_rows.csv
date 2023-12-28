@@ -1,4 +1,24 @@
-id,name,postId,rating,address,city,state,zip,latitude,longitude,restrooms,picnicAreas,benches,shade,accessibleEquip,adaCompliance,ageRangeId,surfaceId,createdAt,updatedAt,authorId
-1,Lewis & Clark Landing at The River Front,,5,345 Riverfront Dr,Omaha,NE,68102,41.19971,-95.82071,true,,,true,,,6,,2023-11-21 17:57:07.256,2023-11-21 17:57:07.256,clpzow697000310stkk4w574j
-2,Elmwood Park Playground,3,,,,,,,,,,,,,,7,,2023-11-22 20:17:01,2023-11-22 20:17:05,clpzow697000310stkk4w574j
-4,Blondo Ridges Park,1,4,Big Elk Pkwy,Elkhorn,NE,68022,41.2836,-96.2016,,,,,true,,6,6,2023-11-21 17:57:07.256,2023-11-21 17:57:07.256,clpzow697000310stkk4w574j
+id,name,postId,rating,address,city,state,zip,latitude,longitude,restrooms,picnicAreas,benches,shade,accessibleEquip,adaCompliance,ageRangeId,surfaceId,authorId,createdAt,updatedAt
+21,Arbor Gate Park,61,,"Arbor Gate Park, Arbor Gate, Douglas County, Nebraska, United States",,,,41.2000971,-96.224770952038,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+20,Seymour Smith All Play Playground,60,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+3,Lewis and Clark Landing Park at the Riverfront,40,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+5,Benson Park Playground,42,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+7,Lake Manawa Dream Land Playground,44,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+25,Elmwood Park Playground,67,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+19,Adventure Trails at Henry Doorly Zoo,59,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+18,Swanson Park Playground,58,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+17,"Stinson Park, Aksarben Village",57,,"Stinson Park, Aksarben Village, Omaha, Douglas County, Nebraska, United States",,,,41.23797925,-96.0153808506379,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+16,Dom’s Park Playground at Chalco Hills,56,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+15,Lee G. Simmons Wildlife Safari Park,54,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+14,Halleck Park Castle Playground,52,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+13,Zorinsky Lake Park Playground,51,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+12,The Grove Playground + Splash Pad,50,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+11,Towl Park Playground,49,,"Big Papio Trail, Omaha, Douglas County, Nebraska, 68124, United States",,,,41.23652935,-96.0589585853211,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+10,Flanagan Lake Park Playground,48,,"Ida Street, Douglas County, Nebraska, 68007, United States",,,,41.32023475,-96.1879825925116,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+24,Mission Park West Playground,66,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+22,Stonecroft Park,62,,"Stonecroft Park, Capehart, Bellevue, Sarpy County, Nebraska, 68123, United States",,,,41.1143038,-95.9467797872959,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+9,Orval Smith Park - Ralston,47,,"Orval Smith Park, Ralston, Douglas County, Nebraska, United States",,,,41.19972535,-96.0407733135411,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+8,Wildewood Park,45,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+6,Standing Bear Lake Play Area,43,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+4,Metcalfe Park,41,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457
+23,Blondo Ridges Park,64,,,,,,,,,,,,,,,,clpzow697000310stkk4w574j,2023-12-19 23:17:40.457,2023-12-19 23:17:40.457

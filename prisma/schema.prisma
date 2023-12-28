@@ -63,9 +63,9 @@ model Post {
   authorId     String
   photos       Photo[]     @relation("PostPhotos")
   playground   Playground? @relation("PlaygroundPosts")
-  playgroundId Int?
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @default(now()) @updatedAt
+  instagram_id String?
 }
 
 model VerificationToken {
