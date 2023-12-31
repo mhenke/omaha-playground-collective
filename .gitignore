@@ -45,3 +45,4 @@ yarn-error.log*
 certificates
 # Sentry Config File
 .sentryclirc
+stackhawk.yml

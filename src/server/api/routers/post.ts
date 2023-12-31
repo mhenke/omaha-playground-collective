@@ -45,6 +45,9 @@ export const postRouter = createTRPCRouter({
         include: {
           photos: true,
           playground: { include: { ageRange: true, surface: true } },
+          author: {
+            select: { name: true },
+          },
         },
       });
     }),
@@ -62,7 +65,10 @@ export const postRouter = createTRPCRouter({
         },
         include: {
           photos: true,
-          playground: { include: { ageRange: true, surface: true } }, // include ageRange and surface
+          playground: { include: { ageRange: true, surface: true } },
+          author: {
+            select: { name: true },
+          },
         },
       });
     }),

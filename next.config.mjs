@@ -10,12 +10,49 @@ await import("./src/env.mjs");
 const config = {
   output: "standalone",
   images: {
-    domains: ["znmzqhaphohpkdunuiqu.supabase.co", "images.pexels.com"], // Add your image domain here
+    domains: ["znmzqhaphohpkdunuiqu.supabase.co"], // Add your image domain here
   },
 };
 
+const headers = [
+  {
+    source: "/(.*)",
+    headers: [
+      {
+        key: "Content-Security-Policy",
+        value:
+          "default-src 'self'; font-src 'self' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';",
+      },
+      {
+        key: "X-Frame-Options",
+        value: "DENY",
+      },
+      {
+        key: "X-Content-Type-Options",
+        value: "nosniff",
+      },
+      {
+        key: "Referrer-Policy",
+        value: "origin-when-cross-origin",
+      },
+      {
+        key: "Permissions-Policy",
+        value:
+          "camera=(); battery=(self); geolocation=(); microphone=('https://somewhere.com')",
+      },
+    ],
+  },
+  // Add more header configurations as needed for different paths
+];
+
 export default withSentryConfig(
-  withAxiom(config),
+  withAxiom({
+    ...config,
+    poweredByHeader: false,
+    headers: async () => {
+      return Promise.resolve(headers);
+    },
+  }),
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options

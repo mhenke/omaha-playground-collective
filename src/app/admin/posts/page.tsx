@@ -1,6 +1,6 @@
 "use client";
 
-import { type Playground, type Post as PostType } from "@prisma/client";
+import { type Playground } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Loading from "~/app/_components/Loading";
 import { api } from "~/trpc/react";
@@ -34,10 +34,23 @@ const Posts = () => {
       await postsQuery.refetch();
     },
   });
-
-  const [selectedPost, setSelectedPost] = useState<PostType | null>(null);
+  type PostWithAuthor = {
+    id: number;
+    title: string;
+    content: string;
+    authorId: string;
+    playgroundId: number | null;
+    createdAt: Date;
+    updatedAt: Date;
+    instagram_id: string | null;
+    author: {
+      name: string;
+    };
+  };
+  const [selectedPost, setSelectedPost] = useState<PostWithAuthor | null>(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [author, setAuthor] = useState("");
   const [selectedPlayground, setSelectedPlayground] = useState<number | null>(
     null,
   );
@@ -46,6 +59,7 @@ const Posts = () => {
     if (selectedPost) {
       setTitle(selectedPost.title);
       setContent(selectedPost.content);
+      setAuthor(selectedPost.author.name);
       setSelectedPlayground(selectedPost.playgroundId ?? null);
     } else {
       resetFormState();
@@ -55,6 +69,7 @@ const Posts = () => {
   const resetFormState = () => {
     setTitle("");
     setContent("");
+    setAuthor("");
     setSelectedPlayground(null);
   };
 
@@ -94,7 +109,7 @@ const Posts = () => {
     modal?.classList.remove("modal-open");
   };
 
-  const openEditModal = (post: PostType | null) => {
+  const openEditModal = (post: PostWithAuthor | null) => {
     setSelectedPost(post);
     // Set other fields as needed
     const modal = document.getElementById("edit_modal");
@@ -209,7 +224,13 @@ const Posts = () => {
                 />
               </div>
               <div className="py-4">
-                <p>Author Name: NAME GOES HERE</p>
+                <p>Author: {author}</p>
+              </div>
+              <div className="py-4">
+                <p>Created:</p>
+              </div>
+              <div className="py-4">
+                <p>Updated:</p>
               </div>
 
               <div className="modal-action">
