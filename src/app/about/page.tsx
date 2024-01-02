@@ -41,14 +41,13 @@ export default function About() {
           <div className="border-l-4 border-secondary bg-secondary-content shadow-sm">
             <div className="h-full rounded-r border border-l-0 p-5">
               <h6 className="mb-2 font-semibold leading-5">
-                Our mission is simple
+                Our goal is simple
               </h6>
               <p className="text-sm text-gray-900">
-                Our mission is simple: to be your ultimate source for all things
-                play-related in Omaha. Whether you&apos;re a local resident or a
-                visitor, we&apos;ve got you covered with detailed insights,
-                reviews, and recommendations to make your playtime adventures
-                memorable and stress-free.
+                It&apos;s the idea that y&apos;all will be able to find new
+                parks and playgrounds + learn a little about them before packing
+                up your whole family only to discover that a certain park
+                has—gasp—sand!
               </p>
             </div>
           </div>
@@ -58,14 +57,14 @@ export default function About() {
           <div className="flex flex-col items-end px-3">
             <Image
               className="mb-6 h-28 w-28 rounded object-cover shadow-lg sm:h-48 sm:w-48 xl:h-56 xl:w-56"
-              src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              src="https://znmzqhaphohpkdunuiqu.supabase.co/storage/v1/object/public/omaha-playground-collective/3165024884908351240-01.jpg"
               alt=""
               width="1260"
               height="750"
             />
             <Image
               className="h-20 w-20 rounded object-cover shadow-lg sm:h-32 sm:w-32 xl:h-40 xl:w-40"
-              src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+              src="https://znmzqhaphohpkdunuiqu.supabase.co/storage/v1/object/public/omaha-playground-collective/3180264634149933232-02.jpg"
               alt=""
               width="1260"
               height="750"
@@ -74,7 +73,7 @@ export default function About() {
           <div className="px-3">
             <Image
               className="h-40 w-40 rounded object-cover shadow-lg sm:h-64 sm:w-64 xl:h-80 xl:w-80"
-              src="https://images.pexels.com/photos/3182739/pexels-photo-3182739.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+              src="https://znmzqhaphohpkdunuiqu.supabase.co/storage/v1/object/public/omaha-playground-collective/3166501207455559856-06.jpg"
               alt=""
               width="500"
               height="750"
