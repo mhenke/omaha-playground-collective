@@ -55,12 +55,10 @@ export default function Contact() {
                   />
                 </svg>
               </div>
-              <h6 className="mb-2 font-semibold leading-5">
-                I'll be sure to note that in my log
-              </h6>
+              <h6 className="mb-2 font-semibold leading-5">Community</h6>
               <p className="text-sm text-gray-900">
-                Dingy I'm tellin' you rhubaahb Bangah Jo-Jeezly got in a gaum
-                Powrtland stove up dooryahd
+                Your source for all things playgrounds, parks + fun in Omaha,
+                Nebraska
               </p>
             </div>
             <div>
@@ -80,11 +78,10 @@ export default function Contact() {
                 </svg>
               </div>
               <h6 className="mb-2 font-semibold leading-5">
-                Iterative approaches to corporate strategy
+                Photos and Reviews
               </h6>
               <p className="text-sm text-gray-900">
-                A slice of heaven. O for awesome, this chocka full cuzzie is as
-                rip-off as a cracker.
+                All photos and reviews are my own.
               </p>
             </div>
           </div>
