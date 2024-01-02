@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Instagram } from "react-feather";
 import { api } from "~/trpc/server";
 import Carousel from "./Carousel";
 import Feature from "./Feature";
@@ -92,8 +93,17 @@ const BlogPage = async ({ id }: { id: number }) => {
           </div>
           <div>
             <Carousel photos={post.photos} type={"content"} />
-
             <Feature playground={post?.playground} />
+            <div className="flex items-center justify-center sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8 lg:py-2">
+              <Link
+                href="https://www.instagram.com/p/Cz_Z5BiOtBB/?utm_source=ig_web_copy_link"
+                className="link link-primary flex items-center"
+              >
+                <Instagram className="mr-2" />{" "}
+                {/* Add margin to create space between icon and text */}
+                Original Instagram Post
+              </Link>
+            </div>
           </div>
         </div>
       </div>

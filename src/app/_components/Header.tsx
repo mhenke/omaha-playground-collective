@@ -4,7 +4,7 @@ import { getServerAuthSession } from "~/server/auth";
 
 export default async function Header({ title }: { readonly title: string }) {
   const session = await getServerAuthSession();
-
+  console.log(session);
   return (
     <header className="navbar ">
       <div className="navbar-start">
@@ -54,12 +54,21 @@ export default async function Header({ title }: { readonly title: string }) {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="avatar btn btn-circle btn-ghost">
               <div className="w-10 rounded-full">
-                <Image
-                  src="/photo-1534528741775-53994a69daeb.jpg"
-                  alt="User"
-                  width={48}
-                  height={48}
-                />
+                {session?.user?.image ? (
+                  <Image
+                    src={session.user.image}
+                    alt="User"
+                    width={48}
+                    height={48}
+                  />
+                ) : (
+                  <span className="text-3xl">
+                    {session?.user?.name
+                      ?.split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </span>
+                )}
               </div>
             </label>
             <ul

@@ -10,7 +10,10 @@ await import("./src/env.mjs");
 const config = {
   output: "standalone",
   images: {
-    domains: ["znmzqhaphohpkdunuiqu.supabase.co"], // Add your image domain here
+    domains: [
+      "znmzqhaphohpkdunuiqu.supabase.co",
+      "avatars.githubusercontent.com",
+    ], // Add your image domain here
   },
 };
 

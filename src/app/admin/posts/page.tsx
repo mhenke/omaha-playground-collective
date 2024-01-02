@@ -141,25 +141,34 @@ const Posts = () => {
                 </tr>
               </thead>
               <tbody>
-                {posts?.map((postItem) => (
-                  <tr key={postItem.id}>
-                    <td className="border p-2">{postItem.title}</td>
-                    <td className="border p-2">
-                      <button
-                        className="btn btn-sm m-1"
-                        onClick={() => openEditModal(postItem)}
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="btn btn-error btn-sm m-1"
-                        onClick={() => handleDeletePost(postItem.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                {posts?.map((postItem) => {
+                  const postItemWithAuthor: PostWithAuthor = {
+                    ...postItem,
+                    author: {
+                      name: "Author Name", // replace this with the actual author's name
+                    },
+                  };
+
+                  return (
+                    <tr key={postItem.id}>
+                      <td className="border p-2">{postItem.title}</td>
+                      <td className="border p-2">
+                        <button
+                          className="btn btn-sm m-1"
+                          onClick={() => openEditModal(postItemWithAuthor)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-error btn-sm m-1"
+                          onClick={() => handleDeletePost(postItem.id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           )}
