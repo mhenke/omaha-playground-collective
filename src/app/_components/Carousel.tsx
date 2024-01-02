@@ -2,6 +2,7 @@
 
 import type { Photo } from "@prisma/client";
 import Image from "next/image";
+import { useRef } from "react";
 
 type CarouselProps = {
   photos: Photo[];
@@ -15,8 +16,17 @@ const Carousel: React.FC<CarouselProps> = ({ photos, type }) => {
       ? "object-cover w-full h-64"
       : "object-cover w-full h-56 rounded shadow-lg sm:h-96";
 
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollCarousel = (targetImageNumber: number) => {
+    if (carouselRef.current) {
+      const targetXPixel = carouselRef.current.clientWidth * targetImageNumber;
+      carouselRef.current.scrollLeft = targetXPixel;
+    }
+  };
+
   return (
-    <div className="carousel w-full">
+    <div className="carousel w-full" ref={carouselRef}>
       {photos.map((photo, index) => (
         <div
           key={photo.postId}
@@ -26,28 +36,28 @@ const Carousel: React.FC<CarouselProps> = ({ photos, type }) => {
           <Image
             src={photo.url}
             className={photoClass}
-            alt={""}
+            alt=""
             width="1260"
             height="750"
           />
           {totalPhotos === 1 ? null : (
             <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-              <a
-                href={`#slide${photo.postId}-${
-                  index === 0 ? totalPhotos - 1 : index - 1
-                }`}
+              <button
+                onClick={() =>
+                  scrollCarousel(index === 0 ? totalPhotos - 1 : index - 1)
+                }
                 className="btn btn-circle"
               >
                 ❮
-              </a>
-              <a
-                href={`#slide${photo.postId}-${
-                  index === totalPhotos - 1 ? 0 : index + 1
-                }`}
+              </button>
+              <button
+                onClick={() =>
+                  scrollCarousel(index === totalPhotos - 1 ? 0 : index + 1)
+                }
                 className="btn btn-circle"
               >
                 ❯
-              </a>
+              </button>
             </div>
           )}
         </div>

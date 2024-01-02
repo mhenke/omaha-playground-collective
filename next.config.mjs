@@ -24,7 +24,7 @@ const headers = [
       {
         key: "Content-Security-Policy",
         value:
-          "default-src 'self'; font-src 'self' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';",
+          "default-src 'self'; font-src 'self' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' znmzqhaphohpkdunuiqu.supabase.co;",
       },
       {
         key: "X-Frame-Options",

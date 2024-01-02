@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Contact() {
@@ -20,26 +21,36 @@ export default function Contact() {
           </ul>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row">
-        <div className="mb-6 lg:mb-0 lg:w-1/2 lg:pr-5">
-          <h2 className="mb-5 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-            The quick, brown fox
-            <br className="hidden md:block" />
-            jumps over{" "}
-            <span className="inline-block text-accent">a lazy dog</span>
-          </h2>
-          <a href="/" className="link inline-flex items-center">
-            Learn more
-          </a>
+      <div className="grid gap-5 lg:grid-cols-2">
+        <div className="flex flex-col justify-center md:pr-8 lg:max-w-lg xl:pr-0">
+          <div className="mb-6 max-w-xl">
+            <h2 className="mb-6 max-w-lg text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
+              Let’s Collaborate!
+            </h2>
+            <p className="text-base  md:text-lg">
+              Have a question, suggestion, or just want to say hello? We&apos;d
+              love to hear from you! DM for inquiries on our{" "}
+              <Link
+                href="https://www.instagram.com/omahaplaygroundcollective/"
+                className="link-hover link text-secondary"
+              >
+                Instagram account
+              </Link>{" "}
+              and we&apos;ll will get back to you faster than a slide ride.
+            </p>
+          </div>
         </div>
-        <div className="lg:w-1/2">
-          <p className="bg-neutral-content text-base text-neutral">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque rem aperiam, eaque ipsa quae. Sed ut
-            perspiciatis unde omnis iste. Sed ut perspiciatis unde omnis iste
-            natus error sit voluptatem accusantium doloremque rem aperiam, eaque
-            ipsa quae.
-          </p>
+
+        <div className="-mx-4 flex items-center justify-center lg:pl-8">
+          <div className="px-3">
+            <Image
+              className="h-40 w-40 rounded object-cover shadow-lg sm:h-64 sm:w-64 xl:h-80 xl:w-80"
+              src="https://znmzqhaphohpkdunuiqu.supabase.co/storage/v1/object/public/omaha-playground-collective/3183381106770001397-02.jpg"
+              alt=""
+              width="500"
+              height="750"
+            />
+          </div>
         </div>
       </div>
     </div>
