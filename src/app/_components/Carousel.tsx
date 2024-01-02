@@ -29,8 +29,8 @@ const Carousel: React.FC<CarouselProps> = ({ photos, type }) => {
     <div className="carousel w-full" ref={carouselRef}>
       {photos.map((photo, index) => (
         <div
-          key={photo.postId}
-          id={`slide${photo.postId}-${index}`}
+          key={`slide-${photo.id}`}
+          id={`slide-${photo.postId}-${index}`}
           className="carousel-item relative w-full"
         >
           <Image

@@ -61,7 +61,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
             Learn more
           </Link>
         </p>
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wide">
+        <div className="mb-3 text-xs font-semibold uppercase tracking-wide">
           {features &&
             Object.entries(features).map(
               ([_key, { displayName, value, color }], index) => (
@@ -72,7 +72,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
                 </div>
               ),
             )}
-        </p>
+        </div>
       </div>
     </div>
   );

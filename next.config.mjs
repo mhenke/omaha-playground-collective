@@ -24,7 +24,7 @@ const headers = [
       {
         key: "Content-Security-Policy",
         value:
-          "default-src 'self'; font-src 'self' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' znmzqhaphohpkdunuiqu.supabase.co;",
+          "default-src 'self'; font-src 'self' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' znmzqhaphohpkdunuiqu.supabase.co data:; worker-src blob:;",
       },
       {
         key: "X-Frame-Options",
@@ -40,8 +40,7 @@ const headers = [
       },
       {
         key: "Permissions-Policy",
-        value:
-          "camera=(); battery=(self); geolocation=(); microphone=('https://somewhere.com')",
+        value: "camera=(), geolocation=(), microphone=()",
       },
     ],
   },
