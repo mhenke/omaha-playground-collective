@@ -65,7 +65,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ post }) => {
           {features &&
             Object.entries(features).map(
               ([_key, { displayName, value, color }], index) => (
-                <div key={index} className={`badge badge-${color}`}>
+                <div key={index} className={`badge ${color} badge-outline`}>
                   {typeof value === "boolean" && value
                     ? `${displayName}`
                     : `${String(value)}`}

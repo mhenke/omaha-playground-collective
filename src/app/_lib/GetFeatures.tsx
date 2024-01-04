@@ -28,7 +28,7 @@ export function getFeatures(playground: ExtendedPlayground) {
     features["ageRange" as keyof typeof features] = {
       displayName: "Age Range",
       value: playground.ageRange.name,
-      color: "primary",
+      color: "badge-neutral",
     };
   }
 
@@ -37,7 +37,7 @@ export function getFeatures(playground: ExtendedPlayground) {
     features["surface" as keyof typeof features] = {
       displayName: "Surface",
       value: playground?.surface?.name,
-      color: "secondary",
+      color: "badge-secondary",
     };
   }
 

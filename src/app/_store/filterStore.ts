@@ -12,7 +12,12 @@ export type IncludeKey = {
   displayName: string;
   value: boolean;
   showOnFilter: boolean;
-  color: "neutral" | "primary" | "secondary" | "accent" | "ghost" | "default";
+  color:
+    | "badge-neutral"
+    | "badge-secondary"
+    | "badge-accent"
+    | "badge-ghost"
+    | "default";
 };
 
 const includeKeys: IncludeKeys = {
@@ -20,37 +25,37 @@ const includeKeys: IncludeKeys = {
     displayName: "Restrooms",
     value: false,
     showOnFilter: true,
-    color: "ghost",
+    color: "badge-ghost",
   },
   shade: {
     displayName: "Shade",
     value: false,
     showOnFilter: true,
-    color: "accent",
+    color: "badge-accent",
   },
   accessibleEquip: {
     displayName: "Accessible Equipment",
     value: false,
     showOnFilter: true,
-    color: "neutral",
+    color: "badge-neutral",
   },
   picnicAreas: {
     displayName: "Picnic Area",
     value: false,
     showOnFilter: false,
-    color: "accent",
+    color: "badge-accent",
   },
   benches: {
     displayName: "Benches",
     value: false,
     showOnFilter: false,
-    color: "ghost",
+    color: "badge-ghost",
   },
   adaCompliance: {
     displayName: "ADA Compliance",
     value: false,
     showOnFilter: false,
-    color: "accent",
+    color: "badge-accent",
   },
 };
 
