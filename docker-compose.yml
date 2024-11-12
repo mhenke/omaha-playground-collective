@@ -6,17 +6,17 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_CLIENTVAR: "clientvar"
+        DATABASE_URL: ${DATABASE_URL}
+        NEXT_PUBLIC_CLIENTVAR: ${NEXT_PUBLIC_CLIENTVAR}
     working_dir: /app
     ports:
       - "3000:3000"
-    image: t3-app
-    develop:
-      watch:
-        - action: sync
-          path: ./src
-          target: /app/src
-          ignore:
-            - node_modules/
-        - action: rebuild
-          path: package.json
+    image: omaha-playground-app
+    volumes:
+      - .:/app
+      - /app/node_modules # To avoid conflicts with host node_modules
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - NEXT_PUBLIC_CLIENTVAR=${NEXT_PUBLIC_CLIENTVAR}
+    command: ["node", "server.js"]

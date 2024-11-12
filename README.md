@@ -63,6 +63,39 @@ GITHUB_SECRET=<your_github_secret>
 
 NEED TO ADD INSTRUCTIONS FOR RUNNING THE APP
 
+To tfurther develop the app, you can run the following commands:
+
+### Dockerfile
+
+You can build and run the Docker image locally. Here are the steps:
+
+1. **Build the Docker image**:
+
+   ```bash
+   docker build -t omaha-playground-app .
+   ```
+
+2. **Run the Docker container**:
+   ```bash
+   docker run -p 3000:3000 --env-file .env omaha-playground-app
+   ```
+
+This will build the Docker image with the tag `omaha-playground-app` and run a container from that image, mapping port 3000 of the container to port 3000 on your host machine. The `--env-file .env` option ensures that the environment variables from your .env file are passed to the container.
+
+You can then access the application in your browser at `http://localhost:3000`.
+
+If you encounter any issues, you can check the logs of the running container using:
+
+```bash
+docker logs <container_id>
+```
+
+Replace `<container_id>` with the actual container ID, which you can find using:
+
+```bash
+docker ps
+```
+
 ## License
 
 This project is licensed under the terms of the [Creative Commons Zero v1.0 Universal](LICENSE.md).
