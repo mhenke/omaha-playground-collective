@@ -17,5 +17,3 @@ This final project is meant to let you practice what you have learned in this co
 - (10 points) An overview of some highlights of your web application (something special about your product) that users should pay attention to in your later demo.
 - (10 points) A demo of step-by-step instructions on how to deploy the web application (e.g., the link of your repository, how to install the environment dependencies, what cloud services need to be launched, what stack needs to be created, etc.) so the audience can follow your instructions and deploy your web application without any problems.
 - (10 points) Finally, highlight the functionalities/features of your web application.
-
-You can view the original file [here](https://github.com/mhenke/omaha-playground-collective/blob/9d5b6921b307a527172e0bfac66fa4ebe2004a16/CSCI4650-assignment.md).
