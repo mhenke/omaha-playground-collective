@@ -1,0 +1,104 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "CloudFormation template to deploy the Omaha Playground Collective application"
+
+Parameters:
+  VPC:
+    Description: "VPC ID"
+    Type: "AWS::EC2::VPC::Id"
+  Subnets:
+    Description: "Subnets for ECS tasks"
+    Type: "List<AWS::EC2::Subnet::Id>"
+  ClusterName:
+    Description: "ECS Cluster Name"
+    Type: "String"
+    Default: "OmahaPlaygroundCluster"
+  DatabaseURL:
+    Description: "Database URL for the application"
+    Type: "String"
+  NextPublicClientVar:
+    Description: "Public client variable for the application"
+    Type: "String"
+
+Resources:
+  # ECS Cluster
+  ECSCluster:
+    Type: "AWS::ECS::Cluster"
+    Properties:
+      ClusterName: !Ref ClusterName
+
+  # IAM Role for ECS Task Execution
+  TaskExecutionRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              Service: "ecs-tasks.amazonaws.com"
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: "ecsTaskExecutionPolicy"
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action:
+                  - "ecr:GetDownloadUrlForLayer"
+                  - "ecr:BatchGetImage"
+                  - "ecr:GetAuthorizationToken"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "*"
+
+  # ECS Task Definition
+  ECSTaskDefinition:
+    Type: "AWS::ECS::TaskDefinition"
+    Properties:
+      Family: "OmahaPlaygroundTask"
+      NetworkMode: "awsvpc"
+      RequiresCompatibilities:
+        - "FARGATE"
+      Cpu: "256"
+      Memory: "512"
+      ExecutionRoleArn: !GetAtt TaskExecutionRole.Arn
+      ContainerDefinitions:
+        - Name: "OmahaPlaygroundContainer"
+          Image: "your-docker-image-url"
+          Essential: true
+          PortMappings:
+            - ContainerPort: 3000
+              HostPort: 3000
+          Environment:
+            - Name: "DATABASE_URL"
+              Value: !Ref DatabaseURL
+            - Name: "NEXT_PUBLIC_CLIENTVAR"
+              Value: !Ref NextPublicClientVar
+          LogConfiguration:
+            LogDriver: "awslogs"
+            Options:
+              awslogs-group: "/ecs/OmahaPlayground"
+              awslogs-region: !Ref "AWS::Region"
+              awslogs-stream-prefix: "ecs"
+
+  # ECS Service
+  ECSService:
+    Type: "AWS::ECS::Service"
+    Properties:
+      Cluster: !Ref ECSCluster
+      DesiredCount: 1
+      LaunchType: "FARGATE"
+      TaskDefinition: !Ref ECSTaskDefinition
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: "ENABLED"
+          Subnets: !Ref Subnets
+          SecurityGroups: []
+
+Outputs:
+  ECSClusterName:
+    Description: "ECS Cluster Name"
+    Value: !Ref ECSCluster
+  ECSServiceName:
+    Description: "ECS Service Name"
+    Value: !Ref ECSService
