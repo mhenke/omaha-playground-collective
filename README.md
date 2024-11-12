@@ -20,7 +20,7 @@ The Omaha Playground Collective is your ultimate source for all things playgroun
 
 ## Installation
 
-You'll need a Supabase and GitHub account to run this app locally. You'll also need to install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/). Node version 18.18.2 is recommended.
+You'll need a Supabase and GitHub account to run this app locally.
 
 You'll need to clone the GitHub repo to your local machine.
 
@@ -61,21 +61,7 @@ GITHUB_SECRET=<your_github_secret>
 
 ## Getting Started
 
-After [installation](#installation) you can run the following commands to get the app up and running locally.
-
-```bash
-docker compose build
-```
-
-```bash
-docker compose up -d
-```
-
-To stop the app, run the following command:
-
-```bash
-docker compose down
-```
+NEED TO ADD INSTRUCTIONS FOR RUNNING THE APP
 
 ## License
 
