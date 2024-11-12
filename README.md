@@ -61,13 +61,45 @@ GITHUB_SECRET=<your_github_secret>
 
 ## Getting Started
 
-NEED TO ADD INSTRUCTIONS FOR RUNNING THE APP
+### Local Development
 
-To tfurther develop the app, you can run the following commands:
+To set up the project for local development, follow these steps:
 
-### Dockerfile
+1. **Clone the repository**:
 
-You can build and run the Docker image locally. Here are the steps:
+   ```bash
+   git clone https://github.com/your-username/omaha-playground-collective.git
+   cd omaha-playground-collective
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+
+   - Copy the example environment file and update it with your own values:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edit the [.env](http://_vscodecontentref_/0) file to include your own values for the environment variables.
+
+4. **Run the development server**:
+
+   ```bash
+   npm run dev
+   ```
+
+   This will start the development server on `http://localhost:3000`.
+
+5. **Access the application**:
+   Open your browser and navigate to `http://localhost:3000` to see the application running locally.
+
+### Docker Development
+
+You can also use Docker to set up the project for local development. Here are the steps:
 
 1. **Build the Docker image**:
 
@@ -76,25 +108,29 @@ You can build and run the Docker image locally. Here are the steps:
    ```
 
 2. **Run the Docker container**:
+
    ```bash
    docker run -p 3000:3000 --env-file .env omaha-playground-app
    ```
 
-This will build the Docker image with the tag `omaha-playground-app` and run a container from that image, mapping port 3000 of the container to port 3000 on your host machine. The `--env-file .env` option ensures that the environment variables from your .env file are passed to the container.
+   This will build the Docker image with the tag `omaha-playground-app` and run a container from that image, mapping port 3000 of the container to port 3000 on your host machine. The `--env-file .env` option ensures that the environment variables from your [.env](http://_vscodecontentref_/1) file are passed to the container.
 
-You can then access the application in your browser at `http://localhost:3000`.
+3. **Access the application**:
+   Open your browser and navigate to `http://localhost:3000` to see the application running in the Docker container.
 
-If you encounter any issues, you can check the logs of the running container using:
+4. **Check container logs** (if needed):
 
-```bash
-docker logs <container_id>
-```
+   ```bash
+   docker logs <container_id>
+   ```
 
-Replace `<container_id>` with the actual container ID, which you can find using:
+   Replace `<container_id>` with the actual container ID, which you can find using:
 
-```bash
-docker ps
-```
+   ```bash
+   docker ps
+   ```
+
+By following these steps, you should be able to set up and run the Omaha Playground Collective app locally for development.
 
 ## License
 
